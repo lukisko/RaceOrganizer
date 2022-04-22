@@ -11,12 +11,12 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/login_register"
-        android:name="com.example.raceorganizer.View.login_register"
+        android:name="com.example.raceorganizer.View.LoginRegister.login_register"
         android:label="login/register"
         tools:layout="@layout/fragment_login_register" />
     <fragment
         android:id="@+id/list_of_races"
-        android:name="com.example.raceorganizer.View.list_of_races"
+        android:name="com.example.raceorganizer.View.Races.list_of_races"
         android:label="fragment_list_of_races"
         tools:layout="@layout/fragment_list_of_races" />
 </navigation>
