@@ -19,4 +19,9 @@
         android:name="com.example.raceorganizer.View.Races.list_of_races"
         android:label="fragment_list_of_races"
         tools:layout="@layout/fragment_list_of_races" />
+    <fragment
+        android:id="@+id/race_info"
+        android:name="com.example.raceorganizer.View.RaceInfo.race_info"
+        android:label="fragment_race_info"
+        tools:layout="@layout/fragment_race_info" />
 </navigation>

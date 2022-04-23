@@ -1,43 +1,44 @@
-package com.example.raceorganizer.View.Races;
+package com.example.raceorganizer.View.RaceInfo;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.raceorganizer.Model.Checkpoint;
 import com.example.raceorganizer.Model.Race;
 import com.example.raceorganizer.R;
+import com.example.raceorganizer.View.Races.RaceAdapter;
 
 import java.util.ArrayList;
 
-public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
+public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.ViewHolder> {
 
-    private ArrayList<Race> races;
+    private ArrayList<Checkpoint> checkpoints;
     private OnCLick listener;
 
-    public RaceAdapter(ArrayList<Race> races){
-        this.races = races;
+    public CheckpointAdapter(ArrayList<Checkpoint> checkpoints){
+        this.checkpoints = checkpoints;
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.race_list, parent, false);
+        View view = inflater.inflate(R.layout.checkpoint_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(races.get(position).getName());
+        holder.name.setText(checkpoints.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return races.size();
+        return checkpoints.size();
     }
 
     public void setOnClickListener(OnCLick listener) {
@@ -46,17 +47,17 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView name;
+        private Button name;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             itemView.setOnClickListener(l -> {
-                listener.onClick(races.get(getBindingAdapterPosition()));
+                listener.onClick(checkpoints.get(getBindingAdapterPosition()));
             });
         }
     }
     public interface OnCLick{
-        void onClick(Race race);
+        void onClick(Checkpoint checkpoint);
     }
 }

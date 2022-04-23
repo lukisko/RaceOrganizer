@@ -1,5 +1,6 @@
 package com.example.raceorganizer.View.Races;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.raceorganizer.Model.Race;
 import com.example.raceorganizer.R;
+import com.example.raceorganizer.View.MainActivity;
 import com.example.raceorganizer.View.Races.RaceAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,7 @@ public class list_of_races extends Fragment {
     private ArrayList<Race> foods;
 
     View view;
+    FloatingActionButton add;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,6 +35,9 @@ public class list_of_races extends Fragment {
         view = inflater.inflate(R.layout.fragment_list_of_races, container, false);
 
         testRaceList();
+
+        add = view.findViewById(R.id.addRace);
+        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info));
 
         return view;
     }
