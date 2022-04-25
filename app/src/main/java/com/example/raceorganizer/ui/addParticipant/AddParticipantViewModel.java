@@ -1,6 +1,5 @@
-package com.example.raceorganizer.ui2.addParticipant;
+package com.example.raceorganizer.ui.addParticipant;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class AddParticipantViewModel extends ViewModel {

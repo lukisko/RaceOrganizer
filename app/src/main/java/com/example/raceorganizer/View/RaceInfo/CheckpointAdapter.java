@@ -8,10 +8,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.raceorganizer.Model.Checkpoint;
-import com.example.raceorganizer.Model.Race;
+import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.View.Races.RaceAdapter;
 
 import java.util.ArrayList;
 

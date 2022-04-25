@@ -1,4 +1,4 @@
-package com.example.raceorganizer.ui2.checkpointList;
+package com.example.raceorganizer.ui.checkpointList;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

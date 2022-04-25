@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.raceorganizer.Model.Checkpoint;
-import com.example.raceorganizer.Model.Race;
+import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.View.Races.RaceAdapter;
 
 import java.util.ArrayList;
 

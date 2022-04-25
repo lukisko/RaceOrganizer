@@ -1,4 +1,4 @@
-package com.example.raceorganizer.ui2.checkpointList;
+package com.example.raceorganizer.ui.checkpointList;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.domain.Checkpoint;
+import com.example.raceorganizer.Data.Model.Checkpoint;
 
 import java.util.ArrayList;
 

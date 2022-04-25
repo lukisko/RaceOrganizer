@@ -1,10 +1,10 @@
-package com.example.raceorganizer.ui2.checkpointList;
+package com.example.raceorganizer.ui.checkpointList;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.raceorganizer.domain.Checkpoint;
+import com.example.raceorganizer.Data.Model.Checkpoint;
 
 import java.util.ArrayList;
 
@@ -15,10 +15,10 @@ public class CheckpointListPViewModel extends ViewModel {
     public CheckpointListPViewModel(){
         checkpoints = new MutableLiveData<>();
         ArrayList<Checkpoint> newCheckpoints = checkpoints.getValue();
-        newCheckpoints.add(new Checkpoint("testing point","7/10"));
-        newCheckpoints.add(new Checkpoint("testing point2","6/10"));
-        newCheckpoints.add(new Checkpoint("testing point3","8/10"));
-        newCheckpoints.add(new Checkpoint("testing point4","2/10"));
+        newCheckpoints.add(new Checkpoint("testing point"));
+        newCheckpoints.add(new Checkpoint("testing point2"));
+        newCheckpoints.add(new Checkpoint("testing point3"));
+        newCheckpoints.add(new Checkpoint("testing point4"));
         checkpoints.postValue(newCheckpoints);
     }
 

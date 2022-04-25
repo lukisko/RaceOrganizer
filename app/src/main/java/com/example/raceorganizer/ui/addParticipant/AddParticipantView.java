@@ -1,4 +1,4 @@
-package com.example.raceorganizer.ui2.addParticipant;
+package com.example.raceorganizer.ui.addParticipant;
 
 import android.os.Bundle;
 import android.widget.Button;
