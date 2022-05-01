@@ -3,10 +3,14 @@ package com.example.raceorganizer.View.Races;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
@@ -16,7 +20,7 @@ import java.util.ArrayList;
 public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
 
     private ArrayList<Race> races;
-    private OnCLick listener;
+    private OnCLickListener onCLickListener;
 
     public RaceAdapter(ArrayList<Race> races){
         this.races = races;
@@ -39,8 +43,8 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
         return races.size();
     }
 
-    public void setOnClickListener(OnCLick listener) {
-        this.listener = listener;
+    public void setOnClickListener(OnCLickListener listener) {
+        this.onCLickListener = listener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -49,13 +53,14 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+
             name = itemView.findViewById(R.id.name);
-            itemView.setOnClickListener(l -> {
-                listener.onClick(races.get(getBindingAdapterPosition()));
+            itemView.setOnClickListener(v -> {
+                onCLickListener.onClick(races.get(getBindingAdapterPosition()));
             });
         }
     }
-    public interface OnCLick{
+    public interface OnCLickListener{
         void onClick(Race race);
     }
 }
