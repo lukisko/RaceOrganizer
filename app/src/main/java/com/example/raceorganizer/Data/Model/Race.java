@@ -1,28 +1,37 @@
 package com.example.raceorganizer.Data.Model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Race {
     private String name;
-    private Date start;
-    private Date end;
+
+    private Date date;
+    private int startTime;
+    private int endTime;
     private RaceType raceType;
     private int participantsAmount;
 
     public Race(String name) {
         this.name = name;
+
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
     }
 
     public void setRaceType(RaceType raceType) {
@@ -35,14 +44,6 @@ public class Race {
 
     public String getName() {
         return name;
-    }
-
-    public Date getStart() {
-        return start;
-    }
-
-    public Date getEnd() {
-        return end;
     }
 
     public RaceType getRaceType() {

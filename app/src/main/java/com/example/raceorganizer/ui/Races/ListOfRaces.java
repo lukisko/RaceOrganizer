@@ -36,7 +36,7 @@ public class ListOfRaces extends Fragment {
         testRaceList();
 
         add = view.findViewById(R.id.addRace);
-        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info));
+        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race));
 
 //        raceAdapter.setOnClickListener(new AdapterView.OnItemClickListener() {
 //            @Override

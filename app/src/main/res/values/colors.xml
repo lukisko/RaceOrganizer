@@ -12,5 +12,6 @@
     <color name="light_blue">#95DBE5</color>
     <color name="dark_blue">#078282</color>
     <color name="green">#339E66</color>
+    <color name="hint_colour">#999997</color>
 
 </resources>
