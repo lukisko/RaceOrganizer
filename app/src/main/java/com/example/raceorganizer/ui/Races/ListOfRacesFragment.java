@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class ListOfRacesFragment extends Fragment {
      RecyclerView recyclerView;
      RaceAdapter raceAdapter;
-//    private ArrayList<Race> races;
 
     private ListOfRacesViewModel listOfRacesViewModel;
 
@@ -38,7 +37,6 @@ public class ListOfRacesFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list_of_races, container, false);
 
-//        testRaceList();
 
         listOfRacesViewModel = new ViewModelProvider(this).get(ListOfRacesViewModel.class);
         recyclerView = view.findViewById(R.id.raceListRecicleView);
@@ -47,13 +45,15 @@ public class ListOfRacesFragment extends Fragment {
 
         raceAdapter = new RaceAdapter(listOfRacesViewModel.getAllRaces().getValue());
         raceAdapter.setOnClickListener(o ->  {
-            Toast.makeText(getActivity(), o.getName(), Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putString("nameOfRace",o.getName());
+            ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
         });
         recyclerView.setAdapter(raceAdapter);
 
 
         add = view.findViewById(R.id.addRace);
-        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info));
+//        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info));
 
         return view;
     }

@@ -1,13 +1,28 @@
 package com.example.raceorganizer.Data.Model;
 
+import android.annotation.SuppressLint;
+
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
+
 
 public class Race {
     private String name;
     private Date start;
     private Date end;
     private RaceType raceType;
+    private ArrayList<Checkpoint> checkpoints;
     private int participantsAmount;
+
+    public Race(String name, Date start, Date end, RaceType raceType, ArrayList<Checkpoint> checkpoints, int participantsAmount) {
+        this.name = name;
+        this.start = start;
+        this.end = end;
+        this.raceType = raceType;
+        this.checkpoints = checkpoints;
+        this.participantsAmount = participantsAmount;
+    }
 
     public Race(String name) {
         this.name = name;
@@ -33,16 +48,27 @@ public class Race {
         this.participantsAmount = participantsAmount;
     }
 
+    public void setCheckpoints(ArrayList<Checkpoint> checkpoints) {
+        this.checkpoints = checkpoints;
+    }
+
     public String getName() {
         return name;
     }
 
-    public Date getStart() {
-        return start;
+    public String getStart() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("hh:mm");
+        return ft.format(start);
     }
 
-    public Date getEnd() {
-        return end;
+    public String getEnd() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("hh:mm");
+        return ft.format(end);
+    }
+
+    public String getDate() {
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("dd.MM.yyyy");
+        return ft.format(start);
     }
 
     public RaceType getRaceType() {
@@ -53,4 +79,7 @@ public class Race {
         return participantsAmount;
     }
 
+    public ArrayList<Checkpoint> getCheckpoints() {
+        return checkpoints;
+    }
 }

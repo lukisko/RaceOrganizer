@@ -51,7 +51,7 @@ public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.nameOfCheckpoint);
             itemView.setOnClickListener(l -> {
                 onCLickListener.onClick(checkpoints.get(getBindingAdapterPosition()));
             });
