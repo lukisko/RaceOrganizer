@@ -1,4 +1,4 @@
-package com.example.raceorganizer.View;
+package com.example.raceorganizer.ui.Home;
 
 import android.os.Bundle;
 
@@ -11,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.raceorganizer.R;
+import com.example.raceorganizer.MainActivity;
 
-public class home extends Fragment {
+public class Home extends Fragment {
 
 
     NavController navController;
     Button organize;
+    Button participate;
 
     View view;
 
@@ -27,7 +29,11 @@ public class home extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         organize = view.findViewById(R.id.organize);
+        participate = view.findViewById(R.id.participate);
+
         organize.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.login_register));
+        participate.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.list_of_races));
+
         return view;
     }
 

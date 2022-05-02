@@ -6,10 +6,33 @@
     android:gravity="top|center_horizontal"
     android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/name"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:text="asd"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:gravity="center|center_vertical"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_item_borders"
+        >
+
+
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+
+            android:layout_marginBottom="10dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:text="Telovichovna jednota stranik"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

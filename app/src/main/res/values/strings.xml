@@ -11,4 +11,7 @@
     <string name="race_organizer">Race Organizer</string>
     <string name="organize">Organize</string>
     <string name="participate">Participate</string>
+    <string name="race_list">Race list</string>
+    <string name="race_info">Race info</string>
+    <string name="login_register">Login/Register</string>
 </resources>

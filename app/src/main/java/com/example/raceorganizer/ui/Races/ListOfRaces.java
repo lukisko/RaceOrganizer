@@ -1,6 +1,5 @@
-package com.example.raceorganizer.View.Races;
+package com.example.raceorganizer.ui.Races;
 
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,20 +9,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.View.MainActivity;
-import com.example.raceorganizer.View.RaceInfo.CheckpointAdapter;
+import com.example.raceorganizer.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
 
-public class list_of_races extends Fragment {
+public class ListOfRaces extends Fragment {
     private RecyclerView raceList;
     private RaceAdapter raceAdapter;
     private ArrayList<Race> races;

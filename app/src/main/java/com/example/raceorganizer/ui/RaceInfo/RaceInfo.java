@@ -1,4 +1,4 @@
-package com.example.raceorganizer.View.RaceInfo;
+package com.example.raceorganizer.ui.RaceInfo;
 
 import android.os.Bundle;
 
@@ -15,7 +15,7 @@ import com.example.raceorganizer.R;
 
 import java.util.ArrayList;
 
-public class race_info extends Fragment {
+public class RaceInfo extends Fragment {
 
     private RecyclerView checkpointList;
     private CheckpointAdapter checkpointAdapter;

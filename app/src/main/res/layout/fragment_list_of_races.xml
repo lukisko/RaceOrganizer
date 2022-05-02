@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Races.list_of_races"
+    tools:context=".ui.Races.ListOfRaces"
     android:background="@color/white">
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recicleView"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="275dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -1,20 +1,18 @@
-package com.example.raceorganizer.View.LoginRegister;
+package com.example.raceorganizer.ui.LoginRegister;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.View.MainActivity;
+import com.example.raceorganizer.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class login_register extends Fragment {
+public class LoginRegister extends Fragment {
 
     View view;
     FloatingActionButton next;
