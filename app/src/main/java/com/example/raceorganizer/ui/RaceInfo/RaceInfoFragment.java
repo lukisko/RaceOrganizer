@@ -15,7 +15,7 @@ import com.example.raceorganizer.R;
 
 import java.util.ArrayList;
 
-public class RaceInfo extends Fragment {
+public class RaceInfoFragment extends Fragment {
 
     private RecyclerView checkpointList;
     private CheckpointAdapter checkpointAdapter;

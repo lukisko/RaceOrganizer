@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 
-public class Home extends Fragment {
+public class HomeFragment extends Fragment {
 
 
     NavController navController;
