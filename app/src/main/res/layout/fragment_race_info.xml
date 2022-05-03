@@ -83,22 +83,14 @@
         android:id="@+id/whiteBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="172dp"
         android:src="@drawable/curvedwhitebackgroundpng"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/editIcon"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/editpen1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/calendarIcon"
@@ -119,51 +111,55 @@
         app:layout_constraintTop_toBottomOf="@+id/raceName" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/checkpointButton"
         android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="275dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="24dp"
         android:text="Check..."
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:theme="@style/Theme.Button1"
+        app:layout_constraintBottom_toTopOf="@+id/checkpointRecycleList"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/whiteBackground"
+        app:layout_constraintVertical_bias="0.877" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/participantButton"
         android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="275dp"
+        android:layout_height="45dp"
         android:text="Parti..."
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:theme="@style/Theme.Button1"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
-        app:layout_constraintHorizontal_bias="0.392"
-        app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/checkpointRecycleList"
+        app:layout_constraintEnd_toStartOf="@+id/moderatorButton"
+        app:layout_constraintHorizontal_bias="0.462"
+        app:layout_constraintStart_toEndOf="@+id/checkpointButton"
+        app:layout_constraintTop_toTopOf="@+id/whiteBackground"
+        app:layout_constraintVertical_bias="0.877" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/moderatorButton"
         android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="275dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="24dp"
         android:text="Mode..."
-        android:textSize="11sp"
+        android:textSize="12sp"
         android:theme="@style/Theme.Button1"
+        app:layout_constraintBottom_toTopOf="@+id/checkpointRecycleList"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/whiteBackground"
+        app:layout_constraintVertical_bias="0.877" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/checkpointRecycleList"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toTopOf="@+id/whiteBackground"
+        app:layout_constraintVertical_bias="0.598" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addRace"
@@ -177,4 +173,18 @@
         android:theme="@style/Theme.Button1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/garbageCan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/garbagecan"
+        android:background="@color/light_blue"
+        app:layout_constraintBottom_toTopOf="@+id/whiteBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.864"
+        app:layout_constraintStart_toEndOf="@+id/raceName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.353" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +30,12 @@ public class RaceInfoFragment extends Fragment {
 
     private RaceInfoViewModel viewModel;
     private RecyclerView recyclerView;
-    private CheckpointAdapter checkpointAdapter;
-    private Race race;
 
+    private CheckpointAdapter checkpointAdapter;
+    private ParticipantAdapter participantAdapter;
+    private ModeratorAdapter moderatorAdapter;
+
+    private Race race;
 
     View view;
 
@@ -39,8 +44,11 @@ public class RaceInfoFragment extends Fragment {
     TextView starting;
     TextView ending;
     TextView amountOfPeople;
+    ImageButton delete;
 
-
+    Button checkpoint;
+    Button participant;
+    Button moderator;
 
 
     @SuppressLint("SetTextI18n")
@@ -49,8 +57,54 @@ public class RaceInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_race_info, container, false);
 
-        setupRecycleView(view);
+        setupRecycleViews(view);
 
+        setup();
+
+        setupButtons();
+
+        return view;
+    }
+
+    public void setupRecycleViews(View view){
+        viewModel = new ViewModelProvider(this).get(RaceInfoViewModel.class);
+        recyclerView = view.findViewById(R.id.checkpointRecycleList);
+        recyclerView.hasFixedSize();
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+
+        race = viewModel.getRace(getArguments().getString("nameOfRace")).getValue();
+        checkpointAdapter = new CheckpointAdapter(race.getCheckpoints());
+        participantAdapter = new ParticipantAdapter(race.getParticipants());
+        moderatorAdapter = new ModeratorAdapter(race.getModerators());
+
+        recyclerView.setAdapter(checkpointAdapter);
+    }
+
+    public void setupButtons(){
+        delete.setOnClickListener(o ->  {
+            ((MainActivity)this.getActivity()).navController.navigate(R.id.list_of_races);
+        });
+        checkpoint.setOnClickListener(o ->  {
+            moderator.setBackgroundColor(getResources().getColor(R.color.green));
+            participant.setBackgroundColor(getResources().getColor(R.color.green));
+            checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
+            recyclerView.setAdapter(checkpointAdapter);
+        });
+        participant.setOnClickListener(o ->  {
+            moderator.setBackgroundColor(getResources().getColor(R.color.green));
+            checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
+            participant.setBackgroundColor(getResources().getColor(R.color.black));
+            recyclerView.setAdapter(participantAdapter);
+        });
+        moderator.setOnClickListener(o ->  {
+            checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
+            participant.setBackgroundColor(getResources().getColor(R.color.green));
+            moderator.setBackgroundColor(getResources().getColor(R.color.black));
+            recyclerView.setAdapter(moderatorAdapter);
+        });
+    }
+
+    public void setup(){
         raceName = view.findViewById(R.id.raceName);
         raceDate = view.findViewById(R.id.dateOfRace);
         starting = view.findViewById(R.id.startingTime);
@@ -62,27 +116,12 @@ public class RaceInfoFragment extends Fragment {
         ending.setText(race.getEnd());
         amountOfPeople.setText(Integer.toString(race.getParticipantsAmount()));
 
+        delete = view.findViewById(R.id.garbageCan);
+        checkpoint = view.findViewById(R.id.checkpointButton);
+        participant = view.findViewById(R.id.participantButton);
+        moderator = view.findViewById(R.id.moderatorButton);
 
-        return view;
-    }
-
-    public void setupRecycleView(View view){
-        viewModel = new ViewModelProvider(this).get(RaceInfoViewModel.class);
-        recyclerView = view.findViewById(R.id.checkpointRecycleList);
-        recyclerView.hasFixedSize();
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-        race = viewModel.getRace(getArguments().getString("nameOfRace")).getValue();
-        checkpointAdapter = new CheckpointAdapter(race.getCheckpoints());
-        checkpointAdapter.setOnClickListener(o ->  {
-            Context context = view.getContext();
-            CharSequence text = o.getName();
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-        });
-        recyclerView.setAdapter(checkpointAdapter);
+        checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
     }
 
 }

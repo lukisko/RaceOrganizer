@@ -3,42 +3,41 @@ package com.example.raceorganizer.ui.RaceInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Model.Person;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.ui.Races.RaceAdapter;
 
 import java.util.ArrayList;
 
-public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.ViewHolder> {
+public class ModeratorAdapter extends RecyclerView.Adapter<ModeratorAdapter.ViewHolder> {
 
-    private ArrayList<Checkpoint> checkpoints;
+    private ArrayList<Person> moderators;
     private OnCLickListener onCLickListener;
 
-    public CheckpointAdapter(ArrayList<Checkpoint> checkpoints){
-        this.checkpoints = checkpoints;
+    public ModeratorAdapter(ArrayList<Person> moderators){
+        this.moderators = moderators;
     }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.checkpoint_list, parent, false);
+        View view = inflater.inflate(R.layout.moderator_list, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText(checkpoints.get(position).getName());
+        holder.firstName.setText(moderators.get(position).getFirstName());
+        holder.lastName.setText(moderators.get(position).getLastName());
     }
 
     @Override
     public int getItemCount() {
-        return checkpoints.size();
+        return moderators.size();
     }
 
     public void setOnClickListener(OnCLickListener listener) {
@@ -47,17 +46,19 @@ public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView name;
+        private TextView firstName;
+        private TextView lastName;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.nameOfCheckpoint);
+            firstName = itemView.findViewById(R.id.firstNameOfModerator);
+            lastName = itemView.findViewById(R.id.lastNameOfModerator);
 //            itemView.setOnClickListener(l -> {
-//                onCLickListener.onClick(checkpoints.get(getBindingAdapterPosition()));
+//                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
 //            });
         }
     }
     public interface OnCLickListener{
-        void onClick(Checkpoint checkpoint);
+        void onClick(Person participant);
     }
 }
