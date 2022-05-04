@@ -3,44 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/drawable/bg_rounded.xml" value="0.2975" />
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/drawable/bg_rounded_green.xml" value="0.2975" />
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/layout/activity_main.xml" value="0.3392210144927536" />
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/layout/fragment_addcheckpoint.xml" value="0.35104166666666664" />
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/layout/fragment_addparticipant.xml" value="0.33" />
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/layout/fragment_checkpointlist_item.xml" value="0.3392210144927536" />
-        <entry key="../../../../../../../run/media/lukisko/Windows-SSD/VIA/SEMESTER4/AND1/RaceApp/app/src/main/res/layout/fragment_checkpointlist_participant.xml" value="0.3392210144927536" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/edit_text_border.xml" value="0.2145" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.2595" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_polygon_1.xml" value="0.2595" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/spinner_bg.xml" value="0.2145" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addparticipant.xml" value="0.1" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addrace.xml" value="0.264" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_item.xml" value="0.264" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_participant.xml" value="0.4" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_list_of_races.xml" value="0.264" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login_register.xml" value="0.264" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_info.xml" value="0.1" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/menu/drawer.xml" value="0.1" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/drawable/edit_text_border.xml" value="0.3195" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/drawable/list_item_borders.xml" value="0.2315" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/checkpoint_list.xml" value="0.25" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/drawer_header.xml" value="0.3596014492753623" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_addparticipant.xml" value="0.225" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_checkpointlist_item.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_checkpointlist_participant.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_home.xml" value="0.33" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_list_of_races.xml" value="0.33" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_login_register.xml" value="0.25" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_race_info.xml" value="0.25" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/home.xml" value="0.18541666666666667" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/moderator_list.xml" value="0.33" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/participant_list.xml" value="0.33" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/race_list.xml" value="0.25" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/menu/drawer.xml" value="0.3625" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/menu/menu.xml" value="0.3625" />
+        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_addcheckpoint.xml" value="0.1" />
       </map>
     </option>
   </component>

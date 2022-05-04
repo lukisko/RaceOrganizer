@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
+
 
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Data.Model.RaceType;
@@ -65,7 +65,7 @@ public class AddRaceFragment extends Fragment implements AdapterView.OnItemSelec
 
                 if (isAllFieldsChecked) {
                     addRace();
-                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.list_of_races);
+//                    Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.list_of_races);
                 }
             }
         });
@@ -82,14 +82,14 @@ public class AddRaceFragment extends Fragment implements AdapterView.OnItemSelec
         } catch (ParseException e) {
             raceDate.setError("Invalid format,try dd/MM/yyyy");
         }
-        Race raceToAdd = new Race("");
-        raceToAdd.setName(raceName.getText().toString());
-        raceToAdd.setStartTime(Integer.parseInt(startTime.getText().toString()));
-        raceToAdd.setEndTime(Integer.parseInt(endTime.getText().toString()));
-        raceToAdd.setDate(dateToAdd);
-        //may be changed due to choosing which type of race is desired
-        raceToAdd.setRaceType(RaceType.Bicycling);
-        addRaceViewModel.addRace(raceToAdd);
+//        Race raceToAdd = new Race("");
+//        raceToAdd.setName(raceName.getText().toString());
+//        raceToAdd.setStartTime(Integer.parseInt(startTime.getText().toString()));
+//        raceToAdd.setEndTime(Integer.parseInt(endTime.getText().toString()));
+//        raceToAdd.setDate(dateToAdd);
+//        //may be changed due to choosing which type of race is desired
+//        raceToAdd.setRaceType(RaceType.Bicycling);
+//        addRaceViewModel.addRace(raceToAdd);
     }
 
 
