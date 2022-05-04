@@ -14,4 +14,16 @@
     <string name="race_list">Race list</string>
     <string name="race_info">Race info</string>
     <string name="login_register">Login/Register</string>
+    <string name="checkpointname">CheckpointName</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="starttime">StartTime</string>
+    <string name="endtime">EndTime</string>
+    <string name="race_name">Race Name</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="race_category">Race Category</string>
+    <string name="date">Date</string>
+
+
 </resources>

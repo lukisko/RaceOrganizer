@@ -29,6 +29,24 @@ public class Race {
         this.name = name;
     }
 
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    public void setRaceType(RaceType raceType) {
+        this.raceType = raceType;
+    }
+
+   
+
+    public void setCheckpoints(ArrayList<Checkpoint> checkpoints) {
+        this.checkpoints = checkpoints;
+    }
+
     public String getName() {
         return name;
     }
