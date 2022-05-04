@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.Person;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Data.Model.RaceType;
 
@@ -25,7 +24,6 @@ public class RaceRepository {
         ArrayList<Race> value = new ArrayList<>();
         ArrayList<Checkpoint> checkpoints = new ArrayList<>();
         Checkpoint ch = new Checkpoint("d");
-        ch.getModerators().add(new Person("David","Michalco"));
         checkpoints.add(new Checkpoint("asd"));
         checkpoints.add(new Checkpoint("a"));
         checkpoints.add(ch);

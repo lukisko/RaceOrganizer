@@ -8,17 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.raceorganizer.Data.Model.Person;
+import com.example.raceorganizer.Data.Model.LoggedInUser;
 import com.example.raceorganizer.R;
 
 import java.util.ArrayList;
 
 public class ModeratorAdapter extends RecyclerView.Adapter<ModeratorAdapter.ViewHolder> {
 
-    private ArrayList<Person> moderators;
+    private ArrayList<LoggedInUser> moderators;
     private OnCLickListener onCLickListener;
 
-    public ModeratorAdapter(ArrayList<Person> moderators){
+    public ModeratorAdapter(ArrayList<LoggedInUser> moderators){
         this.moderators = moderators;
     }
     @NonNull
@@ -59,6 +59,6 @@ public class ModeratorAdapter extends RecyclerView.Adapter<ModeratorAdapter.View
         }
     }
     public interface OnCLickListener{
-        void onClick(Person participant);
+        void onClick(LoggedInUser participant);
     }
 }

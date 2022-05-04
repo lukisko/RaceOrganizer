@@ -7,8 +7,7 @@ public class Checkpoint {
     private String info;
     private int totalPoints;
     private int pointsReceived;
-    private boolean visited;
-    private ArrayList<Person> moderators;
+    private ArrayList<LoggedInUser> moderators;
 
     public Checkpoint(String name){
         this.name = name;
@@ -24,7 +23,7 @@ public class Checkpoint {
         return info;
     }
 
-    public ArrayList<Person> getModerators() {
+    public ArrayList<LoggedInUser> getModerators() {
         return moderators;
     }
 }

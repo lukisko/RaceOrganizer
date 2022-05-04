@@ -8,17 +8,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.raceorganizer.Data.Model.Person;
+import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.R;
 
 import java.util.ArrayList;
 
 public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.ViewHolder> {
 
-    private ArrayList<Person> participants;
+    private ArrayList<Participant> participants;
     private OnCLickListener onCLickListener;
 
-    public ParticipantAdapter(ArrayList<Person> participants){
+    public ParticipantAdapter(ArrayList<Participant> participants){
         this.participants = participants;
     }
     @NonNull
@@ -62,6 +62,6 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         }
     }
     public interface OnCLickListener{
-        void onClick(Person participant);
+        void onClick(Participant participant);
     }
 }

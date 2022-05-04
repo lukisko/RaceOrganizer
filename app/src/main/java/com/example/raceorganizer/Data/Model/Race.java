@@ -13,7 +13,7 @@ public class Race {
     private Date end;
     private RaceType raceType;
     private ArrayList<Checkpoint> checkpoints;
-    private ArrayList<Person> participants;
+    private ArrayList<Participant> participants;
 
 
     public Race(String name, Date start, Date end, RaceType raceType, ArrayList<Checkpoint> checkpoints) {
@@ -78,12 +78,12 @@ public class Race {
         return checkpoints;
     }
 
-    public ArrayList<Person> getParticipants() {
+    public ArrayList<Participant> getParticipants() {
         return participants;
     }
 
-    public ArrayList<Person> getModerators() {
-        ArrayList<Person> result = new ArrayList<>();
+    public ArrayList<LoggedInUser> getModerators() {
+        ArrayList<LoggedInUser> result = new ArrayList<>();
         for (Checkpoint ch:checkpoints) {
             result.addAll(ch.getModerators());
         }
