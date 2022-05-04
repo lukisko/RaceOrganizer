@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Data.Model.RaceType;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.ArrayList;

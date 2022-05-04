@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -19,14 +20,16 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
     private ArrayList<Race> races;
     private OnCLickListener onCLickListener;
 
-    public RaceAdapter(ArrayList<Race> races){
+    public RaceAdapter(ArrayList<Race> races) {
         this.races = races;
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.race_list, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -44,7 +47,7 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
         this.onCLickListener = listener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView name;
 
@@ -57,7 +60,9 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
             });
         }
     }
-    public interface OnCLickListener{
+
+    public interface OnCLickListener {
         void onClick(Race race);
     }
+
 }

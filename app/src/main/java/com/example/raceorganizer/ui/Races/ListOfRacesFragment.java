@@ -53,7 +53,7 @@ public class ListOfRacesFragment extends Fragment {
 
 
         add = view.findViewById(R.id.addRace);
-//        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info));
+       add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race));
 
         return view;
     }
