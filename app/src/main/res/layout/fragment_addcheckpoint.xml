@@ -102,7 +102,7 @@
             android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:srcCompat="@drawable/addCheckpoint" />
+            app:srcCompat="@drawable/add_checkpoint" />
     </LinearLayout>
 
 </LinearLayout>

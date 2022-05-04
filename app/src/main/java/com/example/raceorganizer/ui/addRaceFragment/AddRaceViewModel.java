@@ -10,11 +10,11 @@ public class AddRaceViewModel extends ViewModel {
 
     private static AddRaceViewModel instance;
     private final MutableLiveData<Race> raceToAdd;
-    private final Race localRaceItem;
+//    private final Race localRaceItem;
 
     private AddRaceViewModel() {
         raceToAdd = new MutableLiveData<>();
-        localRaceItem = new Race("");
+//        localRaceItem = new Race("");
     }
 
 
