@@ -1,5 +1,6 @@
 package com.example.raceorganizer.ui.RaceInfo;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,13 @@ public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.Vi
 
     public CheckpointAdapter(ArrayList<Checkpoint> checkpoints){
         this.checkpoints = checkpoints;
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void set(ArrayList<Checkpoint> checkpoints)
+    {
+        this.checkpoints = checkpoints;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

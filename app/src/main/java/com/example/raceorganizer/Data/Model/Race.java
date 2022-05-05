@@ -15,7 +15,7 @@ public class Race {
     private ArrayList<Checkpoint> checkpoints;
     private ArrayList<Participant> participants;
 
-
+    public Race(){}
     public Race(String name, Date start, Date end, RaceType raceType, ArrayList<Checkpoint> checkpoints) {
         this.name = name;
         this.start = start;

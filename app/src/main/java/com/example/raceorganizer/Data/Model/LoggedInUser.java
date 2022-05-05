@@ -6,6 +6,7 @@ public class LoggedInUser {
     private String firstName;
     private String lastName;
 
+    public LoggedInUser(){}
     public LoggedInUser(String nickName, String password, String firstName, String lastName) {
         this.nickName = nickName;
         this.password = password;
