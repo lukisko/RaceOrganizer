@@ -18,6 +18,15 @@
         <item name="titleTextColor">@color/white</item>
         <item name="colorOnBackground">@color/dark_blue</item>
     </style>
+    <style name="Theme.CustomSearchEditText" parent="Widget.Material3.TextInputEditText.OutlinedBox">
+
+        <item name="titleTextColor">@color/white</item>
+        <item name="textFillColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="backgroundTint">@color/green</item>
+        <item name="borderRoundPercent">@integer/material_motion_duration_medium_1</item>
+
+    </style>
 
     <style name="Theme.Button1" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/green</item>
@@ -38,7 +47,6 @@
     <style name="Base.Widget.AppCompat.DropDownItem.Spinner.AddRaceSpinner">
         <item name="android:colorBackground">@color/hint_colour</item>
         <item name="borderRound"> @dimen/material_emphasis_medium</item>
-
     </style>
 
 

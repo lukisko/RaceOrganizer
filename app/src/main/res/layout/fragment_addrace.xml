@@ -28,7 +28,7 @@
             android:hint="@string/race_name"
             android:inputType="textAutoCorrect"
             android:textColorHint="@color/hint_colour"
-            android:textSize="20sp" />
+            android:textSize="23sp" />
 
         <EditText
             android:id="@+id/race_start_time"
@@ -39,7 +39,7 @@
             android:hint="@string/start_time"
             android:inputType="datetime"
             android:textColorHint="@color/hint_colour"
-            android:textSize="20sp" />
+            android:textSize="23sp" />
 
         <EditText
             android:id="@+id/race_end_time"
@@ -50,7 +50,7 @@
             android:hint="@string/end_time"
             android:inputType="datetime"
             android:textColorHint="@color/hint_colour"
-            android:textSize="20sp" />
+            android:textSize="23sp" />
 
         <EditText
             android:id="@+id/race_date"
@@ -61,30 +61,27 @@
             android:hint="@string/date"
             android:inputType="datetime"
             android:textColorHint="@color/hint_colour"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/race_category"
-            android:layout_width="271dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:hint="@string/race_category"
-
-            android:inputType="textAutoCorrect"
-            android:textColorHint="@color/hint_colour"
-            android:textSize="20sp" />
+            android:textSize="23sp" />
 
         <Spinner
-            android:id="@+id/categorySpinner"
+            android:id="@+id/spinner"
             style="@style/Widget.AppCompat.Spinner"
-            android:layout_width="271dp"
-            android:layout_height="48dp"
+            android:layout_width="300dp"
+            android:layout_height="?attr/dropdownListPreferredItemHeight"
+            android:layout_margin="10dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:background="@drawable/spinner_bg"
-
-            android:layout_marginTop="20dp"
-            android:hint="@string/race_category"
-            android:textSize="20sp" />
+            android:dropDownWidth="300dp"
+            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
+            android:paddingRight="14dp"
+            android:popupBackground="@color/fui_transparent"
+            android:popupElevation="3dp"
+            android:stateListAnimator="@drawable/spinner_sla"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </LinearLayout>
