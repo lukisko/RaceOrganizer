@@ -6,27 +6,27 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="com.example.raceorganizer.ui.Home.HomeFragment"
+        android:name="com.example.raceorganizer.Ui.Home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/login_register"
-        android:name="com.example.raceorganizer.ui.LoginRegister.LoginRegister"
+        android:name="com.example.raceorganizer.Ui.LoginRegister.LoginRegister"
         android:label="Login/Register"
         tools:layout="@layout/fragment_login_register" />
     <fragment
         android:id="@+id/list_of_races"
-        android:name="com.example.raceorganizer.ui.Races.ListOfRacesFragment"
+        android:name="com.example.raceorganizer.Ui.Races.ListOfRacesFragment"
         android:label="List of races"
         tools:layout="@layout/fragment_list_of_races" />
     <fragment
         android:id="@+id/race_info"
-        android:name="com.example.raceorganizer.ui.RaceInfo.RaceInfoFragment"
+        android:name="com.example.raceorganizer.Ui.RaceInfo.RaceInfoFragment"
         android:label="Race"
         tools:layout="@layout/fragment_race_info" />
     <fragment
         android:id="@+id/nav_add_race"
-        android:name="com.example.raceorganizer.ui.addRaceFragment.AddRaceFragment"
+        android:name="com.example.raceorganizer.Ui.addRaceFragment.AddRaceFragment"
         android:label="Race"
         tools:layout="@layout/fragment_race_info" />
 </navigation>
