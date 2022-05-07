@@ -1,5 +1,8 @@
 package com.example.raceorganizer.ui.Races;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
+import com.example.raceorganizer.ui.Home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -28,15 +32,17 @@ public class ListOfRacesFragment extends Fragment {
      RaceAdapter raceAdapter;
 
     private ListOfRacesViewModel listOfRacesViewModel;
+    SharedPreferences sharedPreferences;
 
     View view;
     FloatingActionButton add;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_list_of_races, container, false);
 
+        sharedPreferences = getContext().getSharedPreferences("UserPref",MODE_PRIVATE);
 
         listOfRacesViewModel = new ViewModelProvider(this).get(ListOfRacesViewModel.class);
         recyclerView = view.findViewById(R.id.raceListRecicleView);
@@ -47,13 +53,19 @@ public class ListOfRacesFragment extends Fragment {
         raceAdapter.setOnClickListener(o ->  {
             Bundle bundle = new Bundle();
             bundle.putString("nameOfRace",o.getName());
-            ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
+                ((MainActivity)this.getActivity()).navController.navigate(R.id.checkpointListPFragment,bundle);
+            } else {
+                ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+            }
         });
         recyclerView.setAdapter(raceAdapter);
 
 
         add = view.findViewById(R.id.addRace);
-//        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info));
+        add.setOnClickListener( o -> {
+            //TODO make this go to the correct view
+        });
 
         return view;
     }

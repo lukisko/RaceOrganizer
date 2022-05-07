@@ -12,11 +12,12 @@ import com.example.raceorganizer.R;
 import com.example.raceorganizer.Data.Model.Checkpoint;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.ViewHolder>{
     private ArrayList<Checkpoint> checkpoints;
     public CheckpointAdapter(ArrayList<Checkpoint> checkpoints){
-        //TODO change this class so it will work
+
         this.checkpoints = checkpoints;
     }
     @NonNull
@@ -33,9 +34,14 @@ public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.Vi
         holder.info.setText(checkpoints.get(position).getInfo());
     }
 
+    public void updateData(ArrayList<Checkpoint> checkpoints){
+        this.checkpoints = checkpoints;
+        notifyDataSetChanged();//this can be made more optimized
+    }
+
     @Override
     public int getItemCount() {
-        return 0;
+        return checkpoints.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

@@ -18,11 +18,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Model.ListType;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.ui.Races.ListOfRacesViewModel;
 import com.example.raceorganizer.ui.Races.RaceAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -37,6 +39,8 @@ public class RaceInfoFragment extends Fragment {
 
     private Race race;
 
+    private ListType listType;
+
     View view;
 
     TextView raceName;
@@ -49,6 +53,7 @@ public class RaceInfoFragment extends Fragment {
     Button checkpoint;
     Button participant;
     Button moderator;
+    FloatingActionButton addButton;
 
 
     @SuppressLint("SetTextI18n")
@@ -88,19 +93,39 @@ public class RaceInfoFragment extends Fragment {
             moderator.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.green));
             checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
+            listType = ListType.CHECKPOINTS;
+            addButton.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(checkpointAdapter);
         });
         participant.setOnClickListener(o ->  {
             moderator.setBackgroundColor(getResources().getColor(R.color.green));
             checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.black));
+            listType = ListType.PARTICIPANTS;
+            addButton.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(participantAdapter);
         });
         moderator.setOnClickListener(o ->  {
             checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.green));
             moderator.setBackgroundColor(getResources().getColor(R.color.black));
+            listType = ListType.MODERATORS;
+            addButton.setVisibility(View.INVISIBLE);
             recyclerView.setAdapter(moderatorAdapter);
+        });
+        addButton.setOnClickListener((v)->{
+            Bundle bundle = new Bundle();
+            bundle.putString("nameOfRace",race.getName());
+            switch (listType) {
+                case CHECKPOINTS:
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.addCheckpointView2,bundle);
+                    break;
+                case PARTICIPANTS:
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.addParticipantView, bundle);
+                    break;
+                default:
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races, bundle);
+            }
         });
     }
 
@@ -120,6 +145,9 @@ public class RaceInfoFragment extends Fragment {
         checkpoint = view.findViewById(R.id.checkpointButton);
         participant = view.findViewById(R.id.participantButton);
         moderator = view.findViewById(R.id.moderatorButton);
+        addButton = view.findViewById(R.id.addRace);
+
+        listType = ListType.CHECKPOINTS;
 
         checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
     }
