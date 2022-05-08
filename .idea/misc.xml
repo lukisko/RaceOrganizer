@@ -14,6 +14,7 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_polygon_1.xml" value="0.2595" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/spinner_bg.xml" value="0.2145" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/spinner_sla.xml" value="0.1655" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/checkpoint_list.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addparticipant.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addrace.xml" value="0.1" />
@@ -24,9 +25,11 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login_register.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_info.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_participants.xml" value="0.264" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_register.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/moderator_list.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/participant_list.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/race_list.xml" value="0.19746376811594202" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/snackbar_view.xml" value="0.13994565217391305" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/spinner_dropdown_item.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/spinner_item_selected.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/menu/drawer.xml" value="0.1" />

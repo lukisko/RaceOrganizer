@@ -1,24 +1,18 @@
 package com.example.raceorganizer.Data.Model;
 
 public class LoggedInUser {
-    private String nickName;
-    private String password;
+    private String  username;
     private String firstName;
     private String lastName;
 
-    public LoggedInUser(String nickName, String password, String firstName, String lastName) {
-        this.nickName = nickName;
-        this.password = password;
+    public LoggedInUser(String username, String firstName, String lastName) {
+        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
     public String getNickName() {
-        return nickName;
-    }
-
-    public String getPassword() {
-        return password;
+        return username;
     }
 
     public String getFirstName() {
@@ -27,5 +21,18 @@ public class LoggedInUser {
 
     public String getLastName() {
         return lastName;
+    }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
