@@ -3,6 +3,12 @@ package com.example.raceorganizer.Repository;
 import com.example.raceorganizer.Data.Dao.RaceDao;
 import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
+import com.example.raceorganizer.Data.Model.Race;
+import com.example.raceorganizer.Data.Model.RaceType;
+
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.util.Date;
 
 public class RaceRepository {
     private RaceDao repository;
@@ -12,9 +18,6 @@ public class RaceRepository {
         repository = RaceDao.getInstance();
     }
 
-    public void init(String id, String user) {
-        repository.init(id,user);
-    }
 
     public static synchronized RaceRepository getInstance() {
         if (instance == null)
@@ -22,11 +25,17 @@ public class RaceRepository {
         return instance;
     }
 
-    public RacesLiveData getAllRaces(){
-        return repository.getRaces();
+    public RacesLiveData getAllRaces(String user){
+        return repository.getRaces(user);
     }
-    public RaceLiveData getRace(){
-        return repository.getRace("1");
+    public RaceLiveData getRace(String id){
+        return repository.getRace(id);
+    }
+    public void addRace(Race race){
+        repository.addRace(race);
+    }
+    public void deleteRace(String id){
+        repository.deleteRace(id);
     }
 
 }

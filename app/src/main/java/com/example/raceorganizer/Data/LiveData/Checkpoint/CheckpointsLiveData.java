@@ -35,7 +35,6 @@ public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
                         Integer.parseInt(document.get("PointsRecieved").toString()));
                 checkpoints.add(checkpoint);
             }
-            System.out.println(checkpoints);
             setValue(checkpoints);
         }
     };

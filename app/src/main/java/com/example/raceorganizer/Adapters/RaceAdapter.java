@@ -24,12 +24,14 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
     public RaceAdapter(ArrayList<Race> races) {
         this.races = races;
     }
+
     @SuppressLint("NotifyDataSetChanged")
     public void set(ArrayList<Race> races)
     {
         this.races.clear();
-        this.races = races;
+        this.races.addAll(races);
         notifyDataSetChanged();
+        races.clear();
     }
     @NonNull
     @Override

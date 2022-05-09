@@ -36,14 +36,13 @@ public class ListOfRacesFragment extends Fragment {
 
 
         viewModel = new ViewModelProvider(this).get(ListOfRacesViewModel.class);
-        viewModel.init("", "nickName");
 
         recyclerView = view.findViewById(R.id.raceListRecicleView);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         raceAdapter = new RaceAdapter(new ArrayList<>());
-        viewModel.getAllRaces().observe(getViewLifecycleOwner(), x  -> {
+        viewModel.getAllRaces("nickName").observe(getViewLifecycleOwner(), x  -> {
             raceAdapter.set(x);
         });
 

@@ -23,6 +23,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.okhttp.internal.DiskLruCache;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class RacesLiveData extends LiveData<ArrayList<Race>> {
@@ -38,8 +39,8 @@ public class RacesLiveData extends LiveData<ArrayList<Race>> {
                 Race race = new Race(
                         document.getId(),
                         document.getString("Name"),
-                        document.getDate("Start"),
-                        document.getDate("End"),
+                        new Timestamp('1'),
+                        new Timestamp('2'),
                         RaceType.Marathon,
                         document.getString("RaceOwner"));
                 races.add(race);

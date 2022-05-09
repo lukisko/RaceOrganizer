@@ -17,16 +17,16 @@ public class RaceInfoViewModel extends ViewModel {
         races = RaceRepository.getInstance();
     }
 
-    public void init(String id,String user) {
-        checkpoint.init("",id);
-        races.init(id, user);
+
+    public RaceLiveData getRace(String id){
+        return races.getRace(id);
     }
 
-    public RaceLiveData getRace(){
-        return races.getRace();
+    public CheckpointsLiveData getCheckpoints(String raceId){
+        return checkpoint.getCheckpoints(raceId);
     }
 
-    public CheckpointsLiveData getCheckpoints(){
-        return checkpoint.getCheckpoints();
+    public void deleteRace(String id){
+        races.deleteRace(id);
     }
 }

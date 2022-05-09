@@ -8,6 +8,7 @@ public class Checkpoint {
     private String info;
     private int totalPoints;
     private int pointsReceived;
+    private String raceId;
     private ArrayList<LoggedInUser> moderators;
 
     public Checkpoint(){}
@@ -36,6 +37,18 @@ public class Checkpoint {
         return moderators;
     }
 
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public int getPointsReceived() {
+        return pointsReceived;
+    }
+
+    public String getRaceId() {
+        return raceId;
+    }
+
     @Override
     public String toString() {
         return "Checkpoint{" +
@@ -44,6 +57,7 @@ public class Checkpoint {
                 ", info='" + info + '\'' +
                 ", totalPoints=" + totalPoints +
                 ", pointsReceived=" + pointsReceived +
+                ", raceId='" + raceId + '\'' +
                 ", moderators=" + moderators +
                 '}';
     }

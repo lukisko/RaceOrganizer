@@ -68,7 +68,6 @@ public class RaceInfoFragment extends Fragment {
     public void setupRecycleViews(View view){
 
         viewModel = new ViewModelProvider(this).get(RaceInfoViewModel.class);
-        viewModel.init(getArguments().getString("idOfRace"),"");
 
         recyclerView = view.findViewById(R.id.checkpointRecycleList);
         recyclerView.hasFixedSize();
@@ -80,10 +79,10 @@ public class RaceInfoFragment extends Fragment {
         moderatorAdapter = new ModeratorAdapter(new ArrayList<>());
 
 
-        viewModel.getRace().observe(getViewLifecycleOwner(), r -> {
+        viewModel.getRace(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), r -> {
             setValues(r);
         });
-        viewModel.getCheckpoints().observe(getViewLifecycleOwner(), x  -> {
+        viewModel.getCheckpoints(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), x  -> {
             checkpointAdapter.set(x);
         });
 
@@ -93,6 +92,7 @@ public class RaceInfoFragment extends Fragment {
 
     public void setupButtons(){
         delete.setOnClickListener(o ->  {
+            viewModel.deleteRace(getArguments().getString("idOfRace"));
             ((MainActivity)this.getActivity()).navController.navigate(R.id.list_of_races);
         });
         checkpoint.setOnClickListener(o ->  {
