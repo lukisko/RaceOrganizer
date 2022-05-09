@@ -3,6 +3,7 @@ package com.example.raceorganizer.Ui.Races;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.raceorganizer.Data.LiveData.RacesLiveData;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.RaceRepository;
 
@@ -16,9 +17,9 @@ public class ListOfRacesViewModel extends ViewModel {
         raceRepository = RaceRepository.getInstance();
     }
     public void init(){
-        raceRepository.init();
+        raceRepository.init(null);
     }
-    public LiveData<ArrayList<Race>> getAllRaces(){
+    public RacesLiveData getAllRaces(){
         return raceRepository.getAllRaces();
     }
 }

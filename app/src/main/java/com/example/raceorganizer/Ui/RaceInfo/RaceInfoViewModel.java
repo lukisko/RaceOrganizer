@@ -19,9 +19,9 @@ public class RaceInfoViewModel extends ViewModel {
         races = RaceRepository.getInstance();
     }
 
-    public void init() {
+    public void init(String id) {
         checkpoint.init();
-        races.init();
+        races.init(id);
     }
 
     public RaceLiveData getRace(){

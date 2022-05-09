@@ -1,32 +1,35 @@
 package com.example.raceorganizer.Repository;
 
 import com.example.raceorganizer.Data.Dao.RaceDao;
+import com.example.raceorganizer.Data.LiveData.CheckpointLiveData;
 import com.example.raceorganizer.Data.LiveData.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.RacesLiveData;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RaceRepository {
-    private RaceDao raceDao;
     private static RaceRepository instance;
+    private RaceDao racePersistence;
 
-    private RaceRepository() {
-        raceDao = RaceDao.getInstance();
-    }
 
-    public void init() {
-        raceDao.init();
-    }
+    private RaceRepository(){}
 
     public static synchronized RaceRepository getInstance() {
-        if (instance == null)
+        if(instance == null)
             instance = new RaceRepository();
         return instance;
     }
 
-    public RacesLiveData getAllRaces(){
-        return raceDao.getRaces();
-    }
-    public RaceLiveData getRace(){
-        return raceDao.getRace("1");
+    public void init(String id) {
+        racePersistence.init(id);
     }
 
+
+
+    public RacesLiveData getAllRaces() {
+        return racePersistence.getRaces();
+    }
+    public RaceLiveData getRace(){
+        return racePersistence.getRace();
+    }
 }

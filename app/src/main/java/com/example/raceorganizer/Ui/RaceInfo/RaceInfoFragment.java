@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.example.raceorganizer.Adapters.CheckpointAdapter;
 import com.example.raceorganizer.Adapters.ModeratorAdapter;
 import com.example.raceorganizer.Adapters.ParticipantAdapter;
+import com.example.raceorganizer.Data.Dao.RaceDao;
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
@@ -68,7 +69,7 @@ public class RaceInfoFragment extends Fragment {
 
     public void setupRecycleViews(View view){
         viewModel = new ViewModelProvider(this).get(RaceInfoViewModel.class);
-        viewModel.init();
+        viewModel.init("1");
         recyclerView = view.findViewById(R.id.checkpointRecycleList);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));

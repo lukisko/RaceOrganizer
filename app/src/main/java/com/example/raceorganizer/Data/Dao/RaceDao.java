@@ -12,10 +12,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RaceDao {
     private static RaceDao instance;
-    private RacesLiveData liveData;
+    private RacesLiveData racesLiveData;
+    private RaceLiveData raceLiveData;
     private FirebaseFirestore database;
     private CollectionReference allRacesRef;
-    private DocumentReference raceRef;
+    private DocumentReference specificRaceRef;
+
 
 
     RaceLiveData asd;
@@ -30,18 +32,23 @@ public class RaceDao {
         return instance;
     }
 
-    public void init(){
+    public void init(String id){
         database = FirebaseFirestore.getInstance();
-        allRacesRef = database.collection("Races");
-        liveData = new RacesLiveData(allRacesRef);
-        asd = new RaceLiveData(database.collection("Races").document("1"));
+        if(id == null){
+            allRacesRef = database.collection("Races");
+            racesLiveData = new RacesLiveData(allRacesRef);
+        }
+        else{
+            specificRaceRef = database.collection("Race").document(id);
+            raceLiveData = new RaceLiveData(specificRaceRef);
+        }
     }
 
     public RacesLiveData getRaces(){
-        return liveData;
+        return racesLiveData;
     }
 
-    public RaceLiveData getRace(String name){
-        return asd;
+    public RaceLiveData getRace(){
+        return raceLiveData;
     }
 }
