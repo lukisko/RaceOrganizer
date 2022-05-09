@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 
 
 import com.example.raceorganizer.Adapters.RaceAdapter;
+import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
 
 
 public class ListOfRacesFragment extends Fragment {
@@ -34,11 +37,16 @@ public class ListOfRacesFragment extends Fragment {
 
 
         listOfRacesViewModel = new ViewModelProvider(this).get(ListOfRacesViewModel.class);
+        listOfRacesViewModel.init();
         recyclerView = view.findViewById(R.id.raceListRecicleView);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        raceAdapter = new RaceAdapter(listOfRacesViewModel.getAllRaces().getValue());
+        raceAdapter = new RaceAdapter(new ArrayList<>());
+        listOfRacesViewModel.getAllRaces().observe(getViewLifecycleOwner(), x  -> {
+            raceAdapter.set(x);
+        });
+
         raceAdapter.setOnClickListener(o ->  {
             Bundle bundle = new Bundle();
             bundle.putString("nameOfRace",o.getName());

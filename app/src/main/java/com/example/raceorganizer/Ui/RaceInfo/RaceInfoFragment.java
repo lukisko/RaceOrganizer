@@ -19,6 +19,7 @@ import com.example.raceorganizer.Adapters.CheckpointAdapter;
 import com.example.raceorganizer.Adapters.ModeratorAdapter;
 import com.example.raceorganizer.Adapters.ParticipantAdapter;
 import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
@@ -60,7 +61,7 @@ public class RaceInfoFragment extends Fragment {
 
         setup();
 
-        setupButtons();
+        //setupButtons();
 
         return view;
     }
@@ -72,12 +73,16 @@ public class RaceInfoFragment extends Fragment {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        race = viewModel.getRace(getArguments().getString("nameOfRace")).getValue();
-
+//        race = viewModel.getRace(getArguments().getString("nameOfRace")).getValue();
+        race = viewModel.getRace().getValue();
+        viewModel.getRace().observe(getViewLifecycleOwner(), r -> {
+            race = r;
+            setValues();
+        });
 
         checkpointAdapter = new CheckpointAdapter(new ArrayList<Checkpoint>());
-        participantAdapter = new ParticipantAdapter(race.getParticipants());
-        moderatorAdapter = new ModeratorAdapter(race.getModerators());
+        participantAdapter = new ParticipantAdapter(new ArrayList<Participant>());
+        moderatorAdapter = new ModeratorAdapter(new ArrayList<>());
 
         viewModel.getCheckpoints().observe(getViewLifecycleOwner(), x  -> {
             checkpointAdapter.set(x);
@@ -116,18 +121,22 @@ public class RaceInfoFragment extends Fragment {
         starting = view.findViewById(R.id.startingTime);
         ending = view.findViewById(R.id.endingTime);
         amountOfPeople = view.findViewById(R.id.amountOfPeople);
+//        raceName.setText(race.getName());
+//        raceDate.setText(race.getDate());
+//        starting.setText(race.getStart());
+//        ending.setText(race.getEnd());
+//        amountOfPeople.setText(Integer.toString(race.getParticipantsAmount()));
+//
+//        delete = view.findViewById(R.id.garbageCan);
+//        checkpoint = view.findViewById(R.id.checkpointButton);
+//        participant = view.findViewById(R.id.participantButton);
+//        moderator = view.findViewById(R.id.moderatorButton);
+//
+//        checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
+    }
+
+    public void setValues(){
         raceName.setText(race.getName());
-        raceDate.setText(race.getDate());
-        starting.setText(race.getStart());
-        ending.setText(race.getEnd());
-        amountOfPeople.setText(Integer.toString(race.getParticipantsAmount()));
-
-        delete = view.findViewById(R.id.garbageCan);
-        checkpoint = view.findViewById(R.id.checkpointButton);
-        participant = view.findViewById(R.id.participantButton);
-        moderator = view.findViewById(R.id.moderatorButton);
-
-        checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
     }
 
 }

@@ -10,12 +10,15 @@ import java.util.ArrayList;
 
 public class ListOfRacesViewModel extends ViewModel {
 
-    private RaceRepository repository;
+    private RaceRepository raceRepository;
 
     public ListOfRacesViewModel(){
-
+        raceRepository = RaceRepository.getInstance();
+    }
+    public void init(){
+        raceRepository.init();
     }
     public LiveData<ArrayList<Race>> getAllRaces(){
-        return null;
+        return raceRepository.getAllRaces();
     }
 }

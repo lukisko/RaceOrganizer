@@ -5,24 +5,27 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.raceorganizer.Data.LiveData.CheckpointLiveData;
 
+import com.example.raceorganizer.Data.LiveData.RaceLiveData;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.CheckpointRepository;
 import com.example.raceorganizer.Repository.RaceRepository;
 
 public class RaceInfoViewModel extends ViewModel {
-    private RaceRepository repository;
+    private RaceRepository races;
     private CheckpointRepository checkpoint;
 
     public RaceInfoViewModel(){
         checkpoint = CheckpointRepository.getInstance();
+        races = RaceRepository.getInstance();
     }
 
     public void init() {
         checkpoint.init();
+        races.init();
     }
 
-    public LiveData<Race> getRace(String name){
-        return null;
+    public RaceLiveData getRace(){
+        return races.getRace();
     }
 
     public CheckpointLiveData getCheckpoints(){
