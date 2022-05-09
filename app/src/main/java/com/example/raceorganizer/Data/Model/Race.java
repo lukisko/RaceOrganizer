@@ -82,8 +82,8 @@ public class Race {
         return participants;
     }
 
-    public ArrayList<LoggedInUser> getModerators() {
-        ArrayList<LoggedInUser> result = new ArrayList<>();
+    public ArrayList<RegisteredUser> getModerators() {
+        ArrayList<RegisteredUser> result = new ArrayList<>();
         for (Checkpoint ch:checkpoints) {
             result.addAll(ch.getModerators());
         }

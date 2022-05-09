@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/login_register"
-        android:name="com.example.raceorganizer.ui.LoginRegister.LoginActivity"
+        android:name="com.example.raceorganizer.ui.login_activity.AuthenticationActivity"
         android:label="Login/Register"
         tools:layout="@layout/activity_login" />
     <fragment
@@ -29,4 +29,6 @@
         android:name="com.example.raceorganizer.ui.addRaceFragment.AddRaceFragment"
         android:label="Race"
         tools:layout="@layout/fragment_race_info" />
+
+
 </navigation>

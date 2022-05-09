@@ -1,4 +1,4 @@
-package com.example.raceorganizer.ui.LoginRegister;
+package com.example.raceorganizer.ui.register_fragment;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.raceorganizer.Data.Model.LoggedInUser;
 import com.example.raceorganizer.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,7 +22,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -52,7 +50,7 @@ public class RegisterFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         firebaseAuth = FirebaseAuth.getInstance();
-        view = inflater.inflate(R.layout.activity_login, container, false);
+        view = inflater.inflate(R.layout.fragment_register, container, false);
 
         et_firstName = view.findViewById(R.id.et_register_firstname);
         et_lastName = view.findViewById(R.id.et_register_lastName);
@@ -74,7 +72,7 @@ public class RegisterFragment extends Fragment {
         bt_logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //go back
+
             }
         });
 

@@ -1,11 +1,11 @@
 package com.example.raceorganizer.Data.Model;
 
-public class LoggedInUser {
-    private String  username;
+public class RegisteredUser {
+    private String username;
     private String firstName;
     private String lastName;
 
-    public LoggedInUser(String username, String firstName, String lastName) {
+    public RegisteredUser(String username, String firstName, String lastName) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -36,3 +36,4 @@ public class LoggedInUser {
         this.lastName = lastName;
     }
 }
+
