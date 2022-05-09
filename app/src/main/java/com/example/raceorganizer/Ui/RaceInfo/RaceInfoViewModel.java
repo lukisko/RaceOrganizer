@@ -1,12 +1,10 @@
 package com.example.raceorganizer.Ui.RaceInfo;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.raceorganizer.Data.LiveData.CheckpointLiveData;
+import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointsLiveData;
 
-import com.example.raceorganizer.Data.LiveData.RaceLiveData;
-import com.example.raceorganizer.Data.Model.Race;
+import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Repository.CheckpointRepository;
 import com.example.raceorganizer.Repository.RaceRepository;
 
@@ -19,16 +17,16 @@ public class RaceInfoViewModel extends ViewModel {
         races = RaceRepository.getInstance();
     }
 
-    public void init() {
-        checkpoint.init();
-        races.init();
+    public void init(String id,String user) {
+        checkpoint.init("",id);
+        races.init(id, user);
     }
 
     public RaceLiveData getRace(){
         return races.getRace();
     }
 
-    public CheckpointLiveData getCheckpoints(){
+    public CheckpointsLiveData getCheckpoints(){
         return checkpoint.getCheckpoints();
     }
 }

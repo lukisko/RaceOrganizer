@@ -1,16 +1,15 @@
 package com.example.raceorganizer.Repository;
 
-import com.example.raceorganizer.Data.LiveData.CheckpointLiveData;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.raceorganizer.Data.Dao.CheckpointDao;
+import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointsLiveData;
 
 public class CheckpointRepository {
     private static CheckpointRepository instance;
-    private DatabaseReference myRef;
-    private CheckpointLiveData checkpoints;
+    private CheckpointDao repository;
 
-    private CheckpointRepository(){}
+    private CheckpointRepository(){
+        repository = CheckpointDao.getInstance();
+    }
 
     public static synchronized CheckpointRepository getInstance() {
         if(instance == null)
@@ -18,15 +17,13 @@ public class CheckpointRepository {
         return instance;
     }
 
-    public void init() {
-        CollectionReference db = FirebaseFirestore.getInstance().collection("Checkpoints");
-        checkpoints = new CheckpointLiveData(db);
-        checkpoints.startListener();
+    public void init(String id, String ownerRace) {
+        repository.init(id,ownerRace);
     }
 
 
 
-    public CheckpointLiveData getCheckpoints() {
-        return checkpoints;
+    public CheckpointsLiveData getCheckpoints() {
+        return repository.getCheckpoints();
     }
 }

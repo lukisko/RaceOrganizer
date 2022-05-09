@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 
 import com.example.raceorganizer.Adapters.RaceAdapter;
-import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,7 +24,7 @@ public class ListOfRacesFragment extends Fragment {
      RecyclerView recyclerView;
      RaceAdapter raceAdapter;
 
-    private ListOfRacesViewModel listOfRacesViewModel;
+    private ListOfRacesViewModel viewModel;
 
     View view;
     FloatingActionButton add;
@@ -36,27 +35,28 @@ public class ListOfRacesFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_list_of_races, container, false);
 
 
-        listOfRacesViewModel = new ViewModelProvider(this).get(ListOfRacesViewModel.class);
-        listOfRacesViewModel.init();
+        viewModel = new ViewModelProvider(this).get(ListOfRacesViewModel.class);
+        viewModel.init("", "nickName");
+
         recyclerView = view.findViewById(R.id.raceListRecicleView);
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         raceAdapter = new RaceAdapter(new ArrayList<>());
-        listOfRacesViewModel.getAllRaces().observe(getViewLifecycleOwner(), x  -> {
+        viewModel.getAllRaces().observe(getViewLifecycleOwner(), x  -> {
             raceAdapter.set(x);
         });
 
         raceAdapter.setOnClickListener(o ->  {
             Bundle bundle = new Bundle();
-            bundle.putString("nameOfRace",o.getName());
+            bundle.putString("idOfRace",o.getId());
             ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
         });
         recyclerView.setAdapter(raceAdapter);
 
 
         add = view.findViewById(R.id.addRace);
-       add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race));
+        add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race));
 
         return view;
     }

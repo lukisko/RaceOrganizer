@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         setupNavigation();
-
-
     }
 
     private void initViews() {

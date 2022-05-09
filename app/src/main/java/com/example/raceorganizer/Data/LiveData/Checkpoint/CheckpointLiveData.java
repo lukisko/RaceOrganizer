@@ -1,36 +1,36 @@
-package com.example.raceorganizer.Data.LiveData;
+package com.example.raceorganizer.Data.LiveData.Checkpoint;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
+import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Race;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
-
-public class RaceLiveData extends LiveData<Race> {
+public class CheckpointLiveData extends LiveData<Checkpoint> {
     DocumentReference reference;
     private ListenerRegistration listenerRegistration;
 
+
     private final EventListener<DocumentSnapshot> valueEventListener = new EventListener<DocumentSnapshot>() {
-        Race result = new Race();
         @Override
-        public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-            result.setName(value.getString("Name"));
-            setValue(result);
-            System.out.println(getValue().getName());
+        public void onEvent(@Nullable DocumentSnapshot document, @Nullable FirebaseFirestoreException error) {
+            Checkpoint checkpoint = new Checkpoint(
+                    document.getId(),
+                    document.getString("Name"),
+                    Integer.parseInt(document.get("TotalPoints").toString()),
+                    Integer.parseInt(document.get("PointsRecieved").toString()));
+            setValue(checkpoint);
         }
 
     };
 
 
-    public RaceLiveData(DocumentReference ref){
+    public CheckpointLiveData(DocumentReference ref){
         reference = ref;
     }
 

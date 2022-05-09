@@ -1,24 +1,15 @@
 package com.example.raceorganizer.Data.Dao;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import com.example.raceorganizer.Data.LiveData.RaceLiveData;
-import com.example.raceorganizer.Data.LiveData.RacesLiveData;
-import com.example.raceorganizer.Data.Model.Race;
-import com.google.firebase.firestore.CollectionReference;
+import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
+import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 public class RaceDao {
     private static RaceDao instance;
-    private RacesLiveData liveData;
-    private FirebaseFirestore database;
-    private CollectionReference allRacesRef;
-    private DocumentReference raceRef;
-
-
-    RaceLiveData asd;
+    private RacesLiveData racesLiveData;
+    private RaceLiveData currentRaceLiveData;
 
     private RaceDao(){
     }
@@ -30,18 +21,23 @@ public class RaceDao {
         return instance;
     }
 
-    public void init(){
-        database = FirebaseFirestore.getInstance();
-        allRacesRef = database.collection("Races");
-        liveData = new RacesLiveData(allRacesRef);
-        asd = new RaceLiveData(database.collection("Races").document("1"));
+    public void init(String id, String user){
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        if(!id.equals("")) {
+            DocumentReference specificRaceRef = database.collection("Races").document(id);
+            currentRaceLiveData = new RaceLiveData(specificRaceRef);
+        }
+        else if(!user.equals("")){
+            Query allRacesRef = database.collection("Races").whereEqualTo("RaceOwner", user);
+            racesLiveData = new RacesLiveData(allRacesRef);
+        }
     }
 
     public RacesLiveData getRaces(){
-        return liveData;
+        return racesLiveData;
     }
 
     public RaceLiveData getRace(String name){
-        return asd;
+        return currentRaceLiveData;
     }
 }

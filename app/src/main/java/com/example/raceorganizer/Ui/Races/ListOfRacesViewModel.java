@@ -15,8 +15,8 @@ public class ListOfRacesViewModel extends ViewModel {
     public ListOfRacesViewModel(){
         raceRepository = RaceRepository.getInstance();
     }
-    public void init(){
-        raceRepository.init();
+    public void init(String id, String user){
+        raceRepository.init(id, user);
     }
     public LiveData<ArrayList<Race>> getAllRaces(){
         return raceRepository.getAllRaces();
