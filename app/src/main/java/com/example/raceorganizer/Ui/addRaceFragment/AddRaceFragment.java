@@ -7,8 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -23,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class AddRaceFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class AddRaceFragment extends Fragment {
     View view;
     EditText raceName;
     EditText startTime;
@@ -33,23 +36,37 @@ public class AddRaceFragment extends Fragment implements AdapterView.OnItemSelec
     FloatingActionButton addRaceButton;
     AddRaceViewModel addRaceViewModel;
     boolean isAllFieldsChecked = false;
-
+    String[] data = {"Java", "Python", "C++", "C#", "Angular", "Go", "Python", "C++", "C#", "Angular", "Go"};
+    ArrayAdapter adapter ;
+    Spinner spinner;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_addrace, container, false);
-
         raceName = view.findViewById(R.id.race_name);
         startTime = view.findViewById(R.id.race_start_time);
         endTime = view.findViewById(R.id.race_end_time);
         raceDate = view.findViewById(R.id.race_date);
-        raceCategory = view.findViewById(R.id.race_category);
         addRaceButton = view.findViewById(R.id.race_add_button);
-
         addRaceViewModel = AddRaceViewModel.getInstance();
-        Spinner categorySpinner = view.findViewById(R.id.categorySpinner);
-        categorySpinner.setOnItemSelectedListener(this);
+        //May throw an error
+        adapter = new ArrayAdapter<String>(view.getContext(), R.layout.spinner_item_selected, data);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner = view.findViewById(R.id.spinner);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(view.getContext(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         addRaceButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,15 +144,5 @@ public class AddRaceFragment extends Fragment implements AdapterView.OnItemSelec
         }
 
         return true;
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }
