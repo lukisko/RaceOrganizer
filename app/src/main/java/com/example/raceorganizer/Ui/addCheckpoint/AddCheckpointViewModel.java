@@ -7,11 +7,11 @@ import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.CheckpointRepository;
 import com.example.raceorganizer.Repository.RaceRepository;
 
-public class AddCheckpointVIewModel extends ViewModel {
+public class AddCheckpointViewModel extends ViewModel {
     private CheckpointRepository checkpointRepository;
     private RaceRepository raceRepository;
 
-    public AddCheckpointVIewModel(){
+    public AddCheckpointViewModel(){
         checkpointRepository = CheckpointRepository.getInstance();
         raceRepository = RaceRepository.getInstance();
     }
