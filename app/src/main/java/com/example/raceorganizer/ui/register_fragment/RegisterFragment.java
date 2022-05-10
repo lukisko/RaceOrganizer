@@ -14,7 +14,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
+import com.example.raceorganizer.ui.login_activity.AuthenticationActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -72,7 +74,7 @@ public class RegisterFragment extends Fragment {
         bt_logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ((AuthenticationActivity) getActivity()).navController.navigate(R.id.nav_login);
             }
         });
 
