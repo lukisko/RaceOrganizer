@@ -1,6 +1,5 @@
 package com.example.raceorganizer.Ui.addCheckpoint;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,22 +8,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
-import com.example.raceorganizer.Ui.addParticipant.AddParticipantViewModel;
 
-public class AddCheckpointView extends Fragment {
-    private AddCheckpointVIewModel viewModel;
+public class AddCheckpointView2 extends Fragment {
+    private AddCheckpointVIewModel2 viewModel;
     View view;
 
     EditText chName;
@@ -41,7 +34,7 @@ public class AddCheckpointView extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_addcheckpoint, container, false);
 
-        viewModel = new ViewModelProvider(this).get(AddCheckpointVIewModel.class);
+        viewModel = new ViewModelProvider(this).get(AddCheckpointVIewModel2.class);
 
         chName = view.findViewById(R.id.newCheckpointName);
         points = view.findViewById(R.id.newCheckpointPoints);
