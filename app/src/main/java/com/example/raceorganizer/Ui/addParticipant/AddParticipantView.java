@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +21,8 @@ import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-
+import com.example.raceorganizer.Ui.Home.HomeFragment;
+import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
 
 public class AddParticipantView extends Fragment {
     static String FIRST_NAME = "first_name";
@@ -29,6 +31,7 @@ public class AddParticipantView extends Fragment {
     private AddParticipantViewModel viewModel;
     private SharedPreferences sharedPreferences;
     private String raceName;
+    Toast incorrectInfo;
 
     View view;
 
@@ -50,6 +53,10 @@ public class AddParticipantView extends Fragment {
 
         raceName = getArguments().getString("nameOfRace");
 
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+        incorrectInfo = Toast.makeText(getContext(),"inccorect information entered",duration);
+
         firstName = view.findViewById(R.id.participantFirstName);
         lastName = view.findViewById(R.id.participantLastName);
         age = view.findViewById(R.id.participantAge);
@@ -67,18 +74,33 @@ public class AddParticipantView extends Fragment {
         Button createButton = view.findViewById(R.id.addParticipant);
         createButton.setOnClickListener((v)->{
             Log.i("preferences","heeereee");
-            Participant participant = new Participant(
-                    firstName.getText().toString(),
-                    lastName.getText().toString(),
-                    Integer.parseInt(age.getText().toString()),
-                    Integer.parseInt(number.getText().toString()),
-                    0,
-                    0
-            );
-            viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
-            Bundle bundle = new Bundle();
-            bundle.putString("nameOfRace",raceName);
-            ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+            try{
+                Participant participant = new Participant(
+                        firstName.getText().toString(),
+                        lastName.getText().toString(),
+                        Integer.parseInt(age.getText().toString()),
+                        Integer.parseInt(number.getText().toString()),
+                        0,
+                        0
+                );
+                viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
+                ((MainActivity)this.getActivity()).navController.popBackStack();
+                /*
+                Bundle bundle = new Bundle();
+                bundle.putString("nameOfRace",raceName);
+
+                if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
+                    ((MainActivity)this.getActivity()).navController.navigate(R.id.list_of_races,bundle);
+                } else {
+                    ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+                }*/
+
+            } catch (Exception e){
+
+                incorrectInfo.show();
+
+            }
+
         });
         return view;
     }

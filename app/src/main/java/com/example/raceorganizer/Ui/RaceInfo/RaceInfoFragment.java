@@ -2,6 +2,7 @@ package com.example.raceorganizer.Ui.RaceInfo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -106,19 +107,40 @@ public class RaceInfoFragment extends Fragment {
             moderator.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.green));
             checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
+            listType = ListType.CHECKPOINTS;
+            addButton.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(checkpointAdapter);
         });
         participant.setOnClickListener(o ->  {
             moderator.setBackgroundColor(getResources().getColor(R.color.green));
             checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.black));
+            listType = ListType.PARTICIPANTS;
+            addButton.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(participantAdapter);
         });
         moderator.setOnClickListener(o ->  {
             checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.green));
             moderator.setBackgroundColor(getResources().getColor(R.color.black));
+            listType = ListType.MODERATORS;
+            addButton.setVisibility(View.INVISIBLE);
             recyclerView.setAdapter(moderatorAdapter);
+        });
+        addButton.setOnClickListener((v)->{
+            Bundle bundle = new Bundle();
+            bundle.putString("nameOfRace",race.getName());
+
+            switch (listType) {
+                case CHECKPOINTS:
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.addCheckpointView2,bundle);
+                    break;
+                case PARTICIPANTS:
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.addParticipantView, bundle);
+                    break;
+                default:
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races, bundle);
+            }
         });
     }
 
@@ -134,6 +156,9 @@ public class RaceInfoFragment extends Fragment {
         checkpoint = view.findViewById(R.id.checkpointButton);
         participant = view.findViewById(R.id.participantButton);
         moderator = view.findViewById(R.id.moderatorButton);
+        addButton = view.findViewById(R.id.addRace);
+
+        listType = ListType.CHECKPOINTS;
 
         checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
     }
