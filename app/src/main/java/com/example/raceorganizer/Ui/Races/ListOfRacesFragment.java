@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import com.example.raceorganizer.Adapters.RaceAdapter;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
-import com.example.raceorganizer.ui.Home.HomeFragment;
+import com.example.raceorganizer.Ui.Home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 

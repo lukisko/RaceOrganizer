@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,7 @@ public class CheckpointListPFragment extends Fragment {
     View view;
 
     Race race;
+    LiveData<Race> raceLive;
 
     TextView raceName;
     TextView raceDate;
@@ -45,7 +47,15 @@ public class CheckpointListPFragment extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(CheckpointListPViewModel.class);
 
-        race  = viewModel.getRace(getArguments().getString("nameOfRace")).getValue();
+        raceLive = viewModel.getRace(getArguments().getString("idOfRace"));
+
+        raceLive.observe(getViewLifecycleOwner(), (Race race)->{
+            raceName.setText(race.getName());
+            raceDate.setText(race.getDate());
+            raceStartTime.setText(race.getStart());
+            raceEndTime.setText(race.getEnd());
+
+        });
 
         checkpointRecycler = view.findViewById(R.id.checkpointList);
         raceName = view.findViewById(R.id.raceName);
@@ -53,10 +63,7 @@ public class CheckpointListPFragment extends Fragment {
         raceStartTime =view.findViewById(R.id.raceStartTime);
         raceEndTime = view.findViewById(R.id.raceEndTime);
 
-        raceName.setText(race.getName());
-        raceDate.setText(race.getDate());
-        raceStartTime.setText(race.getStart());
-        raceEndTime.setText(race.getEnd());
+
 
         checkpointRecycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
 

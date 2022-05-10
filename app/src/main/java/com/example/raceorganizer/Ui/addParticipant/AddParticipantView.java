@@ -21,8 +21,8 @@ import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.ui.Home.HomeFragment;
-import com.example.raceorganizer.ui.RaceInfo.RaceInfoViewModel;
+import com.example.raceorganizer.Ui.Home.HomeFragment;
+import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
 
 public class AddParticipantView extends Fragment {
     static String FIRST_NAME = "first_name";
