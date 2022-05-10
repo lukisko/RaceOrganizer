@@ -12,6 +12,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         navigationDrawer.getMenu().findItem(R.id.bt_dw_sign_out).setOnMenuItemClickListener(menuItem -> {
             mainActivityViewModel.signOut();
+            Toast.makeText(this, "Signed Out", Toast.LENGTH_SHORT).show();
             return false;
         });
     }

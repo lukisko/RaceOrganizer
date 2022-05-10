@@ -49,7 +49,7 @@ public class LoginFragment extends Fragment {
         bt_register = view.findViewById(R.id.bt_logIn_register_navigation);
 
         progressbar = view.findViewById(R.id.pg_login);
-
+        progressbar.setVisibility(View.INVISIBLE);
         bt_login.setOnClickListener(view -> signIn());
 
         bt_register.setOnClickListener(view -> {
@@ -62,7 +62,6 @@ public class LoginFragment extends Fragment {
 
     private void signIn() {
 
-        progressbar.setVisibility(View.VISIBLE);
         String username, password;
         username = et_username.getText().toString();
         password = et_password.getText().toString();
@@ -81,20 +80,21 @@ public class LoginFragment extends Fragment {
 
         firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                progressbar.setVisibility(View.GONE);
+                progressbar.setVisibility(View.VISIBLE);
                 intent.putExtra("user", viewModel.getCurrentUser().getValue());
                 Toast.makeText(getContext(),
-                        viewModel.getCurrentUser().getValue().getUid(),
+                        "Logged In",
                         Toast.LENGTH_LONG)
                         .show();
                 getActivity().setResult(RESULT_OK, intent);
                 getActivity().finish();
             } else {
+
                 Toast.makeText(getContext(),
                         "Login failed!!",
                         Toast.LENGTH_LONG)
                         .show();
-                progressbar.setVisibility(View.GONE);
+                progressbar.setVisibility(View.INVISIBLE);
             }
         });
     }

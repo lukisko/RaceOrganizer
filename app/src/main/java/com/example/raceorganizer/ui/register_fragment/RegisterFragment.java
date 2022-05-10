@@ -68,9 +68,8 @@ public class RegisterFragment extends Fragment {
         dbFirebase = FirebaseFirestore.getInstance();
         bt_logInButton = view.findViewById(R.id.bt_register_login);
         bt_registerButton = view.findViewById(R.id.bt_register_register);
-
         progressbar = view.findViewById(R.id.pb_register);
-
+        progressbar.setVisibility(View.INVISIBLE);
         bt_registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +89,7 @@ public class RegisterFragment extends Fragment {
         username = et_username.getText().toString();
         password = et_password.getText().toString();
 
+        progressbar.setVisibility(View.VISIBLE);
 
         if (TextUtils.isEmpty(firstName)) {
             et_firstName.setError("Please enter first name!");
@@ -97,18 +97,18 @@ public class RegisterFragment extends Fragment {
         }
         if (TextUtils.isEmpty(lastName)) {
             et_lastName.setError("Please enter last name!");
-        return;
+            return;
         }
         if (TextUtils.isEmpty(username)) {
             et_username.setError("Please enter user name!");
-        return;
+            return;
         }
         if (TextUtils.isEmpty(password)) {
             et_password.setError("Please enter a password!");
-        return;
+            return;
         } else if (et_password.getText().toString().length() < 6) {
             et_password.setError("Password should contain at least 6 characters!");
-       return;
+            return;
         }
 
         Map<String, String> newUser = new HashMap<String, String>();
@@ -116,32 +116,22 @@ public class RegisterFragment extends Fragment {
         newUser.put("LastName", lastName);
 
 
-        firebaseAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                Log.i("Task result",task.getResult().toString());
-                if (task.isSuccessful()) {
-                    dbFirebase.collection("LoggedInUser").document(task.getResult().getUser().getUid())
-                            .set(newUser)
-                            .addOnSuccessListener(unused -> {
-                                Toast.makeText(view.getContext(), "User successfully written in both dbs ", Toast.LENGTH_LONG).show();
-                                Toast.makeText(view.getContext(), firebaseAuth.getCurrentUser().getUid(), Toast.LENGTH_LONG).show();
+        firebaseAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
 
-                            }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(view.getContext(), "Something went wrong in the Firestore DB ", Toast.LENGTH_LONG).show();
-                        }
-                    });
+            if (task.isSuccessful()) {
+                dbFirebase.collection("LoggedInUser").document(task.getResult().getUser().getUid())
+                        .set(newUser)
+                        .addOnSuccessListener(unused -> {
+                            progressbar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(view.getContext(), "Logged In", Toast.LENGTH_LONG).show();
+                        }).addOnFailureListener(e -> Toast.makeText(view.getContext(), "Something went wrong in the Firestore DB ", Toast.LENGTH_LONG).show());
 
-                } else {
-                    et_firstName.setText("");
-                    et_lastName.setText("");
-                    et_firstName.setText("");
-                    et_lastName.setText("");
-                    Toast.makeText(view.getContext(), "Something is wrong in the Authentication DB", Toast.LENGTH_LONG).show();
-
-                }
+            } else {
+                et_firstName.setText("");
+                et_lastName.setText("");
+                et_firstName.setText("");
+                et_lastName.setText("");
+                Toast.makeText(view.getContext(), "Something is wrong in the Authentication DB", Toast.LENGTH_LONG).show();
             }
         });
     }
