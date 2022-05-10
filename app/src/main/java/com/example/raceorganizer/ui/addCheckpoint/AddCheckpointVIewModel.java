@@ -1,4 +1,4 @@
-package com.example.raceorganizer.ui.addCheckpoint;
+package com.example.raceorganizer.Ui.addCheckpoint;
 
 import androidx.lifecycle.ViewModel;
 
@@ -17,6 +17,6 @@ public class AddCheckpointVIewModel extends ViewModel {
     }
 
     public void makeCheckpoint(String raceName, Checkpoint checkpoint){
-        checkpointRepository.addCheckpoint(raceRepository.getRace(raceName).getValue(), checkpoint);
+        checkpointRepository.addCheckpoint(/*raceRepository.getRace(raceName).getValue(),*/ checkpoint);
     }
 }

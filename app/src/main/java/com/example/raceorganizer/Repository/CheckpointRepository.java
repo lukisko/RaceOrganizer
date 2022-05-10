@@ -1,49 +1,34 @@
 package com.example.raceorganizer.Repository;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
+import com.example.raceorganizer.Data.Dao.CheckpointDao;
+import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointsLiveData;
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.Race;
-
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class CheckpointRepository {
     private static CheckpointRepository instance;
-    private static final Object lock = new Object();
-
-    private MutableLiveData<ArrayList<Checkpoint>> checkpoints;
+    private CheckpointDao repository;
 
     private CheckpointRepository(){
-        ArrayList<Checkpoint> myCheck = new ArrayList<>();
-        checkpoints = new MutableLiveData<>(myCheck);
+        repository = CheckpointDao.getInstance();
     }
 
-    public static CheckpointRepository getInstance() {
-        if (instance != null){
-            return instance;
-        }
-        synchronized (lock){
+    public static synchronized CheckpointRepository getInstance() {
+        if(instance == null)
             instance = new CheckpointRepository();
-        }
         return instance;
     }
 
-    public LiveData<ArrayList<Checkpoint>> getAllCheckpoints() {
-        return checkpoints;
+
+
+
+    public CheckpointsLiveData getCheckpoints(String raceId) {
+        return repository.getCheckpoints(raceId);
     }
 
-    public LiveData<Checkpoint> getCheckpoint(String name){
-        for (Checkpoint check: Objects.requireNonNull(checkpoints.getValue())) {
-            if(check.getName().equals(name)){
-                return new MutableLiveData<Checkpoint>(check);
-            }
-        }
-        return null;
+    public void addCheckpoint(Checkpoint checkpoint){
+        repository.addCheckpoint(checkpoint);
     }
-
-    public void addCheckpoint(Race race, Checkpoint checkpoint){
-        //nothing for now.
+    public void deleteCheckpoint(String id){
+        repository.deleteCheckpoint(id);
     }
 }

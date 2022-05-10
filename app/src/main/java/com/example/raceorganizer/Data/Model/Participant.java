@@ -11,6 +11,7 @@ public class Participant {
     private int totalTime;
     private ArrayList<Checkpoint> checkpoints;
 
+    public Participant(){}
     public Participant(String firstName, String lastName, int age, int number, int points, int totalTime) {
         this.firstName = firstName;
         this.lastName = lastName;
