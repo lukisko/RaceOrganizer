@@ -2,12 +2,12 @@
     <string name="app_name">RaceOrganizer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="lastname">LastName</string>
-    <string name="firstname">FirstName</string>
+    <string name="lastname">Last Name</string>
+    <string name="firstname">First Name</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="username">UserName</string>
+    <string name="username">Email</string>
     <string name="race_organizer">Race Organizer</string>
     <string name="organize">Organize</string>
     <string name="participate">Participate</string>
