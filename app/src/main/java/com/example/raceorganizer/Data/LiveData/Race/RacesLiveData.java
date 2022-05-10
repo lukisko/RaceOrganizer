@@ -7,21 +7,14 @@ import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Data.Model.RaceType;
-import com.example.raceorganizer.MainActivity;
-import com.example.raceorganizer.R;
-import com.example.raceorganizer.Ui.LoginRegister.LoginRegister;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.okhttp.internal.DiskLruCache;
+
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

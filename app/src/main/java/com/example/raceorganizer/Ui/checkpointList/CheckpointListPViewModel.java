@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.RaceRepository;
@@ -31,10 +32,9 @@ public class CheckpointListPViewModel extends ViewModel {
         return checkpoints;
     }
 
-    public LiveData<Race> getRace(String raceName){
-        LiveData<Race> race = raceRepository.getRace(raceName);
+    public RaceLiveData getRace(String id){
         //checkpoints.postValue(race.getValue().getCheckpoints());
-        return race;
+        return raceRepository.getRace(id);
 
     }
 }
