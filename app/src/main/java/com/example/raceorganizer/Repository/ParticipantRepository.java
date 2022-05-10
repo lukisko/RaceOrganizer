@@ -3,22 +3,22 @@ package com.example.raceorganizer.Repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Dao.ParticipantDao;
+import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
+import com.example.raceorganizer.Data.LiveData.Participant.ParticipantsLiveData;
 import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ParticipantRepository {
     private static ParticipantRepository instance;
     private static final Object lock = new Object();
 
-    private MutableLiveData<ArrayList<Participant>> participants;
+    private ParticipantDao repository;
 
     private ParticipantRepository(){
-        ArrayList<Participant> particip  = new ArrayList<Participant>();
-        participants = new MutableLiveData<>(particip);
+        repository = ParticipantDao.getInstance();
     }
 
     public static ParticipantRepository getInstance() {
@@ -31,11 +31,19 @@ public class ParticipantRepository {
         return instance;
     }
 
-    public LiveData<ArrayList<Participant>> getAllParticipants(Race race) {
-        return participants;
+    public ParticipantsLiveData getAllParticipants(String raceId) {
+        return repository.getParticipants(raceId);
+    }
+
+    public ParticipantLiveData getParticipant(String id) {
+        return repository.getParticipant(id);
     }
 
     public void addParticipant(Race race, Participant participant){
-        //nothing for now.
+        repository.addParticipant(participant);
+    }
+
+    public void addCheckpoint(String participantId, String checkpointId, String points) {
+        repository.addCheckpoint(participantId,checkpointId,points);
     }
 }

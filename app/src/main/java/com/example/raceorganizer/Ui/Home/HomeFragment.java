@@ -31,11 +31,13 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_home, container, false);
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
         ActivityResultLauncher<Intent> activityResultLauncher =
                 registerForActivityResult(
                         new ActivityResultContracts.StartActivityForResult(), result -> {
                             //Toast.makeText(getContext(), result.getData().getAction(), Toast.LENGTH_LONG).show();
-                            SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
+
                             SharedPreferences.Editor editor = sharedPreferences.edit();
                             if (result.getData() != null) {
                                 String uid = result.getData().getExtras().getString("user");
@@ -43,11 +45,11 @@ public class HomeFragment extends Fragment {
                                 editor.putBoolean(PARTICIPANT_PREFERENCE, false);
                                 ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races);
                             } else {
-                                editor.putBoolean(PARTICIPANT_PREFERENCE, true);
+
                             }
                             editor.apply();
                         });
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+
         organize = view.findViewById(R.id.organize);
         participate = view.findViewById(R.id.participate);
         loginActivity = new Intent(getActivity(), AuthenticationActivity.class);
@@ -55,7 +57,12 @@ public class HomeFragment extends Fragment {
 
             activityResultLauncher.launch(loginActivity);
         });
-        participate.setOnClickListener(o -> ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races));
+        participate.setOnClickListener(o -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(PARTICIPANT_PREFERENCE, true);
+            editor.apply();
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races);
+        });
 
         return view;
     }
