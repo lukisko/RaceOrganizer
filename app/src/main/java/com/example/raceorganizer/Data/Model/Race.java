@@ -8,25 +8,39 @@ import java.util.ArrayList;
 
 
 public class Race {
+    private String id;
     private String name;
     private Date start;
     private Date end;
     private RaceType raceType;
+    private String raceOwner;
     private ArrayList<Checkpoint> checkpoints;
     private ArrayList<Participant> participants;
 
-
-    public Race(String name, Date start, Date end, RaceType raceType, ArrayList<Checkpoint> checkpoints) {
+    public Race(){
+        checkpoints = new ArrayList<>();
+        participants = new ArrayList<>();
+    }
+    public Race(String name){
+        this.name = name;
+    }
+    public Race(String id,String name, Date start, Date end, RaceType raceType, String raceOwner) {
+        this.id = id;
         this.name = name;
         this.start = start;
         this.end = end;
         this.raceType = raceType;
-        this.checkpoints = checkpoints;
+        this.checkpoints = new ArrayList<>();
+        this.raceOwner = raceOwner;
         this.participants = new ArrayList<>();
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setStart(Date start) {
@@ -45,6 +59,10 @@ public class Race {
 
     public void setCheckpoints(ArrayList<Checkpoint> checkpoints) {
         this.checkpoints = checkpoints;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
@@ -88,5 +106,23 @@ public class Race {
             result.addAll(ch.getModerators());
         }
         return result;
+    }
+
+    public String getRaceOwner() {
+        return raceOwner;
+    }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", start=" + start +
+                ", end=" + end +
+                ", raceOwner=" + raceOwner +
+                ", raceType=" + raceType +
+                ", checkpoints=" + checkpoints +
+                ", participants=" + participants +
+                '}';
     }
 }

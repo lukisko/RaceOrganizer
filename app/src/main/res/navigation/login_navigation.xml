@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.raceorganizer.ui.login_activity.LoginFragment"
+        android:name="com.example.raceorganizer.Ui.login_activity.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/nav_register"
-        android:name="com.example.raceorganizer.ui.register_fragment.RegisterFragment"
+        android:name="com.example.raceorganizer.Ui.register_fragment.RegisterFragment"
         android:label="Registration"
         tools:layout="@layout/fragment_register"/>
 

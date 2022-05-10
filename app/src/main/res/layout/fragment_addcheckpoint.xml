@@ -10,7 +10,7 @@
         android:layout_weight="2">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/createCheckpointBtn"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:text="+"
@@ -23,73 +23,78 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="2">
+        android:layout_weight="2"
+        android:padding="20dp">
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
-            android:layout_width="wrap_content"
+            android:id="@+id/newCheckpointName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
             android:ems="10"
-            android:padding="7dp"
-            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:layout_margin="2dp"
             android:inputType="textPersonName"
-            android:text="checkpoint name" />
+            android:hint="checkpoint name" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Switch
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="points: "
+                android:padding="5dp"/>
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="has points" />
+                android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
-                android:layout_width="wrap_content"
+                android:id="@+id/newCheckpointPoints"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:padding="7dp"
-                android:text="points" />
+                android:padding="2dp"
+                android:hint="points"
+                android:visibility="invisible"/>
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
-            android:layout_width="wrap_content"
+            android:id="@+id/newCheckpointLocation"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+
             android:ems="10"
-            android:padding="7dp"
-            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:layout_margin="2dp"
             android:inputType="textPersonName"
-            android:text="Location" />
+            android:hint="Locaiton"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName8"
+            android:id="@+id/moderatorNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+            android:padding="2dp"
+            android:layout_margin="2dp"
+            android:inputType="textPersonName"
+            android:hint="Moderator" />
+
+        <EditText
+            android:id="@+id/newCheckpointDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:padding="7dp"
-            android:layout_margin="5dp"
+            android:padding="2dp"
+            android:layout_margin="2dp"
             android:inputType="textPersonName"
-            android:text="Moderator" />
-
-        <EditText
-            android:id="@+id/editTextTextPersonName9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:padding="7dp"
-            android:layout_margin="5dp"
-            android:inputType="textPersonName"
-            android:text="Description" />
+            android:hint="Description" />
     </LinearLayout>
 
     <LinearLayout
