@@ -77,10 +77,11 @@ public class LoginFragment extends Fragment {
             et_password.setError("Password should contain at least 6 characters!");
             return;
         }
-
+        progressbar.setVisibility(View.VISIBLE);
         firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
+
             if (task.isSuccessful()) {
-                progressbar.setVisibility(View.VISIBLE);
+
                 intent.putExtra("user", viewModel.getCurrentUser().getValue());
                 Toast.makeText(getContext(),
                         "Logged In",

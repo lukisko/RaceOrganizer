@@ -1,4 +1,4 @@
-package com.example.raceorganizer.Data.LoggedInUserPersistence;
+package com.example.raceorganizer.Data.LiveData.User;
 
 import androidx.lifecycle.LiveData;
 

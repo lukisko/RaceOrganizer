@@ -5,18 +5,18 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.raceorganizer.Data.LoggedInUserPersistence.LoggedInUserLiveData;
-import com.example.raceorganizer.Data.LoggedInUserPersistence.LoggedInUserRepository;
+import com.example.raceorganizer.Data.LiveData.User.LoggedInUserLiveData;
+import com.example.raceorganizer.Repository.AuthenticationRepository;
 
 
 public class MainActivityViewModel extends AndroidViewModel {
     private LoggedInUserLiveData userLiveData;
-    private LoggedInUserRepository userRepository;
+    private AuthenticationRepository userRepository;
 
     public MainActivityViewModel(@NonNull Application application) {
         super(application);
         userLiveData = new LoggedInUserLiveData();
-        userRepository = LoggedInUserRepository.getInstance(application);
+        userRepository = AuthenticationRepository.getInstance(application);
     }
 
     public LoggedInUserLiveData getUserLiveData() {

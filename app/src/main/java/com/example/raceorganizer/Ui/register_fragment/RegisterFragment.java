@@ -89,7 +89,6 @@ public class RegisterFragment extends Fragment {
         username = et_username.getText().toString();
         password = et_password.getText().toString();
 
-        progressbar.setVisibility(View.VISIBLE);
 
         if (TextUtils.isEmpty(firstName)) {
             et_firstName.setError("Please enter first name!");
@@ -115,14 +114,13 @@ public class RegisterFragment extends Fragment {
         newUser.put("FirstName", firstName);
         newUser.put("LastName", lastName);
 
-
+        progressbar.setVisibility(View.VISIBLE);
         firebaseAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
 
             if (task.isSuccessful()) {
                 dbFirebase.collection("LoggedInUser").document(task.getResult().getUser().getUid())
                         .set(newUser)
                         .addOnSuccessListener(unused -> {
-                            progressbar.setVisibility(View.INVISIBLE);
                             Toast.makeText(view.getContext(), "Logged In", Toast.LENGTH_LONG).show();
                         }).addOnFailureListener(e -> Toast.makeText(view.getContext(), "Something went wrong in the Firestore DB ", Toast.LENGTH_LONG).show());
 
