@@ -76,6 +76,7 @@ public class AddParticipantView extends Fragment {
             Log.i("preferences","heeereee");
             try{
                 Participant participant = new Participant(
+                        "",
                         firstName.getText().toString(),
                         lastName.getText().toString(),
                         Integer.parseInt(age.getText().toString()),

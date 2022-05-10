@@ -1,6 +1,7 @@
 package com.example.raceorganizer.Data.Model;
 
 public class RegisteredUser {
+    private String id;
     private String username;
     private String firstName;
     private String lastName;
@@ -9,6 +10,10 @@ public class RegisteredUser {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getNickName() {

@@ -2,6 +2,7 @@ package com.example.raceorganizer.Data.Dao;
 
 import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
+import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -17,6 +18,8 @@ public class RaceDao {
     private FirebaseFirestore databaseRef;
 
     private RaceDao(){
+        ParticipantDao participantDao = ParticipantDao.getInstance();
+        participantDao.addParticipant(new Participant("1312","ado","ado",18,18,0,12));
         databaseRef = FirebaseFirestore.getInstance();
     }
 
