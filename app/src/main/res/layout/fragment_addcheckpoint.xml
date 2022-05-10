@@ -29,7 +29,7 @@
         <EditText
             android:id="@+id/newCheckpointName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
 
             android:ems="10"
             android:padding="2dp"
@@ -54,10 +54,10 @@
             <EditText
                 android:id="@+id/newCheckpointPoints"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_margin="2dp"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:padding="2dp"
                 android:hint="points"
                 android:visibility="invisible"/>
@@ -66,18 +66,18 @@
         <EditText
             android:id="@+id/newCheckpointLocation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
 
             android:ems="10"
             android:padding="2dp"
             android:layout_margin="2dp"
-            android:inputType="textPersonName"
-            android:hint="Locaiton"/>
+            android:inputType="text"
+            android:hint="Locatiton"/>
 
         <EditText
             android:id="@+id/moderatorNickname"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
 
             android:ems="10"
             android:padding="2dp"
@@ -88,12 +88,12 @@
         <EditText
             android:id="@+id/newCheckpointDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="200dp"
             android:layout_weight="1"
             android:ems="10"
             android:padding="2dp"
             android:layout_margin="2dp"
-            android:inputType="textPersonName"
+            android:inputType="textMultiLine"
             android:hint="Description" />
     </LinearLayout>
 

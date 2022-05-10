@@ -1,5 +1,8 @@
 package com.example.raceorganizer.ui.Races;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,7 +20,9 @@ import android.widget.Toast;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
+import com.example.raceorganizer.ui.Home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.ArrayList;
 
@@ -28,6 +33,7 @@ public class ListOfRacesFragment extends Fragment {
      RaceAdapter raceAdapter;
 
     private ListOfRacesViewModel listOfRacesViewModel;
+    private SharedPreferences sharedPreferences;
 
     View view;
     FloatingActionButton add;
@@ -43,19 +49,42 @@ public class ListOfRacesFragment extends Fragment {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+        sharedPreferences = getContext().getSharedPreferences("UserPref",MODE_PRIVATE);
+
         raceAdapter = new RaceAdapter(listOfRacesViewModel.getAllRaces().getValue());
         raceAdapter.setOnClickListener(o ->  {
             Bundle bundle = new Bundle();
             bundle.putString("nameOfRace",o.getName());
-            ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
+                ((MainActivity)this.getActivity()).navController.navigate(R.id.checkpointListPFragment,bundle);
+            } else {
+                ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+            }
         });
         recyclerView.setAdapter(raceAdapter);
 
 
         add = view.findViewById(R.id.addRace);
-       add.setOnClickListener(o -> ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race));
+       add.setOnClickListener(o -> {
+           if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
+               handleAddingParticipantToRace();
+               //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment);
+           } else {
+               ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race);
+           }
+
+       });
 
         return view;
+    }
+
+    private void handleAddingParticipantToRace(){
+        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+        intentIntegrator.setPrompt("Scan a barcode or QR Code");
+        intentIntegrator.setOrientationLocked(true);
+        ArrayList<String> barCodeTypes = new ArrayList<>();
+        barCodeTypes.add("QR_CODE");
+        intentIntegrator.initiateScan(barCodeTypes);
     }
 
 }

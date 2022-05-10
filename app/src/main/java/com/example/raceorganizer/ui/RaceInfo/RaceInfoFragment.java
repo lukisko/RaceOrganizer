@@ -2,6 +2,7 @@ package com.example.raceorganizer.ui.RaceInfo;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -116,6 +117,7 @@ public class RaceInfoFragment extends Fragment {
         addButton.setOnClickListener((v)->{
             Bundle bundle = new Bundle();
             bundle.putString("nameOfRace",race.getName());
+
             switch (listType) {
                 case CHECKPOINTS:
                     ((MainActivity) this.getActivity()).navController.navigate(R.id.addCheckpointView2,bundle);
