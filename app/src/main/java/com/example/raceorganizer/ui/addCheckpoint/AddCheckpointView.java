@@ -1,4 +1,4 @@
-package com.example.raceorganizer.ui.addCheckpoint;
+package com.example.raceorganizer.Ui.addCheckpoint;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -20,8 +20,8 @@ import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.ui.RaceInfo.RaceInfoViewModel;
-import com.example.raceorganizer.ui.addParticipant.AddParticipantViewModel;
+import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
+import com.example.raceorganizer.Ui.addParticipant.AddParticipantViewModel;
 
 public class AddCheckpointView extends Fragment {
     private AddCheckpointVIewModel viewModel;

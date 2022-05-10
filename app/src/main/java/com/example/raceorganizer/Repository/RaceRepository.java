@@ -1,69 +1,41 @@
 package com.example.raceorganizer.Repository;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Dao.RaceDao;
+import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
+import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Data.Model.RaceType;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-
-import java.util.ArrayList;
-
-
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Date;
-import java.util.Objects;
 
 public class RaceRepository {
+    private RaceDao repository;
     private static RaceRepository instance;
 
-    private MutableLiveData<ArrayList<Race>> races;
-
-    private RaceRepository(){
-        races = new MutableLiveData<>();
-        ArrayList<Race> value = new ArrayList<>();
-        ArrayList<Checkpoint> checkpoints = new ArrayList<>();
-        Checkpoint ch = new Checkpoint("d");
-        checkpoints.add(new Checkpoint("asd"));
-        checkpoints.add(new Checkpoint("a"));
-        checkpoints.add(ch);
-        Date data = new Date();
-        for(int x = 0; x < 5; x++) {
-            value.add(new Race("telovichovna jednota", data,data, RaceType.Marathon,checkpoints));
-            value.add(new Race("martin", data,data, RaceType.Skiing,checkpoints));
-        }
-        races.setValue(value);
+    private RaceRepository() {
+        repository = RaceDao.getInstance();
     }
 
-    public static RaceRepository getInstance(){
-        if(instance == null)
-            instance = new RaceRepository();
 
+    public static synchronized RaceRepository getInstance() {
+        if (instance == null)
+            instance = new RaceRepository();
         return instance;
     }
 
-    public LiveData<ArrayList<Race>> getAllRaces(){
-        return races;
+    public RacesLiveData getAllRaces(String user){
+        return repository.getRaces(user);
     }
-
-    public LiveData<Race> getRace(String name){
-        for (Race race: Objects.requireNonNull(races.getValue())) {
-            if(race.getName().equals(name)){
-                return new MutableLiveData<Race>(race);
-            }
-        }
-        return null;
+    public RaceLiveData getRace(String id){
+        return repository.getRace(id);
     }
-
-    public void insert(Race race) {
-        ArrayList<Race> value = races.getValue();
-        value.add(race);
-        races.setValue(value);
+    public void addRace(Race race){
+        repository.addRace(race);
     }
-
-    public void deleteRace(){
-
+    public void deleteRace(String id){
+        repository.deleteRace(id);
     }
 
 }

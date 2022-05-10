@@ -5,7 +5,7 @@
     android:id="@+id/fragment_list_of_races"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Races.ListOfRacesFragment"
+    tools:context=".Ui.Races.ListOfRacesFragment"
     android:background="@color/white">
 
 
