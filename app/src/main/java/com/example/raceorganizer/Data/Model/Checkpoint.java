@@ -9,7 +9,7 @@ public class Checkpoint {
     private int totalPoints;
     private int pointsReceived;
     private String raceId;
-    private ArrayList<LoggedInUser> moderators;
+    private ArrayList<RegisteredUser> moderators;
 
     public Checkpoint(){}
     public Checkpoint(String name){
@@ -33,7 +33,7 @@ public class Checkpoint {
         return info;
     }
 
-    public ArrayList<LoggedInUser> getModerators() {
+    public ArrayList<RegisteredUser> getModerators() {
         return moderators;
     }
 

@@ -9,11 +9,7 @@
         android:name="com.example.raceorganizer.Ui.Home.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
-    <fragment
-        android:id="@+id/login_register"
-        android:name="com.example.raceorganizer.Ui.LoginRegister.LoginRegister"
-        android:label="Login/Register"
-        tools:layout="@layout/fragment_login_register" />
+
     <fragment
         android:id="@+id/list_of_races"
         android:name="com.example.raceorganizer.Ui.Races.ListOfRacesFragment"
@@ -29,17 +25,19 @@
         android:name="com.example.raceorganizer.Ui.addRaceFragment.AddRaceFragment"
         android:label="Race"
         tools:layout="@layout/fragment_race_info" />
+
+
     <fragment
         android:id="@+id/addCheckpointView2"
-        android:name="com.example.raceorganizer.ui.addCheckpoint.AddCheckpointView"
+        android:name="com.example.raceorganizer.Ui.addCheckpoint.AddCheckpointView"
         android:label="AddCheckpointView" />
     <fragment
         android:id="@+id/addParticipantView"
-        android:name="com.example.raceorganizer.ui.addParticipant.AddParticipantView"
+        android:name="com.example.raceorganizer.Ui.addParticipant.AddParticipantView"
         android:label="AddParticipantView" />
     <fragment
         android:id="@+id/checkpointListPFragment"
-        android:name="com.example.raceorganizer.ui.checkpointList.CheckpointListPFragment"
+        android:name="com.example.raceorganizer.Ui.checkpointList.CheckpointListPFragment"
         android:label="CheckpointListPFragment" />
     <fragment
         android:id="@+id/barCodeFragment"

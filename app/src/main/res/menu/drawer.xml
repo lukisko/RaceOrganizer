@@ -13,5 +13,10 @@
             android:id="@+id/login_register"
             android:title="@string/login_register" />
     </group>
+    <group android:id="@+id/sign_out">
+        <item
+            android:id="@+id/bt_dw_sign_out"
+            android:title="@string/dw_sign_out" />
+    </group>
 
 </menu>
