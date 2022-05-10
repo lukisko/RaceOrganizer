@@ -29,4 +29,16 @@
         android:name="com.example.raceorganizer.ui.addRaceFragment.AddRaceFragment"
         android:label="Race"
         tools:layout="@layout/fragment_race_info" />
+    <fragment
+        android:id="@+id/addCheckpointView2"
+        android:name="com.example.raceorganizer.ui.addCheckpoint.AddCheckpointView"
+        android:label="AddCheckpointView" />
+    <fragment
+        android:id="@+id/addParticipantView"
+        android:name="com.example.raceorganizer.ui.addParticipant.AddParticipantView"
+        android:label="AddParticipantView" />
+    <fragment
+        android:id="@+id/checkpointListPFragment"
+        android:name="com.example.raceorganizer.ui.checkpointList.CheckpointListPFragment"
+        android:label="CheckpointListPFragment" />
 </navigation>

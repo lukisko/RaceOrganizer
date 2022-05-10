@@ -24,6 +24,10 @@
     <string name="end_time">End Time</string>
     <string name="race_category">Race Category</string>
     <string name="date">Date</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="age">age</string>
+    <string name="number">number</string>
 
 
 </resources>

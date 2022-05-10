@@ -24,12 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <TextView
-                android:id="@+id/raceId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="1238765" />
+
             <TextView
                 android:id="@+id/raceDate"
                 android:layout_width="wrap_content"
@@ -85,8 +80,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/checkpointList"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"/>
 
     <!--<ScrollView
         android:layout_width="match_parent"

@@ -21,7 +21,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="First Name"
+            android:hint="@string/first_name"
             android:layout_margin="15dp"
             android:padding="10dp"/>
 
@@ -34,7 +34,7 @@
             android:inputType="textPersonName"
             android:padding="10dp"
             android:layout_margin="15dp"
-            android:text="Last Name" />
+            android:hint="@string/last_name" />
 
         <EditText
             android:id="@+id/participantAge"
@@ -42,10 +42,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:padding="10dp"
             android:layout_margin="15dp"
-            android:text="age" />
+            android:hint="@string/age"
+            android:inputType="number" />
 
         <EditText
             android:id="@+id/participantNumber"
@@ -53,10 +53,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
             android:padding="10dp"
             android:layout_margin="15dp"
-            android:text="number" />
+            android:hint="@string/number"
+            android:inputType="number" />
     </LinearLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
