@@ -68,6 +68,7 @@ public class AddParticipantView extends Fragment {
         createButton.setOnClickListener((v)->{
             Log.i("preferences","heeereee");
             Participant participant = new Participant(
+                    "",
                     firstName.getText().toString(),
                     lastName.getText().toString(),
                     Integer.parseInt(age.getText().toString()),
