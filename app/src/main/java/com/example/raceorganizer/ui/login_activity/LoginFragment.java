@@ -41,6 +41,7 @@ public class LoginFragment extends Fragment {
         intent = new Intent();
         firebaseAuth = FirebaseAuth.getInstance();
 
+
         et_username = view.findViewById(R.id.et_logIn_username);
         et_password = view.findViewById(R.id.et_logIn_password);
 
@@ -48,6 +49,7 @@ public class LoginFragment extends Fragment {
         bt_register = view.findViewById(R.id.bt_logIn_register_navigation);
 
         progressbar = view.findViewById(R.id.pg_login);
+
         bt_login.setOnClickListener(view -> signIn());
 
         bt_register.setOnClickListener(view -> {
@@ -61,12 +63,30 @@ public class LoginFragment extends Fragment {
     private void signIn() {
 
         progressbar.setVisibility(View.VISIBLE);
+        String username, password;
+        username = et_username.getText().toString();
+        password = et_password.getText().toString();
 
-        User newUser = validation();
-        firebaseAuth.signInWithEmailAndPassword(newUser.getUsername(), newUser.getPassword()).addOnCompleteListener(task -> {
+        if (TextUtils.isEmpty(username) && !username.contains("@")) {
+            et_username.setError("Please enter your user email email!");
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            et_password.setError("Please enter password!");
+            return;
+        } else if (et_password.getText().toString().length() < 6) {
+            et_password.setError("Password should contain at least 6 characters!");
+            return;
+        }
+
+        firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 progressbar.setVisibility(View.GONE);
                 intent.putExtra("user", viewModel.getCurrentUser().getValue());
+                Toast.makeText(getContext(),
+                        viewModel.getCurrentUser().getValue().getUid(),
+                        Toast.LENGTH_LONG)
+                        .show();
                 getActivity().setResult(RESULT_OK, intent);
                 getActivity().finish();
             } else {
@@ -77,19 +97,5 @@ public class LoginFragment extends Fragment {
                 progressbar.setVisibility(View.GONE);
             }
         });
-    }
-    private User validation() {
-        String username, password;
-        username = et_username.getText().toString();
-        password = et_password.getText().toString();
-        if (TextUtils.isEmpty(username) && !username.contains("@")) {
-            et_username.setError("Please enter your user email email!");
-        }
-        if (TextUtils.isEmpty(password)) {
-            et_password.setError("Please enter password!");
-        } else if (et_password.getText().toString().length() < 6) {
-            et_password.setError("Password should contain at least 6 characters!");
-        }
-        return new User(username, password);
     }
 }
