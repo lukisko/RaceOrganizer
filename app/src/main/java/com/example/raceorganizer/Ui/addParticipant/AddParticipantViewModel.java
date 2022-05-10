@@ -2,49 +2,21 @@ package com.example.raceorganizer.Ui.addParticipant;
 
 import androidx.lifecycle.ViewModel;
 
+import com.example.raceorganizer.Data.Model.Participant;
+import com.example.raceorganizer.Data.Model.Race;
+import com.example.raceorganizer.Repository.ParticipantRepository;
+import com.example.raceorganizer.Repository.RaceRepository;
+
 public class AddParticipantViewModel extends ViewModel {
-    private String FirstName,LastName,Age,Number;
+    private ParticipantRepository participantRepository;
+    private RaceRepository raceRepository;
+
     public AddParticipantViewModel(){
-        //TODO implement the functionality in the participant repository
-        FirstName = "";
-        LastName = "";
-        Age = "";
-        Number = "";
+        participantRepository = ParticipantRepository.getInstance();
+        raceRepository = RaceRepository.getInstance();
     }
 
-    public void makeParticipant(){
-        //TODO make something in the background
-    }
-
-    public String getAge() {
-        return Age;
-    }
-
-    public String getFirstName() {
-        return FirstName;
-    }
-
-    public void setFirstName(String firstName) {
-        FirstName = firstName;
-    }
-
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String lastName) {
-        LastName = lastName;
-    }
-
-    public void setAge(String age) {
-        Age = age;
-    }
-
-    public String getNumber() {
-        return Number;
-    }
-
-    public void setNumber(String number) {
-        Number = number;
+    public void addParticipant(Participant participant, String raceName){
+        participantRepository.addParticipant(raceRepository.getRace(raceName).getValue(), participant);
     }
 }
