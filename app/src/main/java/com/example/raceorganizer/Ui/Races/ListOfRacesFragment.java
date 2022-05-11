@@ -1,5 +1,6 @@
 package com.example.raceorganizer.Ui.Races;
 
+import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
@@ -35,6 +36,8 @@ public class ListOfRacesFragment extends Fragment {
     View view;
     FloatingActionButton add;
 
+    private String id;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,11 +51,17 @@ public class ListOfRacesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
         sharedPreferences = getContext().getSharedPreferences("UserPref",MODE_PRIVATE);
-        
+
         raceAdapter = new RaceAdapter(new ArrayList<>());
-        viewModel.getAllRaces("nickName").observe(getViewLifecycleOwner(), x  -> {
-            raceAdapter.set(x);
+
+        viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
+            viewModel.getUserById(id.getUid()).observe(this.getViewLifecycleOwner(), user -> {
+                viewModel.getAllRaces(user.getFirstName()).observe(getViewLifecycleOwner(), races  -> {
+                    raceAdapter.set(races);
+                });
+            });
         });
+
 
         raceAdapter.setOnClickListener(o ->  {
             Bundle bundle = new Bundle();
