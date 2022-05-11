@@ -5,8 +5,8 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.example.raceorganizer.Data.LoggedInUserPersistence.LoggedInUserLiveData;
-import com.example.raceorganizer.Data.LoggedInUserPersistence.LoggedInUserRepository;
+import com.example.raceorganizer.Data.LiveData.LoggedInUserLiveData;
+import com.example.raceorganizer.Repository.LoggedInUserRepository;
 
 
 public class MainActivityViewModel extends AndroidViewModel {

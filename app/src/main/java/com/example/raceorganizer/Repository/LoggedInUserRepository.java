@@ -1,10 +1,8 @@
-package com.example.raceorganizer.Data.LoggedInUserPersistence;
+package com.example.raceorganizer.Repository;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
-import com.google.firebase.auth.FirebaseUser;
+import com.example.raceorganizer.Data.LiveData.LoggedInUserLiveData;
 import com.firebase.ui.auth.AuthUI;
 
 public class LoggedInUserRepository {

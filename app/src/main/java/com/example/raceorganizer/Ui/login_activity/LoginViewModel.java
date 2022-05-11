@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.annotation.NonNull;
-import com.example.raceorganizer.Data.LoggedInUserPersistence.LoggedInUserRepository;
+import com.example.raceorganizer.Repository.LoggedInUserRepository;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends AndroidViewModel {
