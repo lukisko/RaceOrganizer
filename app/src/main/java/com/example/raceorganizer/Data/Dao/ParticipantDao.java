@@ -47,7 +47,7 @@ public class ParticipantDao {
         data.put("Points", participant.getPoints());
         data.put("TotalTime", participant.getTotalTime());
 
-        databaseRef.collection("Participants").add(data);
+        databaseRef.collection("Participants").document(participant.getId()).set(data);
     }
 
     public void addCheckpoint(String participantId, String checkpointId, String points) {
@@ -59,4 +59,5 @@ public class ParticipantDao {
                 .collection("Checkpoints")
                 .document(checkpointId).set(data);
     }
+
 }

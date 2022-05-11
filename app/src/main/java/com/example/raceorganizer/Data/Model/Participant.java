@@ -11,6 +11,7 @@ public class Participant {
     private int points;
     private int totalTime;
     private ArrayList<Checkpoint> checkpoints;
+    private ArrayList<Integer> raceIds;
 
     public Participant(){}
     public Participant(String id,String firstName, String lastName, int age, int number, int points, int totalTime) {
@@ -22,10 +23,19 @@ public class Participant {
         this.points = points;
         this.totalTime = totalTime;
         checkpoints = new ArrayList<>();
+        raceIds = new ArrayList<>();
     }
 
     public void addCheckpoint(Checkpoint checkpoint){
         checkpoints.add(checkpoint);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public ArrayList<Integer> getRaceIds() {
+        return raceIds;
     }
 
     public String getFirstName() {

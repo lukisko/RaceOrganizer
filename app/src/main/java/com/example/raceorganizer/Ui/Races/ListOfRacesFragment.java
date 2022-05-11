@@ -54,13 +54,21 @@ public class ListOfRacesFragment extends Fragment {
 
         raceAdapter = new RaceAdapter(new ArrayList<>());
 
-        viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
-            viewModel.getUserById(id.getUid()).observe(this.getViewLifecycleOwner(), user -> {
-                viewModel.getAllRaces(user.getFirstName()).observe(getViewLifecycleOwner(), races  -> {
-                    raceAdapter.set(races);
+
+        if(!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)) {
+            viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
+                viewModel.getUserById(id.getUid()).observe(this.getViewLifecycleOwner(), user -> {
+                    viewModel.getAllRaces(user.getFirstName()).observe(getViewLifecycleOwner(), races -> {
+                        raceAdapter.set(races);
+                    });
                 });
             });
-        });
+        }
+        else {
+            viewModel.getRacesParticipant().observe(getViewLifecycleOwner(), x -> {
+                raceAdapter.set(x);
+            });
+        }
 
 
         raceAdapter.setOnClickListener(o ->  {

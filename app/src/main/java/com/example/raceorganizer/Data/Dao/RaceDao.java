@@ -1,25 +1,29 @@
 package com.example.raceorganizer.Data.Dao;
 
+import android.app.DownloadManager;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
 import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class RaceDao {
     private static RaceDao instance;
-    private RacesLiveData racesLiveData;
-    private RaceLiveData currentRaceLiveData;
     private FirebaseFirestore databaseRef;
 
     private RaceDao(){
-        ParticipantDao participantDao = ParticipantDao.getInstance();
-        participantDao.addParticipant(new Participant("1312","ado","ado",18,18,0,12));
         databaseRef = FirebaseFirestore.getInstance();
     }
 
@@ -33,13 +37,13 @@ public class RaceDao {
 
     public RacesLiveData getRaces(String user){
         Query allRacesRef = databaseRef.collection("Races").whereEqualTo("RaceOwner", user);
-        racesLiveData = new RacesLiveData(allRacesRef);
+        RacesLiveData racesLiveData = new RacesLiveData(allRacesRef);
         return racesLiveData;
     }
 
     public RaceLiveData getRace(String id){
         DocumentReference specificRaceRef = databaseRef.collection("Races").document(id);
-        currentRaceLiveData = new RaceLiveData(specificRaceRef);
+        RaceLiveData currentRaceLiveData = new RaceLiveData(specificRaceRef);
         return currentRaceLiveData;
     }
 
@@ -51,10 +55,14 @@ public class RaceDao {
         data.put("End", race.getEnd());
         data.put("Type", race.getRaceType());
 
-        databaseRef.collection("Races").add(data);
+        databaseRef.collection("Races").document(race.getId()).set(data);
     }
 
     public void deleteRace(String id){
         databaseRef.collection("Races").document(id).delete();
+    }
+
+    public LiveData<ArrayList<Race>> getRacesParticipant(String participantId) {
+        return null;
     }
 }

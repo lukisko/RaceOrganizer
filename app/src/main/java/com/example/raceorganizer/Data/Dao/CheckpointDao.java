@@ -48,7 +48,7 @@ public class CheckpointDao {
         data.put("TotalPoints", checkpoint.getTotalPoints());
         data.put("Race", checkpoint.getRaceId());
         data.put("Moderators",new ArrayList<>());
-        databaseRef.collection("Races").add(data);
+        databaseRef.collection("Races").document(checkpoint.getId()).set(data);
     }
     public void deleteCheckpoint(String id){
         databaseRef.collection("Checkpoints").document(id).delete();

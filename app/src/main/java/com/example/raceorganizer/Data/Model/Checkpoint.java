@@ -33,6 +33,10 @@ public class Checkpoint {
         return info;
     }
 
+    public String getId() {
+        return id;
+    }
+
     public ArrayList<RegisteredUser> getModerators() {
         return moderators;
     }
