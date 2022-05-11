@@ -21,7 +21,6 @@ public class CheckpointRepository {
         return instance;
     }
 
-
     public CheckpointLiveData getCheckpoint(String id){
         return repository.getCheckpoint(id);
     }

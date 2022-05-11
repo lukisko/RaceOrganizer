@@ -1,6 +1,8 @@
 package com.example.raceorganizer.Data.Model;
 
-public class User {
+import com.google.firebase.auth.FirebaseUser;
+
+public class User  {
 
     private String  username;
     private String password;
@@ -30,7 +32,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
     public String getFirstName() {
         return firstName;
     }

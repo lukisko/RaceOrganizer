@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.raceorganizer.Data.Model.User;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
 
@@ -89,7 +90,6 @@ public class RegisterFragment extends Fragment {
         username = et_username.getText().toString();
         password = et_password.getText().toString();
 
-
         if (TextUtils.isEmpty(firstName)) {
             et_firstName.setError("Please enter first name!");
             return;
@@ -115,23 +115,20 @@ public class RegisterFragment extends Fragment {
         newUser.put("LastName", lastName);
 
         progressbar.setVisibility(View.VISIBLE);
-        firebaseAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
+        User userToRegister = new User(username, password);
+        userToRegister.setFirstName(firstName);
+        userToRegister.setLastName(lastName);
 
+        viewModel.signUp(userToRegister).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                dbFirebase.collection("LoggedInUser").document(task.getResult().getUser().getUid())
-                        .set(newUser)
-                        .addOnSuccessListener(unused -> {
-                            Toast.makeText(view.getContext(), "Logged In", Toast.LENGTH_LONG).show();
-                        }).addOnFailureListener(e -> Toast.makeText(view.getContext(), "Something went wrong in the Firestore DB ", Toast.LENGTH_LONG).show());
-
-            } else {
-                et_firstName.setText("");
-                et_lastName.setText("");
-                et_firstName.setText("");
-                et_lastName.setText("");
-                Toast.makeText(view.getContext(), "Something is wrong in the Authentication DB", Toast.LENGTH_LONG).show();
+                viewModel.createUserInDatabase(userToRegister).addOnSuccessListener(dbresp -> {
+                    Toast.makeText(view.getContext(), "Logged In", Toast.LENGTH_LONG).show();
+                }).addOnFailureListener(e ->
+                        Toast.makeText(view.getContext(), "Something went wrong in the Firestore DB ",
+                                Toast.LENGTH_LONG).show());
             }
         });
+
     }
 
 

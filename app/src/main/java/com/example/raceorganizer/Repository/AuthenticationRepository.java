@@ -2,18 +2,23 @@ package com.example.raceorganizer.Repository;
 
 import android.app.Application;
 
-import com.example.raceorganizer.Data.LiveData.User.LoggedInUserLiveData;
+import com.example.raceorganizer.Data.Dao.AuthenticationDao;
+import com.example.raceorganizer.Data.LiveData.User.AuthenticationLiveData;
 import com.example.raceorganizer.Data.Model.User;
-import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 public class AuthenticationRepository {
-    private final LoggedInUserLiveData currentUser;
+    private final AuthenticationLiveData currentUser;
     private final Application application;
     private static AuthenticationRepository instance;
 
+    private AuthenticationDao authenticationDao;
+
     private AuthenticationRepository(Application _application) {
         this.application = _application;
-        currentUser = new LoggedInUserLiveData();
+        currentUser = new AuthenticationLiveData();
+        authenticationDao = AuthenticationDao.getInstance();
     }
 
     public static synchronized AuthenticationRepository getInstance(Application app) {
@@ -22,19 +27,27 @@ public class AuthenticationRepository {
         return instance;
     }
 
-    public LoggedInUserLiveData getCurrentUser() {
+    public AuthenticationLiveData getCurrentUser() {
         return currentUser;
     }
 
     public void signOut() {
-        AuthUI.getInstance().signOut(application.getApplicationContext());
+        authenticationDao.signOut();
+
     }
 
-    public void signUp(User user) {
-        //To be implemented returns a Task and call repositoryDAO
+    public Task<AuthResult> signUp(User user) {
+       return authenticationDao.signUp(user);
     }
 
-    public void signIn(User user) {//To be implemented returns a Task and call repositoryDAO
+    public Task<AuthResult> signIn(User user) {
+
+        return authenticationDao.signIn(user);
     }
+
+    public Task<Void> createFireBaseUser(User user) {
+        return authenticationDao.createUserInFirebase(user);
+    }
+
 
 }
