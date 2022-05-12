@@ -30,7 +30,7 @@ public class AddParticipantView extends Fragment {
     static final String AGE = "age";
     private AddParticipantViewModel viewModel;
     private SharedPreferences sharedPreferences;
-    private String raceName;
+    private String raceId;
     Toast incorrectInfo;
 
     View view;
@@ -51,7 +51,7 @@ public class AddParticipantView extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
 
-        raceName = getArguments().getString("nameOfRace");
+        raceId = getArguments().getString("idOfRace");
 
         CharSequence text = "Hello toast!";
         int duration = Toast.LENGTH_SHORT;
@@ -90,6 +90,8 @@ public class AddParticipantView extends Fragment {
                 return;
             }
 
+            //TODO get id of participant somehow
+
             Participant participant = new Participant(
                     "",
                     firstName.getText().toString(),
@@ -99,7 +101,7 @@ public class AddParticipantView extends Fragment {
                     0,
                     0
             );
-            viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
+            viewModel.addParticipant(participant, raceId);
             ((MainActivity)this.getActivity()).navController.popBackStack();
 
 

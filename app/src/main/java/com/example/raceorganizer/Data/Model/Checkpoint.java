@@ -25,6 +25,10 @@ public class Checkpoint {
         this.pointsReceived = pointsReceived;
     }
 
+    public void setRaceId(String raceId) {
+        this.raceId = raceId;
+    }
+
     public String getName() {
         return name;
     }

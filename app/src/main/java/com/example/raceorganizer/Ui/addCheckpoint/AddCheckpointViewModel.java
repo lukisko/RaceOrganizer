@@ -16,7 +16,8 @@ public class AddCheckpointViewModel extends ViewModel {
         raceRepository = RaceRepository.getInstance();
     }
 
-    public void makeCheckpoint(String raceName, Checkpoint checkpoint){
-        checkpointRepository.addCheckpoint(/*raceRepository.getRace(raceName).getValue(),*/ checkpoint);
+    public void makeCheckpoint(String raceId, Checkpoint checkpoint){
+        checkpoint.setRaceId(raceId);
+        checkpointRepository.addCheckpoint(checkpoint);
     }
 }

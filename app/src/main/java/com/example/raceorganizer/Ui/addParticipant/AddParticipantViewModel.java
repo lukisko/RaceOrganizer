@@ -16,7 +16,7 @@ public class AddParticipantViewModel extends ViewModel {
         raceRepository = RaceRepository.getInstance();
     }
 
-    public void addParticipant(Participant participant, String raceName){
-        participantRepository.addParticipant(raceRepository.getRace(raceName).getValue(), participant);
+    public void addParticipant(Participant participant, String raceId){
+        participantRepository.addParticipant(raceRepository.getRace(raceId).getValue(), participant);
     }
 }
