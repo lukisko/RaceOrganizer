@@ -11,7 +11,7 @@ public class Participant {
     private int points;
     private int totalTime;
     private ArrayList<Checkpoint> checkpoints;
-    private ArrayList<Integer> raceIds;
+    private ArrayList<String> raceIds;
 
     public Participant(){}
     public Participant(String id,String firstName, String lastName, int age, int number, int points, int totalTime) {
@@ -34,7 +34,7 @@ public class Participant {
         return id;
     }
 
-    public ArrayList<Integer> getRaceIds() {
+    public ArrayList<String> getRaceIds() {
         return raceIds;
     }
 

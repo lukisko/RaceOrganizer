@@ -1,17 +1,11 @@
 package com.example.raceorganizer.Data.Dao;
 
-import android.app.DownloadManager;
-
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
-import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -63,6 +57,8 @@ public class RaceDao {
     }
 
     public LiveData<ArrayList<Race>> getRacesParticipant(String participantId) {
+
         return null;
     }
+
 }
