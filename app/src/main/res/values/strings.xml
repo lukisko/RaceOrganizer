@@ -17,8 +17,8 @@
     <string name="checkpointname">CheckpointName</string>
     <string name="start">Start</string>
     <string name="end">End</string>
-    <string name="starttime">StartTime</string>
-    <string name="endtime">EndTime</string>
+    <string name="starttime">Start Time</string>
+    <string name="endtime">End Time</string>
     <string name="race_name">Race Name</string>
     <string name="start_time">Start Time</string>
     <string name="end_time">End Time</string>
@@ -31,6 +31,8 @@
     <string name="time">8:00</string>
     <string name="search_number">Search number</string>
     <string name="dw_sign_out">Sign Out</string>
+    <string name="race_start_date">Start Date</string>
+    <string name="race_end_date">End Date</string>
 
 
 </resources>

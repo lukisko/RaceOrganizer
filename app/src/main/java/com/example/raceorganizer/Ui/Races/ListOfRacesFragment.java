@@ -20,7 +20,7 @@ import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.zxing.integration.android.IntentIntegrator;
+//import com.google.zxing.integration.android.IntentIntegrator;
 
 import java.util.ArrayList;
 
@@ -73,6 +73,7 @@ public class ListOfRacesFragment extends Fragment {
                //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment);
            } else {
                ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race);
+
            }
 
        });
@@ -81,12 +82,12 @@ public class ListOfRacesFragment extends Fragment {
     }
 
     private void handleAddingParticipantToRace(){
-        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
-        intentIntegrator.setPrompt("Scan a barcode or QR Code");
-        intentIntegrator.setOrientationLocked(true);
-        ArrayList<String> barCodeTypes = new ArrayList<>();
-        barCodeTypes.add("QR_CODE");
-        intentIntegrator.initiateScan(barCodeTypes);
+//        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+//        intentIntegrator.setPrompt("Scan a barcode or QR Code");
+//        intentIntegrator.setOrientationLocked(true);
+//        ArrayList<String> barCodeTypes = new ArrayList<>();
+//        barCodeTypes.add("QR_CODE");
+//        intentIntegrator.initiateScan(barCodeTypes);
     }
 
 }

@@ -21,9 +21,6 @@ public class Race {
         checkpoints = new ArrayList<>();
         participants = new ArrayList<>();
     }
-    public Race(String name){
-        this.name = name;
-    }
     public Race(String id,String name, Date start, Date end, RaceType raceType, String raceOwner) {
         this.id = id;
         this.name = name;
@@ -33,6 +30,7 @@ public class Race {
         this.checkpoints = new ArrayList<>();
         this.raceOwner = raceOwner;
         this.participants = new ArrayList<>();
+
     }
 
     public void setName(String name) {
