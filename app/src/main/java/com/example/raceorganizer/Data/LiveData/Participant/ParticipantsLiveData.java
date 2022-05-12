@@ -29,9 +29,9 @@ public class ParticipantsLiveData extends LiveData<ArrayList<Participant>> {
                         document.getString("Id"),
                         document.getString("FirstName"),
                         document.getString("LastName"),
-                        Integer.parseInt(document.getString("Age")),
-                        Integer.parseInt(document.getString("Number")),
-                        Integer.parseInt(document.getString("Points")),
+                        Integer.parseInt(document.get("Age").toString()),
+                        Integer.parseInt(document.get("Number").toString()),
+                        Integer.parseInt(document.get("Points").toString()),
                         (Timestamp)document.get("TotalTime")
                         );
                 participants.add(participant);

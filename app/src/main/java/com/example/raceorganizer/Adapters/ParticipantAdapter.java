@@ -1,5 +1,6 @@
 package com.example.raceorganizer.Adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.R;
 
@@ -21,6 +23,12 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     public ParticipantAdapter(ArrayList<Participant> participants){
         this.participants = participants;
     }
+    @SuppressLint("NotifyDataSetChanged")
+    public void set(ArrayList<Participant> participants)
+    {
+        this.participants = participants;
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,7 +39,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.number.setText(participants.get(position).getNumber());
+        holder.number.setText(String.valueOf(participants.get(position).getNumber()));
         holder.firstName.setText(participants.get(position).getFirstName());
         holder.lastName.setText(participants.get(position).getLastName());
     }

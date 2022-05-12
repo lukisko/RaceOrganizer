@@ -2,12 +2,12 @@ package com.example.raceorganizer.Data.Dao;
 
 import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointLiveData;
 import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointsLiveData;
-import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.RegisteredUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,8 +54,9 @@ public class CheckpointDao {
         databaseRef.collection("Checkpoints").document(id).delete();
     }
 
-    public void addModerator(String checkpointId, RegisteredUser moderator){
-        databaseRef.collection("Checkpoints").document(checkpointId).set(moderator.getId());
+    public void addModerator(String checkpointId, String id){
+        databaseRef.collection("Checkpoints").document(checkpointId).update("Moderators", FieldValue.arrayUnion(id));
     }
+
 
 }

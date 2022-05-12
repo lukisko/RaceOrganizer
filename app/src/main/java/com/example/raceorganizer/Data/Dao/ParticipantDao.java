@@ -1,12 +1,21 @@
 package com.example.raceorganizer.Data.Dao;
 
+import androidx.annotation.NonNull;
+
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantsLiveData;
 import com.example.raceorganizer.Data.Model.Participant;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldPath;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.SetOptions;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +25,7 @@ public class ParticipantDao {
 
     private ParticipantDao() {
         databaseRef = FirebaseFirestore.getInstance();
+        addRace("1","2");
     }
 
     public static synchronized ParticipantDao getInstance() {
@@ -26,7 +36,7 @@ public class ParticipantDao {
     }
 
     public ParticipantsLiveData getParticipants(String raceId) {
-        Query allParticipantsRef = databaseRef.collection("Participants").whereEqualTo("Race", raceId);
+        Query allParticipantsRef = databaseRef.collection("Participants").whereArrayContains("Races", raceId);
         ParticipantsLiveData allParticipants = new ParticipantsLiveData(allParticipantsRef);
         return allParticipants;
 
@@ -38,7 +48,7 @@ public class ParticipantDao {
         return currentParticipant;
     }
 
-    public void addParticipant(Participant participant) {
+    public ParticipantLiveData addParticipant(Participant participant) {
         Map<String, Object> data = new HashMap<>();
         data.put("Age", participant.getAge());
         data.put("FirstName", participant.getFirstName());
@@ -47,7 +57,9 @@ public class ParticipantDao {
         data.put("Points", participant.getPoints());
         data.put("TotalTime", participant.getTotalTime());
 
-        databaseRef.collection("Participants").add(data);
+        DocumentReference documentReference = databaseRef.collection("Participants").add(data).getResult();
+        ParticipantLiveData participantLiveData = new ParticipantLiveData(documentReference);
+        return participantLiveData;
     }
 
     public void addCheckpoint(String participantId, String checkpointId, String points) {
@@ -58,6 +70,11 @@ public class ParticipantDao {
                 .document(participantId)
                 .collection("Checkpoints")
                 .document(checkpointId).set(data);
+    }
+    public void addRace(String participantId, String raceId){
+
+        databaseRef.collection("Participants")
+                .document(participantId).update("Races", FieldValue.arrayUnion(raceId));
     }
 
 }

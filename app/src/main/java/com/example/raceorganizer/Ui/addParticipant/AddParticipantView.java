@@ -85,7 +85,7 @@ public class AddParticipantView extends Fragment {
                         0,
                         Timestamp.now()
                 );
-                viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
+                viewModel.addParticipant(participant);
                 ((MainActivity)this.getActivity()).navController.popBackStack();
                 /*
                 Bundle bundle = new Bundle();

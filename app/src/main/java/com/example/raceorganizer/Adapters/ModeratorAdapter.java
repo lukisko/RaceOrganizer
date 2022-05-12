@@ -1,5 +1,6 @@
 package com.example.raceorganizer.Adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.RegisteredUser;
 import com.example.raceorganizer.Data.Model.User;
 import com.example.raceorganizer.R;
@@ -21,6 +23,12 @@ public class ModeratorAdapter extends RecyclerView.Adapter<ModeratorAdapter.View
 
     public ModeratorAdapter(ArrayList<RegisteredUser> moderators){
         this.moderators = moderators;
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    public void set(ArrayList<RegisteredUser> participants)
+    {
+        this.moderators = participants;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

@@ -58,7 +58,6 @@ public class ListOfRacesFragment extends Fragment {
 
         if (!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
             viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
-                System.out.println(id);
                 viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
                     raceAdapter.set(races);
                 });

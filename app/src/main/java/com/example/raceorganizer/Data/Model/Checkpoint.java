@@ -9,7 +9,7 @@ public class Checkpoint {
     private int totalPoints;
     private int pointsReceived;
     private String raceId;
-    private ArrayList<RegisteredUser> moderators;
+    private ArrayList<String> moderators;
 
     public Checkpoint(){}
     public Checkpoint(String name){
@@ -23,6 +23,7 @@ public class Checkpoint {
         this.name = name;
         this.totalPoints = totalPoints;
         this.pointsReceived = pointsReceived;
+        this.moderators = new ArrayList<>();
     }
 
     public String getName() {
@@ -37,7 +38,7 @@ public class Checkpoint {
         return id;
     }
 
-    public ArrayList<RegisteredUser> getModerators() {
+    public ArrayList<String> getModerators() {
         return moderators;
     }
 
@@ -51,6 +52,10 @@ public class Checkpoint {
 
     public String getRaceId() {
         return raceId;
+    }
+
+    public void setModerators(ArrayList<String> moderators) {
+        this.moderators = moderators;
     }
 
     @Override
