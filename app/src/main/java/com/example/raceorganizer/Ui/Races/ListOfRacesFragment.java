@@ -27,8 +27,8 @@ import java.util.ArrayList;
 
 
 public class ListOfRacesFragment extends Fragment {
-     RecyclerView recyclerView;
-     RaceAdapter raceAdapter;
+    RecyclerView recyclerView;
+    RaceAdapter raceAdapter;
 
     private SharedPreferences sharedPreferences;
     private ListOfRacesViewModel viewModel;
@@ -50,50 +50,60 @@ public class ListOfRacesFragment extends Fragment {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        sharedPreferences = getContext().getSharedPreferences("UserPref",MODE_PRIVATE);
+        sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
 
         raceAdapter = new RaceAdapter(new ArrayList<>());
 
 
-        if(!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)) {
+
+        if (!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
             viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
-                    viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
-                        raceAdapter.set(races);
-                    });
+                System.out.println(id);
+                viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
+                    raceAdapter.set(races);
+                });
             });
-        }
-        else {
+        } else {
+            viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
+                if(id != null) {
+                    viewModel.getParticipant(id.getUid()).observe(getViewLifecycleOwner(), ids -> {
+                        viewModel.getRacesParticipant(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
+                            raceAdapter.set(races);
+                        });
+                    });
+                }
+            });
 
         }
 
 
-        raceAdapter.setOnClickListener(o ->  {
+        raceAdapter.setOnClickListener(o -> {
             Bundle bundle = new Bundle();
-            bundle.putString("idOfRace",o.getId());
-            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
-                ((MainActivity)this.getActivity()).navController.navigate(R.id.checkpointListPFragment,bundle);
+            bundle.putString("idOfRace", o.getId());
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
+                ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointListPFragment, bundle);
             } else {
-                ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
+                ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
             }
         });
         recyclerView.setAdapter(raceAdapter);
 
 
         add = view.findViewById(R.id.addRace);
-       add.setOnClickListener(o -> {
-           if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
-               handleAddingParticipantToRace();
-               //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment);
-           } else {
-               ((MainActivity)this.getActivity()).navController.navigate(R.id.nav_add_race);
-           }
+        add.setOnClickListener(o -> {
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
+                handleAddingParticipantToRace();
+                //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment);
+            } else {
+                ((MainActivity) this.getActivity()).navController.navigate(R.id.nav_add_race);
+            }
 
-       });
+        });
 
         return view;
     }
 
-    private void handleAddingParticipantToRace(){
+    private void handleAddingParticipantToRace() {
         IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
         intentIntegrator.setPrompt("Scan a barcode or QR Code");
         intentIntegrator.setOrientationLocked(true);

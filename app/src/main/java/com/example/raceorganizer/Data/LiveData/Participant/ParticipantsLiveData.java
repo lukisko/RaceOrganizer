@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Participant;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -31,7 +32,7 @@ public class ParticipantsLiveData extends LiveData<ArrayList<Participant>> {
                         Integer.parseInt(document.getString("Age")),
                         Integer.parseInt(document.getString("Number")),
                         Integer.parseInt(document.getString("Points")),
-                        Integer.parseInt(document.getString("TotalTime"))
+                        (Timestamp)document.get("TotalTime")
                         );
                 participants.add(participant);
             }

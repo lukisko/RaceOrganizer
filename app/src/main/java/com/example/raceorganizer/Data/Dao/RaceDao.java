@@ -1,11 +1,18 @@
 package com.example.raceorganizer.Data.Dao;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
 import com.example.raceorganizer.Data.Model.Race;
+import com.example.raceorganizer.MainActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -56,9 +63,9 @@ public class RaceDao {
         databaseRef.collection("Races").document(id).delete();
     }
 
-    public LiveData<ArrayList<Race>> getRacesParticipant(String participantId) {
-
-        return null;
+    public LiveData<ArrayList<Race>> getRacesParticipant(ArrayList<String> list) {
+        Query allRacesRef = databaseRef.collection("Races").whereIn(FieldPath.documentId(),list);
+        RacesLiveData racesLiveData = new RacesLiveData(allRacesRef);
+        return racesLiveData;
     }
-
 }

@@ -23,6 +23,7 @@ import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
 import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
+import com.google.firebase.Timestamp;
 
 public class AddParticipantView extends Fragment {
     static String FIRST_NAME = "first_name";
@@ -82,7 +83,7 @@ public class AddParticipantView extends Fragment {
                         Integer.parseInt(age.getText().toString()),
                         Integer.parseInt(number.getText().toString()),
                         0,
-                        0
+                        Timestamp.now()
                 );
                 viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
                 ((MainActivity)this.getActivity()).navController.popBackStack();

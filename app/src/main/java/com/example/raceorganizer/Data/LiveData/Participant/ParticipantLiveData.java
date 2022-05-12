@@ -5,11 +5,14 @@ import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Participant;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+
+import java.util.ArrayList;
 
 public class ParticipantLiveData extends LiveData<Participant> {
     DocumentReference reference;
@@ -23,11 +26,12 @@ public class ParticipantLiveData extends LiveData<Participant> {
                     document.getString("Id"),
                     document.getString("FirstName"),
                     document.getString("LastName"),
-                    Integer.parseInt(document.getString("Age")),
-                    Integer.parseInt(document.getString("Number")),
-                    Integer.parseInt(document.getString("Points")),
-                    Integer.parseInt(document.getString("TotalTime"))
+                    Integer.parseInt(document.get("Age").toString()),
+                    Integer.parseInt(document.get("Number").toString()),
+                    Integer.parseInt(document.get("Points").toString()),
+                    (Timestamp)document.get("TotalTime")
             );
+            participant.setRaceIds((ArrayList<String>) document.get("Races"));
             setValue(participant);
         }
 

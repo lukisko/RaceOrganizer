@@ -1,5 +1,7 @@
 package com.example.raceorganizer.Data.Model;
 
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
 
 public class Participant {
@@ -9,12 +11,12 @@ public class Participant {
     private int age;
     private int number;
     private int points;
-    private int totalTime;
+    private Timestamp totalTime;
     private ArrayList<Checkpoint> checkpoints;
     private ArrayList<String> raceIds;
 
     public Participant(){}
-    public Participant(String id,String firstName, String lastName, int age, int number, int points, int totalTime) {
+    public Participant(String id,String firstName, String lastName, int age, int number, int points, Timestamp totalTime) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,6 +26,10 @@ public class Participant {
         this.totalTime = totalTime;
         checkpoints = new ArrayList<>();
         raceIds = new ArrayList<>();
+    }
+
+    public void setRaceIds(ArrayList<String> raceIds) {
+        this.raceIds = raceIds;
     }
 
     public void addCheckpoint(Checkpoint checkpoint){
@@ -58,7 +64,7 @@ public class Participant {
         return points;
     }
 
-    public int getTotalTime() {
+    public Timestamp getTotalTime() {
         return totalTime;
     }
 }
