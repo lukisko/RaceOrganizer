@@ -74,33 +74,34 @@ public class AddParticipantView extends Fragment {
         Button createButton = view.findViewById(R.id.addParticipant);
         createButton.setOnClickListener((v)->{
             Log.i("preferences","heeereee");
+
+            int tempAge;
             try{
-                Participant participant = new Participant(
-                        "",
-                        firstName.getText().toString(),
-                        lastName.getText().toString(),
-                        Integer.parseInt(age.getText().toString()),
-                        Integer.parseInt(number.getText().toString()),
-                        0,
-                        0
-                );
-                viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
-                ((MainActivity)this.getActivity()).navController.popBackStack();
-                /*
-                Bundle bundle = new Bundle();
-                bundle.putString("nameOfRace",raceName);
-
-                if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true)){ //should I assume user is participant or moderator if there is no info?
-                    ((MainActivity)this.getActivity()).navController.navigate(R.id.list_of_races,bundle);
-                } else {
-                    ((MainActivity)this.getActivity()).navController.navigate(R.id.race_info,bundle);
-                }*/
-
+                tempAge = Integer.parseInt(age.getText().toString());
             } catch (Exception e){
-
-                incorrectInfo.show();
-
+                age.setError("enter your age as whole number");
+                return;
             }
+            int tempNumber;
+            try{
+                tempNumber = Integer.parseInt(number.getText().toString());
+            } catch (Exception e){
+                number.setError("enter your racing number");
+                return;
+            }
+
+            Participant participant = new Participant(
+                    "",
+                    firstName.getText().toString(),
+                    lastName.getText().toString(),
+                    tempAge,
+                    tempNumber,
+                    0,
+                    0
+            );
+            viewModel.addParticipant(participant, getArguments().getString("nameOfRace"));
+            ((MainActivity)this.getActivity()).navController.popBackStack();
+
 
         });
         return view;
