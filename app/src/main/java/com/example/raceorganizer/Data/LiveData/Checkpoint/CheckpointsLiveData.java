@@ -32,7 +32,8 @@ public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
                         document.getId(),
                         document.getString("Name"),
                         Integer.parseInt(document.get("TotalPoints").toString()),
-                        Integer.parseInt(document.get("PointsRecieved").toString()));
+                        0
+                );
                 checkpoints.add(checkpoint);
             }
             setValue(checkpoints);
