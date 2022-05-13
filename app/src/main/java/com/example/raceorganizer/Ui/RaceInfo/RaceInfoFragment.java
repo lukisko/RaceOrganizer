@@ -1,8 +1,10 @@
 package com.example.raceorganizer.Ui.RaceInfo;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -26,7 +28,7 @@ import com.example.raceorganizer.Data.Model.ListType;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
+import com.example.raceorganizer.Ui.Home.HomeFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -41,7 +43,8 @@ public class RaceInfoFragment extends Fragment {
     private ParticipantAdapter participantAdapter;
     private ModeratorAdapter moderatorAdapter;
 
-    private Race race;
+
+    private SharedPreferences sharedPreferences;
 
     private ListType listType;
 
@@ -65,7 +68,7 @@ public class RaceInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_race_info, container, false);
-
+        sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
 
         setup();
         setupRecycleViews(view);
@@ -74,7 +77,7 @@ public class RaceInfoFragment extends Fragment {
         return view;
     }
 
-    public void setupRecycleViews(View view){
+    public void setupRecycleViews(View view) {
         viewModel = new ViewModelProvider(this).get(RaceInfoViewModel.class);
 
         recyclerView = view.findViewById(R.id.checkpointRecycleList);
@@ -90,20 +93,51 @@ public class RaceInfoFragment extends Fragment {
         viewModel.getRace(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), r -> {
             setValues(r);
         });
-        viewModel.getCheckpoints(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), x  -> {
+        viewModel.getCheckpoints(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), x -> {
             checkpointAdapter.set(x);
         });
+        viewModel.getParticipants(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), x -> {
+            participantAdapter.set(x);
+        });
+        viewModel.getCheckpoints(getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(), x -> {
+            ArrayList<String> ids = new ArrayList<>();
+            for (Checkpoint c:x) {
+                if(c.getModerators() != null){
+                    ids.addAll(c.getModerators());
+                }
+            }
+            if(ids.size()>0) {
+                viewModel.getModerators(ids).observe(getViewLifecycleOwner(), m -> {
+                    System.out.println(m.size());
+                    moderatorAdapter.set(m);
+                });
+            }
+        });
 
+        setupRecycleViewsOnClick();
 
         recyclerView.setAdapter(checkpointAdapter);
     }
 
-    public void setupButtons(){
-        delete.setOnClickListener(o ->  {
-            viewModel.deleteRace(getArguments().getString("idOfRace"));
-            ((MainActivity)this.getActivity()).navController.navigate(R.id.list_of_races);
+    public void setupRecycleViewsOnClick(){
+        Context context = getContext();
+        int duration = Toast.LENGTH_SHORT;
+        checkpointAdapter.setOnClickListener( c -> {
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
+                Toast.makeText(context, "participant" + " " + c.getId(), duration).show();
+            }
+            else{
+                Toast.makeText(context, "registerd" + " " + c.getId(), duration).show();
+            }
         });
-        checkpoint.setOnClickListener(o ->  {
+    }
+
+    public void setupButtons() {
+        delete.setOnClickListener(o -> {
+            viewModel.deleteRace(getArguments().getString("idOfRace"));
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races);
+        });
+        checkpoint.setOnClickListener(o -> {
             moderator.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.green));
             checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
@@ -111,7 +145,7 @@ public class RaceInfoFragment extends Fragment {
             addButton.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(checkpointAdapter);
         });
-        participant.setOnClickListener(o ->  {
+        participant.setOnClickListener(o -> {
             moderator.setBackgroundColor(getResources().getColor(R.color.green));
             checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.black));
@@ -119,7 +153,7 @@ public class RaceInfoFragment extends Fragment {
             addButton.setVisibility(View.VISIBLE);
             recyclerView.setAdapter(participantAdapter);
         });
-        moderator.setOnClickListener(o ->  {
+        moderator.setOnClickListener(o -> {
             checkpoint.setBackgroundColor(getResources().getColor(R.color.green));
             participant.setBackgroundColor(getResources().getColor(R.color.green));
             moderator.setBackgroundColor(getResources().getColor(R.color.black));
@@ -127,13 +161,13 @@ public class RaceInfoFragment extends Fragment {
             addButton.setVisibility(View.INVISIBLE);
             recyclerView.setAdapter(moderatorAdapter);
         });
-        addButton.setOnClickListener((v)->{
+        addButton.setOnClickListener((v) -> {
             Bundle bundle = new Bundle();
-            bundle.putString("nameOfRace",race.getName());
+            bundle.putString("idOfRace", getArguments().getString("idOfRace"));
 
             switch (listType) {
                 case CHECKPOINTS:
-                    ((MainActivity) this.getActivity()).navController.navigate(R.id.addCheckpointView2,bundle);
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.addCheckpointView2, bundle);
                     break;
                 case PARTICIPANTS:
                     ((MainActivity) this.getActivity()).navController.navigate(R.id.addParticipantView, bundle);
@@ -144,7 +178,7 @@ public class RaceInfoFragment extends Fragment {
         });
     }
 
-    public void setup(){
+    public void setup() {
         raceName = view.findViewById(R.id.raceName);
         raceDate = view.findViewById(R.id.dateOfRace);
         starting = view.findViewById(R.id.startingTime);
@@ -163,7 +197,7 @@ public class RaceInfoFragment extends Fragment {
         checkpoint.setBackgroundColor(getResources().getColor(R.color.black));
     }
 
-    public void setValues(Race race){
+    public void setValues(Race race) {
         raceName.setText(race.getName());
         raceDate.setText(race.getDate());
         starting.setText(race.getStart());

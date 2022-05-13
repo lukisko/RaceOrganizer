@@ -26,7 +26,10 @@
         android:layout_marginTop="490dp"
         android:text="@string/organize"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:singleLine="true"
+        android:padding="1dp"
+        />
 
     <Button
         android:id="@+id/participate"
@@ -36,7 +39,11 @@
         android:layout_marginEnd="15dp"
         android:text="@string/participate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:singleLine="true"
+        android:padding="1dp"
+
+        />
 
     <ImageView
         android:id="@+id/imageView"

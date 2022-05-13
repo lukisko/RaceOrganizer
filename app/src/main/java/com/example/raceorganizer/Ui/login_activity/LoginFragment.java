@@ -2,6 +2,7 @@ package com.example.raceorganizer.Ui.login_activity;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,7 +21,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.raceorganizer.Data.Model.User;
 import com.example.raceorganizer.R;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -33,6 +36,7 @@ public class LoginFragment extends Fragment {
     private ProgressBar progressbar;
     private LoginViewModel viewModel;
     private Intent intent;
+    private AlertDialog.Builder alertDialogBuilder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -40,8 +44,6 @@ public class LoginFragment extends Fragment {
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         intent = new Intent();
         firebaseAuth = FirebaseAuth.getInstance();
-
-
         et_username = view.findViewById(R.id.et_logIn_username);
         et_password = view.findViewById(R.id.et_logIn_password);
 
@@ -78,9 +80,9 @@ public class LoginFragment extends Fragment {
             return;
         }
 
-        firebaseAuth.signInWithEmailAndPassword(username, password).addOnCompleteListener(task -> {
+        progressbar.setVisibility(View.VISIBLE);
+        viewModel.signIn(new User(username, password)).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                progressbar.setVisibility(View.VISIBLE);
                 intent.putExtra("user", viewModel.getCurrentUser().getValue());
                 Toast.makeText(getContext(),
                         "Logged In",
@@ -88,14 +90,17 @@ public class LoginFragment extends Fragment {
                         .show();
                 getActivity().setResult(RESULT_OK, intent);
                 getActivity().finish();
-            } else {
 
+            } else {
                 Toast.makeText(getContext(),
                         "Login failed!!",
                         Toast.LENGTH_LONG)
                         .show();
                 progressbar.setVisibility(View.INVISIBLE);
             }
+
         });
+
+
     }
 }

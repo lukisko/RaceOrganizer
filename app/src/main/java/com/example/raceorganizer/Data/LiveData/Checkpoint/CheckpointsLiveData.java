@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Dao.CheckpointDao;
 import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Model.RegisteredUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -32,7 +33,9 @@ public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
                         document.getId(),
                         document.getString("Name"),
                         Integer.parseInt(document.get("TotalPoints").toString()),
-                        Integer.parseInt(document.get("PointsRecieved").toString()));
+                        0
+                );
+                checkpoint.setModerators((ArrayList<String>) document.get("Moderators"));
                 checkpoints.add(checkpoint);
             }
             setValue(checkpoints);

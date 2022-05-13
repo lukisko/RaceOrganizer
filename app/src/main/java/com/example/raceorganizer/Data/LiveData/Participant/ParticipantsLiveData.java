@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Participant;
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -25,13 +26,13 @@ public class ParticipantsLiveData extends LiveData<ArrayList<Participant>> {
         public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
             for (DocumentSnapshot document:value.getDocuments()) {
                 Participant participant = new Participant(
-                        document.getString("Id"),
+                        document.getId(),
                         document.getString("FirstName"),
                         document.getString("LastName"),
-                        Integer.parseInt(document.getString("Age")),
-                        Integer.parseInt(document.getString("Number")),
-                        Integer.parseInt(document.getString("Points")),
-                        Integer.parseInt(document.getString("TotalTime"))
+                        Integer.parseInt(document.get("Age").toString()),
+                        Integer.parseInt(document.get("Number").toString()),
+                        Integer.parseInt(document.get("Points").toString()),
+                        (Timestamp)document.get("TotalTime")
                         );
                 participants.add(participant);
             }

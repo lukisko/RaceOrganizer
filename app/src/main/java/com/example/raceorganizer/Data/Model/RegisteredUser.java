@@ -6,11 +6,16 @@ public class RegisteredUser {
     private String firstName;
     private String lastName;
 
-    public RegisteredUser(String username, String firstName, String lastName) {
-        this.username = username;
+    public RegisteredUser(String id, String firstName, String lastName) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
+//    public RegisteredUser(String username, String firstName, String lastName) {
+//        this.username = username;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//    }
 
     public String getId() {
         return id;
@@ -39,6 +44,16 @@ public class RegisteredUser {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "RegisteredUser{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
 

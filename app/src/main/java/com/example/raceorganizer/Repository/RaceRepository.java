@@ -1,5 +1,7 @@
 package com.example.raceorganizer.Repository;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.raceorganizer.Data.Dao.RaceDao;
 import com.example.raceorganizer.Data.LiveData.Race.RaceLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
@@ -8,6 +10,7 @@ import com.example.raceorganizer.Data.Model.RaceType;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class RaceRepository {
@@ -36,6 +39,10 @@ public class RaceRepository {
     }
     public void deleteRace(String id){
         repository.deleteRace(id);
+    }
+
+    public LiveData<ArrayList<Race>> getRacesParticipant(ArrayList<String> list){
+        return repository.getRacesParticipant(list);
     }
 
 }

@@ -34,7 +34,7 @@ public class RacesLiveData extends LiveData<ArrayList<Race>> {
                         document.getString("Name"),
                         new Timestamp('1'),
                         new Timestamp('2'),
-                        RaceType.Marathon,
+                        RaceType.Marathon.toString(),
                         document.getString("RaceOwner"));
                 races.add(race);
             }
