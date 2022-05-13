@@ -26,8 +26,10 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     @SuppressLint("NotifyDataSetChanged")
     public void set(ArrayList<Participant> participants)
     {
-        this.participants = participants;
+        this.participants.clear();
+        this.participants.addAll(participants);
         notifyDataSetChanged();
+        participants.clear();
     }
     @NonNull
     @Override

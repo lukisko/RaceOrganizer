@@ -24,6 +24,7 @@ public class ModeratorLiveData extends LiveData<RegisteredUser> {
                     document.getString("FirstName"),
                     document.getString("LastName")
             );
+            System.out.println(moderator.toString());
             setValue(moderator);
         }
 

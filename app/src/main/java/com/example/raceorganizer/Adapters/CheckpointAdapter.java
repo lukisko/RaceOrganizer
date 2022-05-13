@@ -26,8 +26,10 @@ public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.Vi
     @SuppressLint("NotifyDataSetChanged")
     public void set(ArrayList<Checkpoint> checkpoints)
     {
-        this.checkpoints = checkpoints;
+        this.checkpoints.clear();
+        this.checkpoints.addAll(checkpoints);
         notifyDataSetChanged();
+        checkpoints.clear();
     }
     @NonNull
     @Override
@@ -58,9 +60,9 @@ public class CheckpointAdapter extends RecyclerView.Adapter<CheckpointAdapter.Vi
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.nameOfCheckpoint);
-//            itemView.setOnClickListener(l -> {
-//                onCLickListener.onClick(checkpoints.get(getBindingAdapterPosition()));
-//            });
+            itemView.setOnClickListener(l -> {
+                onCLickListener.onClick(checkpoints.get(getBindingAdapterPosition()));
+            });
         }
     }
     public interface OnCLickListener{

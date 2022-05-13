@@ -1,8 +1,10 @@
 package com.example.raceorganizer.Ui.RaceInfo;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,10 +26,9 @@ import com.example.raceorganizer.Adapters.ParticipantAdapter;
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.ListType;
 import com.example.raceorganizer.Data.Model.Race;
-import com.example.raceorganizer.Data.Model.RegisteredUser;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
+import com.example.raceorganizer.Ui.Home.HomeFragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,7 +43,8 @@ public class RaceInfoFragment extends Fragment {
     private ParticipantAdapter participantAdapter;
     private ModeratorAdapter moderatorAdapter;
 
-    private Race race;
+
+    private SharedPreferences sharedPreferences;
 
     private ListType listType;
 
@@ -66,7 +68,7 @@ public class RaceInfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_race_info, container, false);
-
+        sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
 
         setup();
         setupRecycleViews(view);
@@ -104,14 +106,30 @@ public class RaceInfoFragment extends Fragment {
                     ids.addAll(c.getModerators());
                 }
             }
-            viewModel.getModerators(ids).observe(getViewLifecycleOwner(),m -> {
-                System.out.println(m.size());
-                moderatorAdapter.set(m);
-            });
+            if(ids.size()>0) {
+                viewModel.getModerators(ids).observe(getViewLifecycleOwner(), m -> {
+                    System.out.println(m.size());
+                    moderatorAdapter.set(m);
+                });
+            }
         });
 
+        setupRecycleViewsOnClick();
 
         recyclerView.setAdapter(checkpointAdapter);
+    }
+
+    public void setupRecycleViewsOnClick(){
+        Context context = getContext();
+        int duration = Toast.LENGTH_SHORT;
+        checkpointAdapter.setOnClickListener( c -> {
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
+                Toast.makeText(context, "participant" + " " + c.getId(), duration).show();
+            }
+            else{
+                Toast.makeText(context, "registerd" + " " + c.getId(), duration).show();
+            }
+        });
     }
 
     public void setupButtons() {
@@ -145,7 +163,7 @@ public class RaceInfoFragment extends Fragment {
         });
         addButton.setOnClickListener((v) -> {
             Bundle bundle = new Bundle();
-            bundle.putString("nameOfRace", race.getName());
+            bundle.putString("idOfRace", getArguments().getString("idOfRace"));
 
             switch (listType) {
                 case CHECKPOINTS:

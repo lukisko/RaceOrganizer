@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ModeratorDao {
     private static ModeratorDao instance;
@@ -34,8 +35,9 @@ public class ModeratorDao {
     }
 
     public ModeratorLiveData getModerator(String id) {
-        DocumentReference reference = databaseRef.collection("Moderators").document(id);
+        DocumentReference reference = databaseRef.collection("LoggedInUser").document(id);
         ModeratorLiveData moderatorLiveData = new ModeratorLiveData(reference);
         return moderatorLiveData;
     }
+
 }

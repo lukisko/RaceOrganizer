@@ -63,11 +63,11 @@ public class ModeratorAdapter extends RecyclerView.Adapter<ModeratorAdapter.View
             firstName = itemView.findViewById(R.id.firstNameOfModerator);
             lastName = itemView.findViewById(R.id.lastNameOfModerator);
 //            itemView.setOnClickListener(l -> {
-//                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
+//                onCLickListener.onClick(moderators.get(getBindingAdapterPosition()));
 //            });
         }
     }
     public interface OnCLickListener{
-        void onClick(User participant);
+        void onClick(RegisteredUser participant);
     }
 }

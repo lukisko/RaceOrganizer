@@ -26,7 +26,7 @@ public class ParticipantsLiveData extends LiveData<ArrayList<Participant>> {
         public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
             for (DocumentSnapshot document:value.getDocuments()) {
                 Participant participant = new Participant(
-                        document.getString("Id"),
+                        document.getId(),
                         document.getString("FirstName"),
                         document.getString("LastName"),
                         Integer.parseInt(document.get("Age").toString()),

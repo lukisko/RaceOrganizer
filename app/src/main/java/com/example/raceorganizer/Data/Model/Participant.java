@@ -67,4 +67,19 @@ public class Participant {
     public Timestamp getTotalTime() {
         return totalTime;
     }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", number=" + number +
+                ", points=" + points +
+                ", totalTime=" + totalTime +
+                ", checkpoints=" + checkpoints +
+                ", raceIds=" + raceIds +
+                '}';
+    }
 }

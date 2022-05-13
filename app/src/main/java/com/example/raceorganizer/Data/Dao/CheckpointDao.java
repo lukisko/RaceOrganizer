@@ -44,11 +44,10 @@ public class CheckpointDao {
     public void addCheckpoint(Checkpoint checkpoint){
         Map<String, Object> data = new HashMap<>();
         data.put("Name", checkpoint.getName());
-        data.put("PointsRecieved",checkpoint.getPointsReceived());
         data.put("TotalPoints", checkpoint.getTotalPoints());
         data.put("Race", checkpoint.getRaceId());
-        data.put("Moderators",new ArrayList<>());
-        databaseRef.collection("Races").document(checkpoint.getId()).set(data);
+        data.put("Moderators",checkpoint.getModerators());
+        databaseRef.collection("Checkpoints").add(data);
     }
     public void deleteCheckpoint(String id){
         databaseRef.collection("Checkpoints").document(id).delete();
