@@ -170,7 +170,7 @@ public class AddRaceFragment extends Fragment {
     }
 
     public void addRace() {
-        ///
+
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy:HH:mm");
         if (CheckAllFields()) {
             try {
@@ -186,7 +186,7 @@ public class AddRaceFragment extends Fragment {
                 raceToAdd.setRaceType(et_race_category.getText().toString());
                 raceToAdd.setRaceOwner(addRaceViewModel.getCurrentUser().getValue().getUid());
                 addRaceViewModel.addRace(raceToAdd);
-                Toast.makeText(view.getContext(), endDate.toString(),
+                Toast.makeText(view.getContext(), "Race added successfully",
                         Toast.LENGTH_LONG).show();
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -194,7 +194,6 @@ public class AddRaceFragment extends Fragment {
         }
 
     }
-
 
     private boolean CheckAllFields() {
         if (TextUtils.isEmpty(et_race_name.getText())) {

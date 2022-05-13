@@ -70,12 +70,12 @@ public class Race {
     }
 
     public String getStart() {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("hh:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy:HH:mm");
         return ft.format(start);
     }
 
     public String getEnd() {
-        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("hh:mm");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat ft = new SimpleDateFormat ("dd/MM/yyyy:HH:mm");
         return ft.format(end);
     }
 
