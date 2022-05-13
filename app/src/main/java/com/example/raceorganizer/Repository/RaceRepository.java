@@ -40,8 +40,9 @@ public class RaceRepository {
     public void deleteRace(String id){
         repository.deleteRace(id);
     }
-    public LiveData<ArrayList<Race>> getRacesParticipant(){
-        return repository.getRacesParticipant("1");
+
+    public LiveData<ArrayList<Race>> getRacesParticipant(ArrayList<String> list){
+        return repository.getRacesParticipant(list);
     }
 
 }

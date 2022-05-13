@@ -1,5 +1,7 @@
 package com.example.raceorganizer.Data.Model;
 
+import com.google.firebase.Timestamp;
+
 import java.util.ArrayList;
 
 public class Participant {
@@ -9,12 +11,12 @@ public class Participant {
     private int age;
     private int number;
     private int points;
-    private int totalTime;
+    private Timestamp totalTime;
     private ArrayList<Checkpoint> checkpoints;
-    private ArrayList<Integer> raceIds;
+    private ArrayList<String> raceIds;
 
     public Participant(){}
-    public Participant(String id,String firstName, String lastName, int age, int number, int points, int totalTime) {
+    public Participant(String id,String firstName, String lastName, int age, int number, int points, Timestamp totalTime) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -26,6 +28,10 @@ public class Participant {
         raceIds = new ArrayList<>();
     }
 
+    public void setRaceIds(ArrayList<String> raceIds) {
+        this.raceIds = raceIds;
+    }
+
     public void addCheckpoint(Checkpoint checkpoint){
         checkpoints.add(checkpoint);
     }
@@ -34,7 +40,7 @@ public class Participant {
         return id;
     }
 
-    public ArrayList<Integer> getRaceIds() {
+    public ArrayList<String> getRaceIds() {
         return raceIds;
     }
 
@@ -58,7 +64,22 @@ public class Participant {
         return points;
     }
 
-    public int getTotalTime() {
+    public Timestamp getTotalTime() {
         return totalTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Participant{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", number=" + number +
+                ", points=" + points +
+                ", totalTime=" + totalTime +
+                ", checkpoints=" + checkpoints +
+                ", raceIds=" + raceIds +
+                '}';
     }
 }

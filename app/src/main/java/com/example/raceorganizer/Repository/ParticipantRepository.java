@@ -39,11 +39,15 @@ public class ParticipantRepository {
         return repository.getParticipant(id);
     }
 
-    public void addParticipant(Race race, Participant participant){
-        repository.addParticipant(participant);
+    public ParticipantLiveData addParticipant(Participant participant){
+        return repository.addParticipant(participant);
     }
 
     public void addCheckpoint(String participantId, String checkpointId, String points) {
         repository.addCheckpoint(participantId,checkpointId,points);
+    }
+
+    public void addRace(String raceId, String participantId){
+        repository.addRace(participantId,raceId);
     }
 }

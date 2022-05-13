@@ -1,33 +1,46 @@
 package com.example.raceorganizer.Ui.addRaceFragment;
 
+import android.app.Application;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.raceorganizer.Data.LiveData.User.AuthenticationLiveData;
 import com.example.raceorganizer.Data.Model.Race;
+import com.example.raceorganizer.Repository.AuthenticationRepository;
+import com.example.raceorganizer.Repository.RaceRepository;
 
 public class AddRaceViewModel extends ViewModel {
 
 
     private static AddRaceViewModel instance;
     private final MutableLiveData<Race> raceToAdd;
+    private AuthenticationRepository userRepository;
+    private RaceRepository raceRepository;
 //    private final Race localRaceItem;
 
-    private AddRaceViewModel() {
+    private AddRaceViewModel(Application application) {
         raceToAdd = new MutableLiveData<>();
+        userRepository = AuthenticationRepository.getInstance(application);
+        raceRepository = RaceRepository.getInstance();
 //        localRaceItem = new Race("");
     }
 
 
-    public static synchronized AddRaceViewModel getInstance() {
+    public static synchronized AddRaceViewModel getInstance(Application application) {
         if (instance == null)
-            instance = new AddRaceViewModel();
+            instance = new AddRaceViewModel(application);
         return instance;
+    }
+
+    public AuthenticationLiveData getCurrentUser() {
+        return userRepository.getCurrentUser();
     }
 
 
     public void addRace(Race race) {
 
-        //to be implemented
+        raceRepository.addRace(race);
     }
 
 }

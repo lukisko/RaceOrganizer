@@ -10,18 +10,32 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RaceLiveData extends LiveData<Race> {
     DocumentReference reference;
     private ListenerRegistration listenerRegistration;
     private Race result;
+    SimpleDateFormat formatter;
 
     private final EventListener<DocumentSnapshot> valueEventListener = new EventListener<DocumentSnapshot>() {
         @Override
         public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+            formatter = new SimpleDateFormat("dd/MM/yyyy:HH:mm");
+            Date startDate = null;
+            Date endDate = null;
+            try {
+                startDate = formatter.parse(value.getString("Start"));
+                endDate = formatter.parse(value.getString("Start"));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             result.setId(value.getId());
             result.setName(value.getString("Name"));
-            result.setStart(value.getDate("Start"));
-            result.setEnd(value.getDate("End"));
+            result.setStart(startDate);
+            result.setEnd(endDate);
             setValue(RaceLiveData.this.result);
         }
 

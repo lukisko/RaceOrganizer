@@ -43,4 +43,13 @@
         android:id="@+id/barCodeFragment"
         android:name="com.example.raceorganizer.ui.barCodeScan.BarCodeFragment"
         android:label="BarCodeFragment" />
+    <fragment
+        android:id="@+id/participantListFragment"
+        android:name="com.example.raceorganizer.Ui.participantListFragment.ParticipantListFragment"
+        android:label="Checkpoint"
+        tools:layout="@layout/fragment_race_participants" />
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.raceorganizer.Ui.Profile.ProfileFragment"
+        android:label="Profile" />
 </navigation>

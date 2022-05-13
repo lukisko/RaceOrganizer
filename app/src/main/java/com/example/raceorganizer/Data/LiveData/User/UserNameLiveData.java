@@ -23,7 +23,6 @@ public class UserNameLiveData extends LiveData<RegisteredUser> {
         RegisteredUser user;
         @Override
         public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-
             if(value.getDocuments().size() > 0) {
                 DocumentSnapshot document = value.getDocuments().get(0);
                 user = new RegisteredUser(
