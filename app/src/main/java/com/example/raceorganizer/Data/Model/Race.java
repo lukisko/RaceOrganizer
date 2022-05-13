@@ -12,7 +12,7 @@ public class Race {
     private String name;
     private Date start;
     private Date end;
-    private RaceType raceType;
+    private String raceType;
     private String raceOwner;
     private ArrayList<Checkpoint> checkpoints;
     private ArrayList<Participant> participants;
@@ -21,7 +21,7 @@ public class Race {
         checkpoints = new ArrayList<>();
         participants = new ArrayList<>();
     }
-    public Race(String id,String name, Date start, Date end, RaceType raceType, String raceOwner) {
+    public Race(String id,String name, Date start, Date end, String raceType, String raceOwner) {
         this.id = id;
         this.name = name;
         this.start = start;
@@ -49,11 +49,13 @@ public class Race {
         this.end = end;
     }
 
-    public void setRaceType(RaceType raceType) {
+    public void setRaceType(String raceType) {
         this.raceType = raceType;
     }
 
-   
+    public void setRaceOwner(String raceOwner) {
+        this.raceOwner = raceOwner;
+    }
 
     public void setCheckpoints(ArrayList<Checkpoint> checkpoints) {
         this.checkpoints = checkpoints;
@@ -82,7 +84,7 @@ public class Race {
         return ft.format(start);
     }
 
-    public RaceType getRaceType() {
+    public String getRaceType() {
         return raceType;
     }
 

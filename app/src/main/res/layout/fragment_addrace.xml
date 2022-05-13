@@ -26,7 +26,7 @@
             android:hint="@string/race_name"
             android:inputType="textAutoCorrect"
             android:textColorHint="@color/hint_colour"
-            android:textSize="23sp" />
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,11 +42,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="0.8"
                 android:gravity="center"
+                android:focusable="false"
                 android:paddingHorizontal="4dp"
                 android:hint="@string/race_start_date"
                 android:inputType="datetime"
                 android:textColorHint="@color/hint_colour"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/bt_pick_start_date"
@@ -73,11 +74,12 @@
                 android:layout_marginTop="20dp"
                 android:layout_weight="0.8"
                 android:gravity="center"
+                android:focusable="false"
                 android:paddingHorizontal="4dp"
                 android:hint="@string/race_end_date"
                 android:inputType="datetime"
                 android:textColorHint="@color/hint_colour"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <ImageButton
                 android:id="@+id/bt_pick_end_date"
@@ -88,51 +90,81 @@
                 android:background="@color/fui_transparent"
                 app:srcCompat="@drawable/ic_calendar" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
+            <EditText
+                android:id="@+id/race_start_time"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:focusable="false"
+                android:paddingHorizontal="4dp"
+                android:hint="@string/start_time"
+                android:inputType="datetime"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/bt_pick_start_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/fui_transparent"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_watch" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <EditText
+                android:id="@+id/race_end_time"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="58dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0.8"
+                android:gravity="center"
+                android:focusable="false"
+                android:paddingHorizontal="4dp"
+                android:hint="@string/end_time"
+                android:inputType="datetime"
+                android:textColorHint="@color/hint_colour"
+                android:textSize="16sp" />
+
+            <ImageButton
+                android:id="@+id/bt_pick_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/fui_transparent"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/ic_watch" />
+        </LinearLayout>
 
         <EditText
-            android:id="@+id/race_start_time"
+            android:id="@+id/et_race_category"
             android:layout_width="300dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:hint="@string/start_time"
-            android:inputType="datetime"
+            android:focusable="false"
+            android:drawableEnd="@drawable/ic_down_arrow"
+            android:hint="@string/select_category"
+            android:inputType="textAutoCorrect"
             android:textColorHint="@color/hint_colour"
-            android:textSize="23sp" />
-
-        <EditText
-            android:id="@+id/race_end_time"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:hint="@string/end_time"
-            android:inputType="datetime"
-            android:textColorHint="@color/hint_colour"
-            android:textSize="23sp" />
-
-
-        <Spinner
-            android:id="@+id/spinner"
-            style="@style/Widget.AppCompat.Spinner"
-            android:layout_width="300dp"
-            android:layout_height="?attr/dropdownListPreferredItemHeight"
-            android:layout_margin="10dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/spinner_bg"
-            android:dropDownWidth="300dp"
-            android:dropDownVerticalOffset="?attr/dropdownListPreferredItemHeight"
-            android:paddingRight="14dp"
-            android:popupBackground="@color/fui_transparent"
-            android:popupElevation="3dp"
-            android:stateListAnimator="@drawable/spinner_sla"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:textSize="16sp" />
 
     </LinearLayout>
 

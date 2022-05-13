@@ -18,8 +18,6 @@ public class RaceDao {
     private FirebaseFirestore databaseRef;
 
     private RaceDao(){
-        ParticipantDao participantDao = ParticipantDao.getInstance();
-        participantDao.addParticipant(new Participant("1312","ado","ado",18,18,0,12));
         databaseRef = FirebaseFirestore.getInstance();
     }
 
