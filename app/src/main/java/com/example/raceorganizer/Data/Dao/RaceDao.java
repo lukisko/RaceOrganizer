@@ -56,7 +56,7 @@ public class RaceDao {
         data.put("End", race.getEnd());
         data.put("Type", race.getRaceType());
 
-        databaseRef.collection("Races").document(race.getId()).set(data);
+        databaseRef.collection("Races").document().set(data);
     }
 
     public void deleteRace(String id){

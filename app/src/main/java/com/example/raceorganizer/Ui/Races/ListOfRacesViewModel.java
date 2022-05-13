@@ -4,14 +4,12 @@ import android.app.Application;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
-import com.example.raceorganizer.Data.LiveData.User.LoggedInUserLiveData;
 import com.example.raceorganizer.Data.LiveData.User.UserIdLiveData;
 import com.example.raceorganizer.Data.Model.Race;
-import com.example.raceorganizer.Repository.LoggedInUserRepository;
+import com.example.raceorganizer.Repository.AuthenticationRepository;
 import com.example.raceorganizer.Repository.ParticipantRepository;
 import com.example.raceorganizer.Repository.RaceRepository;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,12 +20,12 @@ public class ListOfRacesViewModel extends AndroidViewModel {
 
     private RaceRepository raceRepository;
     private ParticipantRepository participantRepository;
-    private LoggedInUserRepository userRepository;
+    private AuthenticationRepository userRepository;
 
     public ListOfRacesViewModel(Application app){
         super(app);
         raceRepository = RaceRepository.getInstance();
-        userRepository = LoggedInUserRepository.getInstance(app);
+        userRepository = AuthenticationRepository.getInstance(app);
         participantRepository = ParticipantRepository.getInstance();
     }
 
@@ -40,9 +38,7 @@ public class ListOfRacesViewModel extends AndroidViewModel {
         return userRepository.getCurrentUser();
     }
 
-    public UserIdLiveData getUserById(String id){
-        return userRepository.getUserById(id);
-    }
+
 
     public ParticipantLiveData getParticipant(String id){
         return participantRepository.getParticipant(id);

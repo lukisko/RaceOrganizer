@@ -5,21 +5,20 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.raceorganizer.Data.LiveData.Moderator.ModeratorLiveData;
-import com.example.raceorganizer.Repository.LoggedInUserRepository;
+import com.example.raceorganizer.Repository.AuthenticationRepository;
 import com.example.raceorganizer.Repository.ModeratorRepositori;
 import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileViewModel extends AndroidViewModel {
 
-    private LoggedInUserRepository userRepository;
+    private AuthenticationRepository userRepository;
     private ModeratorRepositori moderatorRepositori;
 
     public ProfileViewModel(@NonNull Application app){
         super(app);
-       userRepository = LoggedInUserRepository.getInstance(app);
+       userRepository = AuthenticationRepository.getInstance(app);
        moderatorRepositori = ModeratorRepositori.getInstance();
     }
 

@@ -114,7 +114,7 @@ public class AddRaceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 addRace();
-                //   ((MainActivity)getActivity()).navController.navigate(R.id.list_of_races);
+                ((MainActivity)getActivity()).navController.navigate(R.id.list_of_races);
 
             }
         });
