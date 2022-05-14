@@ -40,6 +40,10 @@
         android:name="com.example.raceorganizer.Ui.checkpointList.CheckpointListPFragment"
         android:label="CheckpointListPFragment" />
     <fragment
+        android:id="@+id/checkpointRaceParticipants"
+        android:name="com.example.raceorganizer.Ui.checkpointRaceParticipants.CheckpointParticipantsFragment"
+        android:label="CheckpointRaceParticipantsFragment" />
+    <fragment
         android:id="@+id/barCodeFragment"
         android:name="com.example.raceorganizer.ui.barCodeScan.BarCodeFragment"
         android:label="BarCodeFragment" />
@@ -47,7 +51,7 @@
         android:id="@+id/participantListFragment"
         android:name="com.example.raceorganizer.Ui.participantListFragment.ParticipantListFragment"
         android:label="Checkpoint"
-        tools:layout="@layout/fragment_race_participants" />
+        tools:layout="@layout/fragment_checkpoint_race_participants" />
     <fragment
         android:id="@+id/fragment_profile"
         android:name="com.example.raceorganizer.Ui.Profile.ProfileFragment"

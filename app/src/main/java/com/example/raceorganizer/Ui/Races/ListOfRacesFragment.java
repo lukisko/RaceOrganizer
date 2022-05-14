@@ -98,7 +98,6 @@ public class ListOfRacesFragment extends Fragment {
             }
 
         });
-
         return view;
     }
 
