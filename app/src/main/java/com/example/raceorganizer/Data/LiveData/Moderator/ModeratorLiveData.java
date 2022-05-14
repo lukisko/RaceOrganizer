@@ -1,20 +1,17 @@
-package com.example.raceorganizer.Data.LiveData.Participant;
+package com.example.raceorganizer.Data.LiveData.Moderator;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.Participant;
-import com.google.firebase.Timestamp;
+import com.example.raceorganizer.Data.Model.RegisteredUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 
-import java.util.ArrayList;
-
-public class ParticipantLiveData extends LiveData<Participant> {
+public class ModeratorLiveData extends LiveData<RegisteredUser> {
     DocumentReference reference;
     private ListenerRegistration listenerRegistration;
 
@@ -22,23 +19,19 @@ public class ParticipantLiveData extends LiveData<Participant> {
     private final EventListener<DocumentSnapshot> valueEventListener = new EventListener<DocumentSnapshot>() {
         @Override
         public void onEvent(@Nullable DocumentSnapshot document, @Nullable FirebaseFirestoreException error) {
-            Participant participant = new Participant(
-                    document.getString("Id"),
+            RegisteredUser moderator = new RegisteredUser(
+                    document.getId(),
                     document.getString("FirstName"),
-                    document.getString("LastName"),
-                    Integer.parseInt(document.get("Age").toString()),
-                    Integer.parseInt(document.get("Number").toString()),
-                    Integer.parseInt(document.get("Points").toString()),
-                    (Timestamp)document.get("TotalTime")
+                    document.getString("LastName")
             );
-            participant.setRaceIds((ArrayList<String>) document.get("Races"));
-            setValue(participant);
+            System.out.println(moderator.toString());
+            setValue(moderator);
         }
 
     };
 
 
-    public ParticipantLiveData(DocumentReference ref){
+    public ModeratorLiveData(DocumentReference ref){
         reference = ref;
     }
 

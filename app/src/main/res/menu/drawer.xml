@@ -2,6 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
+    <group android:id="@+id/profile">
+        <item
+            android:id="@+id/fragment_profile"
+            android:title="@string/profile" />
+
+    </group>
     <group android:id="@+id/data">
         <item
             android:id="@+id/list_of_races"

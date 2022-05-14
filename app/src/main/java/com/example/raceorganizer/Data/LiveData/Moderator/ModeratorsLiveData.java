@@ -1,53 +1,42 @@
-package com.example.raceorganizer.Data.LiveData.Checkpoint;
+package com.example.raceorganizer.Data.LiveData.Moderator;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
-import com.example.raceorganizer.Data.Dao.CheckpointDao;
-import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.RegisteredUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.ArrayList;
-import java.util.Date;
 
-public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
-
+public class ModeratorsLiveData extends LiveData<ArrayList<RegisteredUser>> {
     Query reference;
     private ListenerRegistration listenerRegistration;
 
-
     private final EventListener<QuerySnapshot> valueEventListener = new EventListener<QuerySnapshot>() {
-        ArrayList<Checkpoint> checkpoints = new ArrayList<>();
+        ArrayList<RegisteredUser> moderators = new ArrayList<>();
         @Override
         public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-            for (DocumentSnapshot document:value.getDocuments()) {
-                Checkpoint checkpoint = new Checkpoint(
+            for (DocumentSnapshot document :value.getDocuments()) {
+                RegisteredUser moderator = new RegisteredUser(
                         document.getId(),
-                        document.getString("Name"),
-                        Integer.parseInt(document.get("TotalPoints").toString()),
-                        0
+                        document.getString("FirstName"),
+                        document.getString("LastName")
                 );
-                checkpoint.setModerators((ArrayList<String>) document.get("Moderators"));
-                checkpoints.add(checkpoint);
+                moderators.add(moderator);
             }
-            setValue(checkpoints);
+            setValue(moderators);
         }
+
     };
 
 
-
-
-    public CheckpointsLiveData(Query ref) {
+    public ModeratorsLiveData(Query ref){
         reference = ref;
-
     }
 
     @Override
@@ -61,5 +50,4 @@ public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
         super.onInactive();
         listenerRegistration.remove();
     }
-
 }

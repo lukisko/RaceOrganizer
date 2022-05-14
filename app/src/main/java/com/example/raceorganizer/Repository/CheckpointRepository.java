@@ -34,7 +34,7 @@ public class CheckpointRepository {
     public void deleteCheckpoint(String id){
         repository.deleteCheckpoint(id);
     }
-    public void addModerator(String checkpointId, RegisteredUser moderator){
-        repository.addModerator(checkpointId,moderator);
+    public void addModerator(String checkpointId, String id){
+        repository.addModerator(checkpointId,id);
     }
 }

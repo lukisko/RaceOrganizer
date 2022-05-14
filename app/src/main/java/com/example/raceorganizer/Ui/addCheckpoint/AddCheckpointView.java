@@ -1,6 +1,5 @@
 package com.example.raceorganizer.Ui.addCheckpoint;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,22 +7,16 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
-import com.example.raceorganizer.Ui.RaceInfo.RaceInfoViewModel;
-import com.example.raceorganizer.Ui.addParticipant.AddParticipantViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AddCheckpointView extends Fragment {
 
@@ -36,7 +29,7 @@ public class AddCheckpointView extends Fragment {
     EditText location;
     EditText moderator;
     EditText description;
-    Button createCheckpointBtn;
+    FloatingActionButton createCheckpointBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,18 +54,26 @@ public class AddCheckpointView extends Fragment {
                 points.setVisibility(View.INVISIBLE);
             }
         });
-        createCheckpointBtn = view.findViewById(R.id.createCheckpointBtn);
+        createCheckpointBtn = view.findViewById(R.id.addCheckpoint);
         createCheckpointBtn.setOnClickListener(v -> {
-            Checkpoint newCheck = new Checkpoint(chName.getText().toString());
-            String raceName = getArguments().getString("nameOfRace");
-            try {
-                viewModel.makeCheckpoint(raceName, newCheck);
-                Bundle bundle = new Bundle();
-                bundle.putString("nameOfRace", raceName);
-                ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
-            } catch (NullPointerException e) {
-                Log.i("navigation", "got null for name of race");
+            String raceId = getArguments().getString("idOfRace");
+
+            Checkpoint newCheck = new Checkpoint();
+            newCheck.setName(chName.getText().toString());
+            newCheck.setRaceId(raceId);
+            if(hasPoints.getShowText()) {
+                newCheck.setTotalPoints(Integer.parseInt(points.getText().toString()));
             }
+            String[] moderators = moderator.getText().toString().split(",");
+
+            for (String id:moderators) {
+                newCheck.getModerators().add(id);
+            }
+
+            viewModel.makeCheckpoint(newCheck);
+            Bundle bundle = new Bundle();
+            bundle.putString("idOfRace", raceId);
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
         });
         return view;
     }
