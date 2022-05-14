@@ -1,11 +1,13 @@
 package com.example.raceorganizer.Data.Dao;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantsLiveData;
 import com.example.raceorganizer.Data.Model.Participant;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldPath;
@@ -25,7 +27,6 @@ public class ParticipantDao {
 
     private ParticipantDao() {
         databaseRef = FirebaseFirestore.getInstance();
-        addRace("1","2");
     }
 
     public static synchronized ParticipantDao getInstance() {
@@ -48,7 +49,8 @@ public class ParticipantDao {
         return currentParticipant;
     }
 
-    public ParticipantLiveData addParticipant(Participant participant) {
+    public Task<DocumentReference> addParticipant(Participant participant) {
+        final ParticipantLiveData liveData = new ParticipantLiveData();
         Map<String, Object> data = new HashMap<>();
         data.put("Age", participant.getAge());
         data.put("FirstName", participant.getFirstName());
@@ -57,9 +59,8 @@ public class ParticipantDao {
         data.put("Points", participant.getPoints());
         data.put("TotalTime", participant.getTotalTime());
 
-        DocumentReference documentReference = databaseRef.collection("Participants").add(data).getResult();
-        ParticipantLiveData participantLiveData = new ParticipantLiveData(documentReference);
-        return participantLiveData;
+        return databaseRef.collection("Participants").add(data);
+
     }
 
     public void addCheckpoint(String participantId, String checkpointId, String points) {

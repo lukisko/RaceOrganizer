@@ -8,6 +8,8 @@ import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.ParticipantRepository;
 import com.example.raceorganizer.Repository.RaceRepository;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
 
@@ -20,15 +22,15 @@ public class AddParticipantViewModel extends ViewModel {
         raceRepository = RaceRepository.getInstance();
     }
 
-    public void addParticipant(Participant participant, String raceId){
+    public Task<DocumentReference> addParticipant(Participant participant, String raceId){
         ArrayList<String> tempArr = participant.getRaceIds();
         tempArr.add(raceId);
         participant.setRaceIds(tempArr);
-        participantRepository.addParticipant(participant);
+        return participantRepository.addParticipant(participant);
     }
 
-    public LiveData<Participant> createParticipant(Participant participant){
-        return participantRepository.addParticipant(participant);
+    public Task<DocumentReference> createParticipant(Participant participant){
+         return participantRepository.addParticipant(participant);
     }
 
     public void putParticipantToRace(String raceId,String participantId){

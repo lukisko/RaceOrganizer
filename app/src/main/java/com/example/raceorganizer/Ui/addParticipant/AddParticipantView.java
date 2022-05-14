@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,7 +22,10 @@ import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Date;
 
@@ -55,7 +59,7 @@ public class AddParticipantView extends Fragment {
 
         viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
 
-        viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
+
 
         raceId = getArguments().getString("idOfRace");
 
@@ -139,21 +143,27 @@ public class AddParticipantView extends Fragment {
                     0,
                     new Timestamp(new Date(0,0,0))
             );
-            liveParticipant = viewModel.createParticipant(newPart);
 
-            liveParticipant.observe(getViewLifecycleOwner(), (Participant part) -> {
-                if (isParticipantLog()){
-                    //in case that user is registering himself safe the participant id
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(PARTICIPANT_ID, part.getId());
-                    editor.apply();
-                    Log.i("addParticipant","id: "+part.getId());
+            viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
+            viewModel.createParticipant(newPart).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentReference> task) {
+                    task.getResult().getId(); // id of participant after complition
                 }
-
-                spinner.setVisibility(View.INVISIBLE);
-                viewModel.addParticipant(part, raceId);
-                ((MainActivity)this.getActivity()).navController.popBackStack();
             });
+//                System.out.println("PARTICIPANT" + part.getId());
+//                if (isParticipantLog()){
+//                    //in case that user is registering himself safe the participant id
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString(PARTICIPANT_ID, part.getId());
+//                    editor.apply();
+//                    Log.i("addParticipant","id: "+part.getId());
+//                }
+//
+//                spinner.setVisibility(View.INVISIBLE);
+//                viewModel.addParticipant(part, raceId);
+//                ((MainActivity)this.getActivity()).navController.popBackStack();
+//            });
             return;
         }
     }
