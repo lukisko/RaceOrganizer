@@ -26,9 +26,9 @@ import com.google.firebase.Timestamp;
 import java.util.Date;
 
 public class AddParticipantView extends Fragment {
-    static final String FIRST_NAME = "first_name";
-    static final String LAST_NAME = "last_name";
-    static final String PARTICIPANT_ID = "participant_id";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String PARTICIPANT_ID = "participant_id";
     static final String AGE = "age";
     private AddParticipantViewModel viewModel;
     private SharedPreferences sharedPreferences;
@@ -78,56 +78,7 @@ public class AddParticipantView extends Fragment {
         Button createButton = view.findViewById(R.id.addParticipant);
         createButton.setOnClickListener((v)->{
             Log.i("preferences","heeereee");
-
-            int tempAge;
-            try{
-                tempAge = Integer.parseInt(age.getText().toString());
-            } catch (Exception e){
-                age.setError("enter your age as whole number");
-                return;
-            }
-            int tempNumber;
-            try{
-                tempNumber = Integer.parseInt(number.getText().toString());
-            } catch (Exception e){
-                number.setError("enter your racing number");
-                return;
-            }
-
-            //check if we expect user to be already created
-            String participantId;
-            if (sharedPreferences.contains(PARTICIPANT_ID)){
-                participantId = sharedPreferences.getString(PARTICIPANT_ID,"");
-
-            } else {
-                spinner.setVisibility(View.VISIBLE);
-                liveParticipant = viewModel.createParticipant(new Participant(
-                        "",
-                        firstName.getText().toString(),
-                        lastName.getText().toString(),
-                        tempAge,
-                        tempNumber,
-                        0,
-                        new Timestamp(new Date(0,0,0))
-                ));
-
-                liveParticipant.observe(getViewLifecycleOwner(), (Participant part) -> {
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(PARTICIPANT_ID, part.getId());
-                    editor.apply();
-                    spinner.setVisibility(View.INVISIBLE);
-                    viewModel.addParticipant(part, raceId);
-                    ((MainActivity)this.getActivity()).navController.popBackStack();
-                    return;
-                });
-                return;
-            }
-
-
-            viewModel.putParticipantToRace(raceId,participantId);
-            ((MainActivity)this.getActivity()).navController.popBackStack();
-
-
+            createParticipant();
         });
         return view;
     }
@@ -150,5 +101,60 @@ public class AddParticipantView extends Fragment {
 
     public boolean isParticipantLog(){
         return sharedPreferences.contains(HomeFragment.PARTICIPANT_PREFERENCE) && sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE,true);
+    }
+
+    private void createParticipant(){
+        //check if the number and age is really a number
+        int tempAge;
+        try{
+            tempAge = Integer.parseInt(age.getText().toString());
+        } catch (Exception e){
+            age.setError("enter your age as whole number");
+            return;
+        }
+        int tempNumber;
+        try{
+            tempNumber = Integer.parseInt(number.getText().toString());
+        } catch (Exception e){
+            number.setError("enter your racing number");
+            return;
+        }
+
+        //check if we expect user to be already created
+        String participantId;
+        if (isParticipantLog() && sharedPreferences.contains(PARTICIPANT_ID)){
+            Log.i("addParticipant",sharedPreferences.getString(PARTICIPANT_ID,"no Id so far"));
+            // the case when there is user and that he already have a Participant id
+            participantId = sharedPreferences.getString(PARTICIPANT_ID,"");
+            viewModel.putParticipantToRace(raceId,participantId);
+            ((MainActivity)this.getActivity()).navController.popBackStack();
+        } else {
+            spinner.setVisibility(View.VISIBLE);
+            Participant newPart = new Participant(
+                    "",
+                    firstName.getText().toString(),
+                    lastName.getText().toString(),
+                    tempAge,
+                    tempNumber,
+                    0,
+                    new Timestamp(new Date(0,0,0))
+            );
+            liveParticipant = viewModel.createParticipant(newPart);
+
+            liveParticipant.observe(getViewLifecycleOwner(), (Participant part) -> {
+                if (isParticipantLog()){
+                    //in case that user is registering himself safe the participant id
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(PARTICIPANT_ID, part.getId());
+                    editor.apply();
+                    Log.i("addParticipant","id: "+part.getId());
+                }
+
+                spinner.setVisibility(View.INVISIBLE);
+                viewModel.addParticipant(part, raceId);
+                ((MainActivity)this.getActivity()).navController.popBackStack();
+            });
+            return;
+        }
     }
 }

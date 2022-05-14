@@ -21,6 +21,7 @@ import com.example.raceorganizer.Adapters.RaceAdapter;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
+import com.example.raceorganizer.Ui.addParticipant.AddParticipantView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -64,16 +65,14 @@ public class ListOfRacesFragment extends Fragment {
                 });
             });
         } else {
-            viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
-                if(id != null) {
-                    viewModel.getParticipant(id.getUid()).observe(getViewLifecycleOwner(), ids -> {
-                        viewModel.getRacesParticipant(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
-                            raceAdapter.set(races);
-                        });
+            String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID,"");
+            if (!currentParticipantId.equals("")){
+                viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
+                    viewModel.getRacesParticipant(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
+                        raceAdapter.set(races);
                     });
-                }
-            });
-
+                });
+            }
         }
 
 
@@ -93,7 +92,6 @@ public class ListOfRacesFragment extends Fragment {
         add.setOnClickListener(o -> {
             if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
                 handleAddingParticipantToRace();
-                //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment);
             } else {
                 ((MainActivity) this.getActivity()).navController.navigate(R.id.nav_add_race);
             }
