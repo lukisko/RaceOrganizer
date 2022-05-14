@@ -17,8 +17,8 @@ Race Organiser is an application for creating and tracking races
 
 ##### Critical:
 1. As a creator, I want to be able to create a new race.
-2. As a creator, I want to be able to create all the checkpoints of the race.
-3. As a creator, I want to add moderators to the race, so I can have people working for each checkpoint.
+2. As a creator, I want to be able to create all the checkpoints of the race. ❎
+3. As a creator, I want to add moderators to the race, so I can have people working for each checkpoint. ❎
 4. As moderator, I want to assign points to the race participants, so the creator knows how many points a specific participant has.
 5. As a creator, I want to add participants into the race, so I can have participants in my race.
 ***
