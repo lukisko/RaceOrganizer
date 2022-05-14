@@ -24,6 +24,12 @@ public class Checkpoint {
         this.totalPoints = totalPoints;
         this.pointsReceived = pointsReceived;
     }
+    public Checkpoint(String id, String name, int totalPoints, int pointsReceived,String raceId) {
+        this.id = id;
+        this.name = name;
+        this.totalPoints = totalPoints;
+        this.pointsReceived = pointsReceived;
+    }
 
     public String getName() {
         return name;

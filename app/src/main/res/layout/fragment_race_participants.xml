@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Ui.participantListFragment.ParticipantListFragment">
+    tools:context="com.example.raceorganizer.Ui.checkpointRaceParticipants.CheckpointParticipantsFragment">
 
     <TextView
-        android:id="@+id/checkpointNameLabel"
+        android:id="@+id/et_checkpoint_name_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/startLabel"
+        android:id="@+id/startTimeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -25,10 +25,10 @@
         android:text="@string/start"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkpointNameLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/et_checkpoint_name_label" />
 
     <TextView
-        android:id="@+id/endLabel"
+        android:id="@+id/endTimeLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
@@ -36,29 +36,29 @@
         android:text="@string/end"
         android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/start_time_label" />
 
     <TextView
-        android:id="@+id/checkPointStartingTime"
+        android:id="@+id/start_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="32dp"
         android:text="@string/time"
         android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@+id/startLabel"
-        app:layout_constraintTop_toBottomOf="@+id/checkpointNameLabel" />
+        app:layout_constraintStart_toEndOf="@+id/startTimeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/et_checkpoint_name_label" />
 
     <TextView
-        android:id="@+id/checkPointEndingTime"
+        android:id="@+id/end_time_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="22dp"
         android:layout_marginTop="10dp"
         android:text="@string/time"
         android:textSize="25sp"
-        app:layout_constraintStart_toEndOf="@+id/endLabel"
-        app:layout_constraintTop_toBottomOf="@+id/checkPointStartingTime" />
+        app:layout_constraintStart_toEndOf="@+id/endTimeLabel"
+        app:layout_constraintTop_toBottomOf="@+id/start_time_label" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -81,7 +81,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/et_search_participant"
                 android:layout_width="300sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40sp"
@@ -93,7 +93,7 @@
                 android:theme="@style/Theme.CustomSearchEditText" />
 
             <ImageButton
-                android:id="@+id/search_button"
+                android:id="@+id/bt_search_button"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="5dp"

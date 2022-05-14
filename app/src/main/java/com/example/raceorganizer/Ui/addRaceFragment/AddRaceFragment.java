@@ -58,7 +58,6 @@ public class AddRaceFragment extends Fragment {
     private ImageButton bt_end_date_picker;
     private ImageButton bt_start_time_picker;
     private ImageButton bt_end_time_picker;
-    boolean isAllFieldsChecked = false;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 

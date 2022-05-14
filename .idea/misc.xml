@@ -22,7 +22,7 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/spinner_sla.xml" value="0.1655" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/checkpoint_list.xml" value="0.1" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/checkpoint_list.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/drawer_header.xml" value="0.18342391304347827" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addparticipant.xml" value="0.176" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addrace.xml" value="0.264" />
@@ -34,7 +34,7 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login_register.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_info.xml" value="0.264" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_participants.xml" value="0.264" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_participants.xml" value="0.2" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_register.xml" value="0.4" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/moderator_list.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/participant_list.xml" value="0.264" />

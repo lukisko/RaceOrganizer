@@ -54,7 +54,6 @@ public class CheckpointListPFragment extends Fragment {
             raceDate.setText(race.getDate());
             raceStartTime.setText(race.getStart());
             raceEndTime.setText(race.getEnd());
-
         });
 
         checkpointRecycler = view.findViewById(R.id.checkpointList);

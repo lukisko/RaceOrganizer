@@ -94,7 +94,6 @@ public class RaceInfoFragment extends Fragment {
             checkpointAdapter.set(x);
         });
 
-
         recyclerView.setAdapter(checkpointAdapter);
     }
 
@@ -130,6 +129,7 @@ public class RaceInfoFragment extends Fragment {
         addButton.setOnClickListener((v)->{
             Bundle bundle = new Bundle();
             bundle.putString("nameOfRace",race.getName());
+            bundle.putString("idOfRace",race.getId());
 
             switch (listType) {
                 case CHECKPOINTS:
