@@ -38,6 +38,7 @@
     <string name="checkpoints">Checkpoints</string>
     <string name="participants">Participants</string>
     <string name="moderators">Moderators</string>
+    <string name="assign_points">Assign Points</string>
 
 
 </resources>

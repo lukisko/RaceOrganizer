@@ -1,36 +1,34 @@
 package com.example.raceorganizer.Ui.assignPoints;
 
-import android.app.Application;
-import android.view.View;
 
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.example.raceorganizer.Data.Model.Race;
-import com.example.raceorganizer.Repository.AuthenticationRepository;
+import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointLiveData;
+import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
+import com.example.raceorganizer.Repository.CheckpointRepository;
 import com.example.raceorganizer.Repository.ParticipantRepository;
-import com.example.raceorganizer.Repository.RaceRepository;
-import com.example.raceorganizer.Ui.addRaceFragment.AddRaceViewModel;
 
 public class AssignPointsViewModel extends ViewModel {
 
-
-    private static AssignPointsViewModel instance;
     private ParticipantRepository participantRepository;
+    private CheckpointRepository checkpointRepository;
 
-    private AssignPointsViewModel() {
+    public AssignPointsViewModel() {
         this.participantRepository = ParticipantRepository.getInstance();
-
+        this.checkpointRepository = CheckpointRepository.getInstance();
     }
 
-    public static synchronized AssignPointsViewModel getInstance() {
-        if (instance == null)
-            instance = new AssignPointsViewModel();
-        return instance;
-    }
 
-    private void assignPoints(String participantId, String checkpointId, String points) {
+    public void assignPoints(String participantId, String checkpointId, String points) {
         participantRepository.addCheckpoint(participantId, checkpointId, points);
     }
+    public ParticipantLiveData getParticipant(String participantId)
+    {
+        return participantRepository.getParticipant(participantId);
+    }
+    public CheckpointLiveData getCheckpoint(String checkpointId)
+    {
+        return checkpointRepository.getCheckpoint(checkpointId);
+    }
+
 
 }

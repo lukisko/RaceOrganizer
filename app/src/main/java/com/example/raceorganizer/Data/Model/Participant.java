@@ -15,8 +15,10 @@ public class Participant {
     private ArrayList<Checkpoint> checkpoints;
     private ArrayList<String> raceIds;
 
-    public Participant(){}
-    public Participant(String id,String firstName, String lastName, int age, int number, int points, Timestamp totalTime) {
+    public Participant() {
+    }
+
+    public Participant(String id, String firstName, String lastName, int age, int number, int points, Timestamp totalTime) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -32,12 +34,16 @@ public class Participant {
         this.raceIds = raceIds;
     }
 
-    public void addCheckpoint(Checkpoint checkpoint){
+    public void addCheckpoint(Checkpoint checkpoint) {
         checkpoints.add(checkpoint);
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public ArrayList<String> getRaceIds() {

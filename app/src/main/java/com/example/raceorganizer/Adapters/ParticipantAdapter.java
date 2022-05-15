@@ -66,9 +66,9 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
             number = itemView.findViewById(R.id.numberOfParticipant);
             firstName = itemView.findViewById(R.id.firstNameOfParticipant);
             lastName = itemView.findViewById(R.id.lastNameOfParticipant);
-//            itemView.setOnClickListener(l -> {
-//                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
-//            });
+            itemView.setOnClickListener(l -> {
+                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
+            });
         }
     }
     public interface OnCLickListener{

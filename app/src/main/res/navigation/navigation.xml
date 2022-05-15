@@ -18,8 +18,8 @@
     <fragment
         android:id="@+id/assign_points"
         android:name="com.example.raceorganizer.Ui.assignPoints.AssignPointsFragment"
-        android:label="List of races"
-        tools:layout="@layout/fragment_list_of_races" />
+        android:label="List of participants"
+        tools:layout="@layout/fragment_moderator_assign_points" />
     <fragment
         android:id="@+id/race_info"
         android:name="com.example.raceorganizer.Ui.RaceInfo.RaceInfoFragment"
@@ -30,7 +30,6 @@
         android:name="com.example.raceorganizer.Ui.addRaceFragment.AddRaceFragment"
         android:label="Race"
         tools:layout="@layout/fragment_race_info" />
-
 
     <fragment
         android:id="@+id/addCheckpointView2"

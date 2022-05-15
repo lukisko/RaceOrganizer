@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -35,14 +36,12 @@ import java.util.ArrayList;
 public class CheckpointParticipantsFragment extends Fragment {
     private View view;
     private CheckpointRaceParticipantsViewModel viewModel;
-
-
     private TextView checkpointName;
     private TextView raceStartTime;
     private TextView raceEndTime;
     private EditText et_searchParticipant;
     private ImageButton searchButton;
-
+    private String checkpointId;
     private RecyclerView participantRecycler;
     private ParticipantAdapter participantAdapter;
 
@@ -52,7 +51,7 @@ public class CheckpointParticipantsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_checkpoint_race_participants, container, false);
         viewModel = new ViewModelProvider(this).get(CheckpointRaceParticipantsViewModel.class);
 
-        participantRecycler = view.findViewById(R.id.participantList);
+        participantRecycler = view.findViewById(R.id.checkpoint_participant_list);
 
         checkpointName = view.findViewById(R.id.et_checkpoint_name_label);
         raceStartTime = view.findViewById(R.id.start_time_label);
@@ -63,19 +62,13 @@ public class CheckpointParticipantsFragment extends Fragment {
         participantRecycler.hasFixedSize();
         participantRecycler.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
-        participantAdapter=new ParticipantAdapter(new ArrayList<>());
-
-        participantAdapter.setOnClickListener(o -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("idOfParticipant", o.getId());
-            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointListPFragment, bundle);
-        });
-
+        participantAdapter = new ParticipantAdapter(new ArrayList<>());
 
         viewModel.getCheckpoint(getArguments().getString("idOfCheckpoint")).observe(getViewLifecycleOwner(),
                 (Checkpoint c) ->
                 {
                     checkpointName.setText(c.getName());
+                    checkpointId = c.getId();
                     viewModel.getParticipants(c.getRaceId()).
                             observe(getViewLifecycleOwner(), participants ->
                             {
@@ -85,14 +78,21 @@ public class CheckpointParticipantsFragment extends Fragment {
 
                         raceStartTime.setText(r.getStart());
                         raceEndTime.setText(r.getEnd());
-
                     });
 
                 }
         );
+
+        participantAdapter.setOnClickListener(participant -> {
+//            Toast.makeText(getContext(), participant.getId(), Toast.LENGTH_LONG).show();
+//            Bundle bundle = new Bundle();
+//            bundle.putString("idOfParticipant", participant.getId());
+//            bundle.putString("idOfCheckPoint", checkpointId);
+//            Toast.makeText(getContext(), participant.getId(), Toast.LENGTH_LONG).show();
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.assign_points);
+        });
         participantRecycler.setAdapter(participantAdapter);
 
         return view;
-
     }
 }

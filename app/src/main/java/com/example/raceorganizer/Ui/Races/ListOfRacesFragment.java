@@ -38,8 +38,6 @@ public class ListOfRacesFragment extends Fragment {
     View view;
     FloatingActionButton add;
 
-    private String id;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
