@@ -1,5 +1,7 @@
 package com.example.raceorganizer.Ui.addParticipant;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -24,7 +26,11 @@ public class AddParticipantViewModel extends ViewModel {
 
     public Task<DocumentReference> addParticipant(Participant participant, String raceId){
         ArrayList<String> tempArr = participant.getRaceIds();
+        if (tempArr == null){
+            tempArr = new ArrayList<>();
+        }
         tempArr.add(raceId);
+        Log.i("addParticipantAdd","race count: "+tempArr.size());
         participant.setRaceIds(tempArr);
         return participantRepository.addParticipant(participant);
     }
@@ -35,5 +41,9 @@ public class AddParticipantViewModel extends ViewModel {
 
     public void putParticipantToRace(String raceId,String participantId){
         participantRepository.addRace(raceId,participantId);
+    }
+
+    public LiveData<Participant> getParticipant(String id){
+        return participantRepository.getParticipant(id);
     }
 }

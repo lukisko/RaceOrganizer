@@ -66,6 +66,7 @@ public class ListOfRacesFragment extends Fragment {
             });
         } else {
             String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID,"");
+            Log.i("listOfRaces","id of participant: "+currentParticipantId);
             if (!currentParticipantId.equals("")){
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
                     viewModel.getRacesParticipant(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {

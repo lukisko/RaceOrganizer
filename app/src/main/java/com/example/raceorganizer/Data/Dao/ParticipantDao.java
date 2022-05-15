@@ -58,6 +58,7 @@ public class ParticipantDao {
         data.put("Number", participant.getNumber());
         data.put("Points", participant.getPoints());
         data.put("TotalTime", participant.getTotalTime());
+        data.put("Races", participant.getRaceIds());
 
         return databaseRef.collection("Participants").add(data);
 

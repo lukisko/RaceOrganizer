@@ -38,6 +38,7 @@ public class AddParticipantView extends Fragment {
     private SharedPreferences sharedPreferences;
     private String raceId;
     private LiveData<Participant> liveParticipant;
+    private boolean isParticipantAdded;
 
     Toast incorrectInfo;
 
@@ -53,13 +54,12 @@ public class AddParticipantView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //setting everything up
+        isParticipantAdded = true;
         view = inflater.inflate(R.layout.fragment_addparticipant, container, false);
 
         sharedPreferences = view.getContext().getSharedPreferences("UserPref",MODE_PRIVATE);
 
         viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
-
-
 
         raceId = getArguments().getString("idOfRace");
 
@@ -145,26 +145,30 @@ public class AddParticipantView extends Fragment {
             );
 
             viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
-            viewModel.createParticipant(newPart).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentReference> task) {
-                    task.getResult().getId(); // id of participant after complition
+            viewModel.createParticipant(newPart).addOnCompleteListener((task)->{
+                String partId = task.getResult().getId();
+                System.out.println("PARTICIPANT" + partId);
+                if (isParticipantLog()){
+                    //in case that user is registering himself safe the participant id
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(PARTICIPANT_ID, partId);
+                    editor.apply();
+                    Log.i("addParticipant","id: "+partId);
                 }
+
+                spinner.setVisibility(View.INVISIBLE);
+                isParticipantAdded = false;
+                viewModel.getParticipant(partId).observe(this.getViewLifecycleOwner(),(o)->{
+                    if (!isParticipantAdded){
+                        viewModel.addParticipant(o, raceId);
+                        isParticipantAdded = true;
+                        ((MainActivity)this.getActivity()).navController.popBackStack();
+                        Log.i("addParticipant","out of the adding of participant");
+                    }
+                });
+
+
             });
-//                System.out.println("PARTICIPANT" + part.getId());
-//                if (isParticipantLog()){
-//                    //in case that user is registering himself safe the participant id
-//                    SharedPreferences.Editor editor = sharedPreferences.edit();
-//                    editor.putString(PARTICIPANT_ID, part.getId());
-//                    editor.apply();
-//                    Log.i("addParticipant","id: "+part.getId());
-//                }
-//
-//                spinner.setVisibility(View.INVISIBLE);
-//                viewModel.addParticipant(part, raceId);
-//                ((MainActivity)this.getActivity()).navController.popBackStack();
-//            });
-            return;
         }
     }
 }
