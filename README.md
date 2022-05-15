@@ -28,15 +28,15 @@ Race Organiser is an application for creating and tracking races
 ***
 ##### High:
 
-6. As a participant, I want to join the race also on my own, so I don’t have to wait in a queue to get registered.
-7. As a creator, I want to set maximum possible points for the checkpoint, so I can adjust the difficulty of the checkpoints . ❎
-8. As a creator, I want to get a leaderboard of participants at the end of the race, so I know the winners of the race.
-9. As a moderator, I want to filter participants, so I can give points more easily to specific users.
-10. As a moderator, I want to overview multiple participants at a time, so I can set the same ending time/points for more people.
+10. As a participant, I want to join the race also on my own, so I don’t have to wait in a queue to get registered.
+11. As a creator, I want to set maximum possible points for the checkpoint, so I can adjust the difficulty of the checkpoints . ❎
+12. As a creator, I want to get a leaderboard of participants at the end of the race, so I know the winners of the race.
+13. As a moderator, I want to filter participants, so I can give points more easily to specific users.
+14. As a moderator, I want to overview multiple participants at a time, so I can set the same ending time/points for more people.
 ***
 ##### Low:
 
-11. As a participant, I want to know how many points I have, so I can know how well I'm doing.
-12. As a participant, I want to know my time, so I will see how well I'm doing.
-13. As a creator, I want to save  results, for historical measurements. ❎
-14. display points on a map
+15. As a participant, I want to know how many points I have, so I can know how well I'm doing.
+16. As a participant, I want to know my time, so I will see how well I'm doing.
+17. As a creator, I want to save  results, for historical measurements. ❎
+18. display points on a map
