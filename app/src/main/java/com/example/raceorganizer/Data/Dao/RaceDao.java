@@ -63,7 +63,8 @@ public class RaceDao {
         databaseRef.collection("Races").document(id).delete();
     }
 
-    public LiveData<ArrayList<Race>> getRacesParticipant(ArrayList<String> list) {
+
+    public LiveData<ArrayList<Race>> getRaces(ArrayList<String> list) {
         Query allRacesRef = databaseRef.collection("Races").whereIn(FieldPath.documentId(),list);
         RacesLiveData racesLiveData = new RacesLiveData(allRacesRef);
         return racesLiveData;
