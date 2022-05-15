@@ -15,6 +15,7 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_calendar.xml" value="0.179" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_down_arrow.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_polygon_1.xml" value="0.2595" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_search.xml" value="0.1795" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/ic_watch.xml" value="0.1935" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/list_item_borders.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/drawable/progress_bg.xml" value="0.179" />
@@ -29,7 +30,7 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addparticipant.xml" value="0.176" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addrace.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_barcode_scaner.xml" value="0.15081521739130435" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpoint_race_participants.xml" value="0.1" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpoint_race_participants.xml" value="0.4" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_item.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_participant.xml" value="0.4" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_home.xml" value="0.2" />
