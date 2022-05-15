@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.raceorganizer.Adapters.CheckpointAdapter;
+import com.example.raceorganizer.Adapters.CheckpointContentAdapter;
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
@@ -38,7 +39,7 @@ public class CheckpointListPFragment extends Fragment {
     TextView raceEndTime;
 
     RecyclerView checkpointRecycler;
-    CheckpointAdapter checkpointAdapter;
+    CheckpointContentAdapter checkpointAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,7 +67,7 @@ public class CheckpointListPFragment extends Fragment {
 
         checkpointRecycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        checkpointAdapter = new CheckpointAdapter(viewModel.getCheckpoints().getValue());
+        checkpointAdapter = new CheckpointContentAdapter(viewModel.getCheckpoints().getValue());
         checkpointRecycler.setAdapter(checkpointAdapter);
 
         viewModel.getCheckpoints().observe(getViewLifecycleOwner(),(ArrayList<Checkpoint> checks)->{

@@ -70,7 +70,7 @@ public class AddCheckpointView extends Fragment {
                 newCheck.getModerators().add(id);
             }
 
-            viewModel.makeCheckpoint(newCheck);
+            viewModel.makeCheckpoint(raceId, newCheck);
             Bundle bundle = new Bundle();
             bundle.putString("idOfRace", raceId);
             ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);

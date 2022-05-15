@@ -37,6 +37,10 @@ public class Checkpoint {
         this.raceId = raceId;
     }
 
+    public void setRaceId(String raceId) {
+        this.raceId = raceId;
+    }
+
     public String getName() {
         return name;
     }
@@ -67,10 +71,6 @@ public class Checkpoint {
 
     public void setModerators(ArrayList<String> moderators) {
         this.moderators = moderators;
-    }
-
-    public void setRaceId(String raceId) {
-        this.raceId = raceId;
     }
 
     public void setName(String name) {

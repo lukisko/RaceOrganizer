@@ -1,5 +1,6 @@
 package com.example.raceorganizer.Adapters;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 public class CheckpointContentAdapter extends RecyclerView.Adapter<CheckpointContentAdapter.ViewHolder>{
     private ArrayList<Checkpoint> checkpoints;
+
     public CheckpointContentAdapter(ArrayList<Checkpoint> checkpoints){
         //TODO change this class so it will work
         this.checkpoints = checkpoints;
@@ -27,10 +29,19 @@ public class CheckpointContentAdapter extends RecyclerView.Adapter<CheckpointCon
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CheckpointContentAdapter.ViewHolder holder, int position) {
         holder.name.setText(checkpoints.get(position).getName());
+        holder.info.setText(checkpoints.get(position).getPointsReceived() + "/"+checkpoints.get(position).getTotalPoints());
         holder.info.setText(checkpoints.get(position).getInfo());
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void set(ArrayList<Checkpoint> checkpoints)
+    {
+        this.checkpoints = checkpoints;
+        notifyDataSetChanged();
     }
 
     @Override
