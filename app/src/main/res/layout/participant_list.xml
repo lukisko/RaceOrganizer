@@ -18,10 +18,8 @@
             android:id="@+id/numberOfParticipant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:layout_marginTop="10dp"
             android:gravity="center"
-
             android:layout_marginBottom="10dp"
             android:fontFamily="sans-serif-smallcaps"
             android:paddingStart="20dp"

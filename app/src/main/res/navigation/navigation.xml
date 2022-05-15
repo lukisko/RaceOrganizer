@@ -16,6 +16,11 @@
         android:label="List of races"
         tools:layout="@layout/fragment_list_of_races" />
     <fragment
+        android:id="@+id/assign_points"
+        android:name="com.example.raceorganizer.Ui.assignPoints.AssignPointsFragment"
+        android:label="List of races"
+        tools:layout="@layout/fragment_list_of_races" />
+    <fragment
         android:id="@+id/race_info"
         android:name="com.example.raceorganizer.Ui.RaceInfo.RaceInfoFragment"
         android:label="Race"
