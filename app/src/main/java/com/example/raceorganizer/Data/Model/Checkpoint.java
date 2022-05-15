@@ -34,6 +34,14 @@ public class Checkpoint {
         this.moderators = new ArrayList<>();
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPointsReceived(int pointsReceived) {
+        this.pointsReceived = pointsReceived;
+    }
+
     public String getName() {
         return name;
     }
