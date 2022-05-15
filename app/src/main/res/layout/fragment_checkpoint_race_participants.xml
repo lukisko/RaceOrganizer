@@ -112,19 +112,17 @@
 
                 />
         </LinearLayout>
-
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/checkpoint_participant_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80sp"
-            android:theme="@style/Theme.CustomSearchEditText"
+            android:layout_marginTop="90dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchPrerequisites" />
-
+            app:layout_constraintTop_toTopOf="@+id/searchPrerequisites"
+            app:layout_constraintVertical_bias="0.357" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

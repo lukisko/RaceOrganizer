@@ -84,15 +84,13 @@ public class CheckpointParticipantsFragment extends Fragment {
         );
 
         participantAdapter.setOnClickListener(participant -> {
-//            Toast.makeText(getContext(), participant.getId(), Toast.LENGTH_LONG).show();
-//            Bundle bundle = new Bundle();
-//            bundle.putString("idOfParticipant", participant.getId());
-//            bundle.putString("idOfCheckPoint", checkpointId);
-//            Toast.makeText(getContext(), participant.getId(), Toast.LENGTH_LONG).show();
-            ((MainActivity) this.getActivity()).navController.navigate(R.id.assign_points);
+            Bundle bundle = new Bundle();
+            bundle.putString("idOfParticipant", participant.getId());
+            Log.i("id of participant", participant.getId());
+            bundle.putString("idOfCheckpoint", checkpointId);
+            ((MainActivity) getActivity()).navController.navigate(R.id.assign_points_fragment, bundle);
         });
         participantRecycler.setAdapter(participantAdapter);
-
         return view;
     }
 }

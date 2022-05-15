@@ -1,12 +1,14 @@
 package com.example.raceorganizer.Ui.assignPoints;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.Data.Model.Participant;
+import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.checkpointRaceParticipants.CheckpointRaceParticipantsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,7 +33,7 @@ public class AssignPointsFragment extends Fragment {
     private Button assignbutton;
     private AssignPointsViewModel assignPointsViewModel;
     private int checkpointTotalPoints;
-    private int participantAssignedPoints;
+    private int participantAssignedPoints = 0;
 
     @Nullable
     @Override
@@ -46,20 +49,13 @@ public class AssignPointsFragment extends Fragment {
         minusButton = view.findViewById(R.id.moderator_subtract_points_button);
         availablePoints = view.findViewById(R.id.moderator_available_points);
         assignedpoints = view.findViewById(R.id.moderator_assigned_points);
+        assignbutton = view.findViewById(R.id.assign_points);
 
         assignPointsViewModel.getCheckpoint(checkpointId).observe(getViewLifecycleOwner(), (Checkpoint checkpoint) -> {
-            availablePoints.setText(checkpoint.getTotalPoints());
+            availablePoints.setText(String.valueOf(checkpoint.getTotalPoints()));
             checkpointTotalPoints = checkpoint.getTotalPoints();
         });
 
-        assignedpoints.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-
-                textView.setText(participantAssignedPoints);
-                return false;
-            }
-        });
         plusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,11 +68,12 @@ public class AssignPointsFragment extends Fragment {
                 subtractPoints();
             }
         });
-        assignbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                assignPointsViewModel.assignPoints(participantId, checkpointId, String.valueOf(participantAssignedPoints));
-            }
+        assignbutton.setOnClickListener(view -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("idOfParticipant", participantId);
+            bundle.putString("idOfCheckpoint", checkpointId);
+            assignPointsViewModel.assignPoints(participantId, checkpointId, String.valueOf(participantAssignedPoints));
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
         });
 
         return view;
@@ -85,14 +82,15 @@ public class AssignPointsFragment extends Fragment {
 
     private void addPoints() {
         if (participantAssignedPoints < checkpointTotalPoints) {
-
             participantAssignedPoints++;
+            assignedpoints.setText(String.valueOf(participantAssignedPoints));
         }
     }
 
     private void subtractPoints() {
         if (participantAssignedPoints > 0) {
             participantAssignedPoints--;
+            assignedpoints.setText(String.valueOf(participantAssignedPoints));
         }
     }
 

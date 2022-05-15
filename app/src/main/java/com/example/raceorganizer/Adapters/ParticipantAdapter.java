@@ -20,17 +20,18 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     private ArrayList<Participant> participants;
     private OnCLickListener onCLickListener;
 
-    public ParticipantAdapter(ArrayList<Participant> participants){
+    public ParticipantAdapter(ArrayList<Participant> participants) {
         this.participants = participants;
     }
+
     @SuppressLint("NotifyDataSetChanged")
-    public void set(ArrayList<Participant> participants)
-    {
+    public void set(ArrayList<Participant> participants) {
         this.participants.clear();
         this.participants.addAll(participants);
         notifyDataSetChanged();
         participants.clear();
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -55,8 +56,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         this.onCLickListener = listener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView number;
         private TextView firstName;
         private TextView lastName;
@@ -71,7 +71,8 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
             });
         }
     }
-    public interface OnCLickListener{
+
+    public interface OnCLickListener {
         void onClick(Participant participant);
     }
 }

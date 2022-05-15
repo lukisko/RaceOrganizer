@@ -16,7 +16,7 @@
         android:label="List of races"
         tools:layout="@layout/fragment_list_of_races" />
     <fragment
-        android:id="@+id/assign_points"
+        android:id="@+id/assign_points_fragment"
         android:name="com.example.raceorganizer.Ui.assignPoints.AssignPointsFragment"
         android:label="List of participants"
         tools:layout="@layout/fragment_moderator_assign_points" />

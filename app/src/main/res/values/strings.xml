@@ -39,6 +39,8 @@
     <string name="participants">Participants</string>
     <string name="moderators">Moderators</string>
     <string name="assign_points">Assign Points</string>
+    <string name="zero">0</string>
+    <string name="line">-</string>
 
 
 </resources>
