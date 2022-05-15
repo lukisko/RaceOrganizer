@@ -6,6 +6,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.ColorInt;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -73,10 +74,14 @@ public class ListOfRacesFragment extends Fragment {
                 }
             });
         } else {
+            organizer.setBackgroundColor(getResources().getColor(R.color.black));
+            setCreatorList();
             organizer.setVisibility(View.VISIBLE);
             organizer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    organizer.setBackgroundColor(getResources().getColor(R.color.black));
+                    moderator.setBackgroundColor(getResources().getColor(R.color.dark_blue));
                     setCreatorList();
                 }
             });
@@ -84,6 +89,8 @@ public class ListOfRacesFragment extends Fragment {
             moderator.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    moderator.setBackgroundColor(getResources().getColor(R.color.black));
+                    organizer.setBackgroundColor(getResources().getColor(R.color.dark_blue));
                     setModeratorList();
                 }
             });
@@ -106,7 +113,7 @@ public class ListOfRacesFragment extends Fragment {
         add.setOnClickListener(o -> {
             if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
                 handleAddingParticipantToRace();
-                //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment);
+                //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment); //Navigation for moderator to his checkpoint
             } else {
                 ((MainActivity) this.getActivity()).navController.navigate(R.id.nav_add_race);
             }
