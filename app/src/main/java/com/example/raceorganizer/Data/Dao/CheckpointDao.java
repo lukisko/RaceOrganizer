@@ -36,9 +36,7 @@ public class CheckpointDao {
 
     public CheckpointLiveData getCheckpoint(String checkpointId) {
         DocumentReference currentCheckpointRef = databaseRef.collection("Checkpoints").document(checkpointId);
-        Log.i(" DAO doc ", currentCheckpointRef.getId());
         CheckpointLiveData currentCheckpoint = new CheckpointLiveData(currentCheckpointRef);
-        Log.i(" DAO ", currentCheckpoint.getValue().getRaceId());
         return currentCheckpoint;
     }
 

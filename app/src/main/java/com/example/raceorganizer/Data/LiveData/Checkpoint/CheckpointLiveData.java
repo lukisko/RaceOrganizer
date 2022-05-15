@@ -30,7 +30,6 @@ public class CheckpointLiveData extends LiveData<Checkpoint> {
             checkpoint.setId(document.getId());
             checkpoint.setName(document.getString("Name"));
             checkpoint.setTotalPoints(Integer.parseInt(document.get("TotalPoints").toString()));
-            checkpoint.setPointsReceived(Integer.parseInt(document.get("PointsRecieved").toString()));
             checkpoint.setRaceId(document.getString("Race"));
             setValue(checkpoint);
         }
