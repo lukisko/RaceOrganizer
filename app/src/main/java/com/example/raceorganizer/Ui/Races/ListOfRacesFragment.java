@@ -69,6 +69,7 @@ public class ListOfRacesFragment extends Fragment {
             Log.i("listOfRaces","id of participant: "+currentParticipantId);
             if (!currentParticipantId.equals("")){
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
+                    if (ids.getRaceIds().size()<1) return;
                     viewModel.getRacesParticipant(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
                     });

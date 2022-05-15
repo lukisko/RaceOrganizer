@@ -67,6 +67,26 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/totalPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="10dp"
+
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="5dp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="20"
+            android:textAllCaps="false"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 </LinearLayout>

@@ -44,6 +44,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         holder.number.setText(String.valueOf(participants.get(position).getNumber()));
         holder.firstName.setText(participants.get(position).getFirstName());
         holder.lastName.setText(participants.get(position).getLastName());
+        holder.totalPoints.setText(""+participants.get(position).getPoints());
     }
 
     @Override
@@ -60,12 +61,14 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         private TextView number;
         private TextView firstName;
         private TextView lastName;
+        private TextView totalPoints;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             number = itemView.findViewById(R.id.numberOfParticipant);
             firstName = itemView.findViewById(R.id.firstNameOfParticipant);
             lastName = itemView.findViewById(R.id.lastNameOfParticipant);
+            totalPoints = itemView.findViewById(R.id.totalPoints);
 //            itemView.setOnClickListener(l -> {
 //                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
 //            });
