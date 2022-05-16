@@ -77,9 +77,12 @@ public class AssignPointsFragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString("idOfParticipant", participantId);
             bundle.putString("idOfCheckpoint", checkpointId);
-            assignPointsViewModel.assignPoints(participantId, checkpointId, String.valueOf(participantAssignedPoints));
-            ((MainActivity) this.getActivity()).navController.popBackStack();
 
+            assignPointsViewModel.getParticipant(participantId).observe(getViewLifecycleOwner(),
+                    participant -> {
+                        assignPointsViewModel.assignPoints(participantId, checkpointId, String.valueOf(participantAssignedPoints), participant.getPoints() + participantAssignedPoints);
+                        ((MainActivity) this.getActivity()).navController.popBackStack();
+                    });
         });
 
         return view;

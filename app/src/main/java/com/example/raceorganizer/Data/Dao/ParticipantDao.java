@@ -70,7 +70,13 @@ public class ParticipantDao {
         Map<String, Object> data = new HashMap<>();
         data.put("PointsRecieved", points);
 
-        databaseRef.collection("Participants").document(participantId).collection("Checkpoints").document(checkpointId).set(data);
+        databaseRef.collection("Participants").document(participantId).collection("Checkpoints").add(data);
+    }
+    public void addPoints(String id, int points){
+        System.out.println("HERE "+id + " " +points);
+        Map<String, Object> data = new HashMap<>();
+        data.put("Points", points);
+        databaseRef.collection("Participants").document(id).update(data);
     }
     public void addRace(String participantId, String raceId){
 

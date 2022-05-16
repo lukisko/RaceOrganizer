@@ -18,8 +18,8 @@ public class AssignPointsViewModel extends ViewModel {
     }
 
 
-    public void assignPoints(String participantId, String checkpointId, String points) {
-        participantRepository.addCheckpoint(participantId, checkpointId, points);
+    public void assignPoints(String participantId, String checkpointId, String points, int totalPoints) {
+        participantRepository.addCheckpoint(participantId, checkpointId, points, totalPoints);
     }
     public ParticipantLiveData getParticipant(String participantId)
     {

@@ -46,8 +46,9 @@ public class ParticipantRepository {
          return repository.addParticipant(participant);
     }
 
-    public void addCheckpoint(String participantId, String checkpointId, String points) {
+    public void addCheckpoint(String participantId, String checkpointId, String points, int totalPoints) {
         repository.addCheckpoint(participantId,checkpointId,points);
+        repository.addPoints(participantId, totalPoints);
     }
 
     public void addRace(String raceId, String participantId){
