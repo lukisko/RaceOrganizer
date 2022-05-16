@@ -1,5 +1,7 @@
 package com.example.raceorganizer.Data.Dao;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
@@ -65,6 +67,7 @@ public class RaceDao {
 
 
     public LiveData<ArrayList<Race>> getRaces(ArrayList<String> list) {
+        Log.i("raceDAO","list length: "+list.size());
         Query allRacesRef = databaseRef.collection("Races").whereIn(FieldPath.documentId(),list);
         RacesLiveData racesLiveData = new RacesLiveData(allRacesRef);
         return racesLiveData;
