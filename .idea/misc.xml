@@ -38,14 +38,14 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_item.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_participant.xml" value="0.4" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_home.xml" value="0.2" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_list_of_races.xml" value="0.264" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_list_of_races.xml" value="0.176" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login_register.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_moderator_assign_points.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_info.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_participants.xml" value="0.2" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_register.xml" value="0.4" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_register.xml" value="0.37962962962962965" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/moderator_list.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/participant_list.xml" value="0.1" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/progress_bg.xml" value="0.1793478260869565" />
@@ -68,7 +68,6 @@
         <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_list_of_races.xml" value="0.33" />
         <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_login_register.xml" value="0.25" />
-        <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_moderator_assign_points.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/fragment_race_info.xml" value="0.25" />
         <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/home.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/hanch/Desktop/RaceOrganizer/app/src/main/res/layout/race_list.xml" value="0.25" />

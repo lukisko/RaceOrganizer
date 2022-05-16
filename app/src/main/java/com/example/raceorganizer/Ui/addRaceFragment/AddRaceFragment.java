@@ -112,9 +112,10 @@ public class AddRaceFragment extends Fragment {
         addRaceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addRace();
-                ((MainActivity)getActivity()).navController.popBackStack();
-
+                if (CheckAllFields()) {
+                    addRace();
+                    ((MainActivity) getActivity()).navController.popBackStack();
+                }
             }
         });
 
@@ -171,7 +172,7 @@ public class AddRaceFragment extends Fragment {
     public void addRace() {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy:HH:mm");
-        if (CheckAllFields()) {
+
             try {
                 Race raceToAdd = new Race();
                 raceToAdd.setName(et_race_name.getText().toString());
@@ -190,7 +191,7 @@ public class AddRaceFragment extends Fragment {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        }
+
 
     }
 

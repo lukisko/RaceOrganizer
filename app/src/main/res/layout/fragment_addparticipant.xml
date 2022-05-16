@@ -5,57 +5,70 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/light_blue_bg_pane"
-        android:padding="20dp"
         android:layout_margin="30dp"
-        android:orientation="vertical">
+        android:background="@drawable/light_blue_bg_pane"
+        android:orientation="vertical"
+        android:padding="20dp">
+
         <EditText
             android:id="@+id/participantFirstName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:gravity="center"
             android:hint="@string/first_name"
-            android:layout_margin="15dp"
-            android:padding="10dp"/>
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColorHint="@color/hint_colour"
+
+            />
 
         <EditText
             android:id="@+id/participantLastName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:ems="10"
+            android:gravity="center"
+            android:hint="@string/last_name"
             android:inputType="textPersonName"
             android:padding="10dp"
-            android:layout_margin="15dp"
-            android:hint="@string/last_name" />
+            android:textColorHint="@color/hint_colour" />
 
         <EditText
             android:id="@+id/participantAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:ems="10"
-            android:padding="10dp"
-            android:layout_margin="15dp"
+            android:gravity="center"
             android:hint="@string/age"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColorHint="@color/hint_colour" />
 
         <EditText
             android:id="@+id/participantNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="15dp"
             android:layout_weight="1"
             android:ems="10"
-            android:padding="10dp"
-            android:layout_margin="15dp"
+            android:gravity="center"
             android:hint="@string/number"
-            android:inputType="number" />
+            android:inputType="number"
+            android:padding="10dp"
+            android:textColorHint="@color/hint_colour" />
     </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -68,7 +81,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -91,11 +103,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:visibility="invisible"/>
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

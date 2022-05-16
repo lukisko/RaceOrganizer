@@ -26,8 +26,8 @@
     <string name="date">Date</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
-    <string name="age">age</string>
-    <string name="number">number</string>
+    <string name="age">Age</string>
+    <string name="number">Participant Number</string>
     <string name="time">8:00</string>
     <string name="search_number">Search number</string>
     <string name="dw_sign_out">Sign Out</string>

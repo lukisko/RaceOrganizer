@@ -36,19 +36,20 @@ public class ProfileFragment extends Fragment {
         lastName = view.findViewById(R.id.LastName);
 
         viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        viewModel.getCurrentUser().observe(getViewLifecycleOwner(),x->{
-            viewModel.getModerator(x.getUid()).observe(getViewLifecycleOwner(), m -> {
-                final int mid = x.getUid().length() / 2; //get the middle of the String
-                String[] parts = {x.getUid().substring(0, mid),x.getUid().substring(mid)};
-                id.setText(parts[0] + "\n"+ parts[1]);
-                firstName.setText(m.getFirstName());
-                lastName.setText(m.getLastName());
+        if (true) {
+            viewModel.getCurrentUser().observe(getViewLifecycleOwner(),x->{
+                viewModel.getModerator(x.getUid()).observe(getViewLifecycleOwner(), m -> {
+                    final int mid = x.getUid().length() / 2; //get the middle of the String
+                    String[] parts = {x.getUid().substring(0, mid),x.getUid().substring(mid)};
+                    id.setText(parts[0] + "\n"+ parts[1]);
+                    firstName.setText(m.getFirstName());
+                    lastName.setText(m.getLastName());
+                });
             });
-        });
+        }
 
 
         sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
-
         return view;
     }
 }
