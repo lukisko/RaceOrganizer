@@ -38,6 +38,7 @@ public class RacesLiveData extends LiveData<ArrayList<Race>> {
                         document.getString("RaceOwner"));
                 races.add(race);
             }
+            System.out.println(races);
             setValue(races);
         }
 
