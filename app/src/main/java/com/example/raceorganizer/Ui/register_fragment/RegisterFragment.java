@@ -77,7 +77,7 @@ public class RegisterFragment extends Fragment {
                 registerNewUser();
             }
         });
-        bt_logInButton.setOnClickListener(v -> ((AuthenticationActivity) getActivity()).navController.navigate(R.id.nav_login));
+        bt_logInButton.setOnClickListener(v -> ((AuthenticationActivity) getActivity()).navController.popBackStack());
 
         return view;
     }

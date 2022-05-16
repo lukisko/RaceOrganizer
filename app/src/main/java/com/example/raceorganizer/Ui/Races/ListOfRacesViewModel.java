@@ -9,6 +9,7 @@ import com.example.raceorganizer.Data.Dao.CheckpointDao;
 import com.example.raceorganizer.Data.LiveData.Checkpoint.CheckpointsLiveData;
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
 import com.example.raceorganizer.Data.LiveData.Race.RacesLiveData;
+import com.example.raceorganizer.Data.LiveData.User.AuthenticationLiveData;
 import com.example.raceorganizer.Data.LiveData.User.UserIdLiveData;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.AuthenticationRepository;
@@ -39,7 +40,7 @@ public class ListOfRacesViewModel extends AndroidViewModel {
     }
 
 
-    public LiveData<FirebaseUser> getCurrentUser(){
+    public AuthenticationLiveData getCurrentUser(){
         return userRepository.getCurrentUser();
     }
 

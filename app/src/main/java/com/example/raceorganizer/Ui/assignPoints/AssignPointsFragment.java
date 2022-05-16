@@ -25,7 +25,7 @@ import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.checkpointRaceParticipants.CheckpointRaceParticipantsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AssignPointsFragment extends Fragment{
+public class AssignPointsFragment extends Fragment {
     private View view;
     private String participantId;
     private String checkpointId;
@@ -37,7 +37,6 @@ public class AssignPointsFragment extends Fragment{
     private AssignPointsViewModel assignPointsViewModel;
     private int checkpointTotalPoints;
     private int participantAssignedPoints = 0;
-
 
 
     @Nullable
@@ -79,7 +78,7 @@ public class AssignPointsFragment extends Fragment{
             bundle.putString("idOfParticipant", participantId);
             bundle.putString("idOfCheckpoint", checkpointId);
             assignPointsViewModel.assignPoints(participantId, checkpointId, String.valueOf(participantAssignedPoints));
-            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
+            ((MainActivity) this.getActivity()).navController.popBackStack();
 
         });
 

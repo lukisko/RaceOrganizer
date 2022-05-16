@@ -1,5 +1,8 @@
 package com.example.raceorganizer.Ui.checkpointRaceParticipants;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,12 +48,16 @@ public class CheckpointParticipantsFragment extends Fragment {
     private String checkpointId;
     private RecyclerView participantRecycler;
     private ParticipantAdapter participantAdapter;
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_checkpoint_race_participants, container, false);
+
         viewModel = new ViewModelProvider(this).get(CheckpointRaceParticipantsViewModel.class);
+
+        sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
 
         participantRecycler = view.findViewById(R.id.checkpoint_participant_list);
 
@@ -64,22 +72,23 @@ public class CheckpointParticipantsFragment extends Fragment {
 
         participantAdapter = new ParticipantAdapter(new ArrayList<>());
 
-        viewModel.getCheckpoint(getArguments().getString("idOfCheckpoint")).observe(getViewLifecycleOwner(),
-                (Checkpoint c) ->
+        viewModel.getCheckpoint(viewModel.getCurrentUser(getActivity().getApplication()).getValue().getUid(), getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(),
+                c ->
                 {
-                    checkpointName.setText(c.getName());
-                    checkpointId = c.getId();
-                    viewModel.getParticipants(c.getRaceId()).
-                            observe(getViewLifecycleOwner(), participants ->
-                            {
-                                participantAdapter.set(participants);
-                            });
-                    viewModel.getRace(c.getRaceId()).observe(getViewLifecycleOwner(), (Race r) -> {
+                    if (c.size() > 0) {
+                        checkpointName.setText(c.get(0).getName());
+                        checkpointId = c.get(0).getId();
+                        viewModel.getParticipants(c.get(0).getRaceId()).
+                                observe(getViewLifecycleOwner(), participants ->
+                                {
+                                    participantAdapter.set(participants);
+                                });
+                        viewModel.getRace(c.get(0).getRaceId()).observe(getViewLifecycleOwner(), (Race r) -> {
 
-                        raceStartTime.setText(r.getStart());
-                        raceEndTime.setText(r.getEnd());
-                    });
-
+                            raceStartTime.setText(r.getStart());
+                            raceEndTime.setText(r.getEnd());
+                        });
+                    }
                 }
         );
 
@@ -93,4 +102,5 @@ public class CheckpointParticipantsFragment extends Fragment {
         participantRecycler.setAdapter(participantAdapter);
         return view;
     }
+
 }

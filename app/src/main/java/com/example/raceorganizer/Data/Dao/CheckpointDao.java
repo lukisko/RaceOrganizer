@@ -46,6 +46,11 @@ public class CheckpointDao {
         return checkpointsLiveData;
     }
 
+    public CheckpointsLiveData getCheckpointOfRaceModerator(String moderatorId, String raceId) {
+        Query allCheckpointsRef =  databaseRef.collection("Checkpoints").whereArrayContains("Moderators",moderatorId).whereEqualTo("Race",raceId);
+        CheckpointsLiveData checkpointsLiveData = new CheckpointsLiveData(allCheckpointsRef);
+        return checkpointsLiveData;
+    }
 
     public CheckpointsLiveData getCheckpoints(String raceId){
         Query allCheckpointsRef =  databaseRef.collection("Checkpoints").whereEqualTo("Race",raceId);

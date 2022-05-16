@@ -19,6 +19,8 @@ public class Checkpoint {
         this.name = name;
         this.info = "7/10";
         this.moderators = new ArrayList<>();
+        this.totalPoints = 0;
+        this.pointsReceived = 0;
     }
 
     public Checkpoint(String id, String name, int totalPoints, int pointsReceived, String raceId) {
@@ -85,6 +87,7 @@ public class Checkpoint {
     public void setInfo(String info) {
         this.info = info;
     }
+
     @Override
     public String toString() {
         return "Checkpoint{" +

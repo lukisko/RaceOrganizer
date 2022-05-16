@@ -50,11 +50,10 @@ public class CheckpointListPFragment extends Fragment {
         raceLive = viewModel.getRace(getArguments().getString("idOfRace"));
 
 
-
         checkpointRecycler = view.findViewById(R.id.checkpointList);
         raceName = view.findViewById(R.id.raceName);
         raceDate = view.findViewById(R.id.raceDate);
-        raceStartTime =view.findViewById(R.id.raceStartTime);
+        raceStartTime = view.findViewById(R.id.raceStartTime);
         raceEndTime = view.findViewById(R.id.raceEndTime);
 
         checkpointRecycler.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -63,27 +62,27 @@ public class CheckpointListPFragment extends Fragment {
         checkpointRecycler.setAdapter(checkpointAdapter);
 
 
-        raceLive.observe(getViewLifecycleOwner(), (Race race)->{
-            Log.i("checkpointListPFragment","I got "+race.getCheckpoints().size()+" races from DB");
+        raceLive.observe(getViewLifecycleOwner(), (Race race) -> {
+            Log.i("checkpointListPFragment", "I got " + race.getCheckpoints().size() + " races from DB");
             raceName.setText(race.getName());
             raceDate.setText(race.getDate());
             raceStartTime.setText(race.getStart());
             raceEndTime.setText(race.getEnd());
-            if (race.getCheckpoints().size()<1){
+            if (race.getCheckpoints().size() < 1) {
                 ArrayList<Checkpoint> chkpnst = new ArrayList<>();
-                chkpnst.add(new Checkpoint("1","no checkpoints visited",0,0));
+                chkpnst.add(new Checkpoint("no checkpoints visited"));
                 checkpointAdapter.set(chkpnst);
             } else {
                 checkpointAdapter.set(race.getCheckpoints());
             }
         });
         Race tmpRace = raceLive.getValue();
-        if (tmpRace != null){
+        if (tmpRace != null) {
             checkpointAdapter.set(tmpRace.getCheckpoints());
         } else {
             Log.i("checkpointListPFragment", "I am at the empty part");
             ArrayList<Checkpoint> myCheckpoints = new ArrayList<>();
-            myCheckpoints.add(new Checkpoint("myId","no checkpoints visited",0,0));
+            myCheckpoints.add(new Checkpoint("no checkpoints visited"));
             checkpointAdapter.set(myCheckpoints);
         }
 
