@@ -102,10 +102,6 @@ public class ListOfRacesFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
 
-
-
-
-
         if (!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
             viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
                 viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
@@ -113,10 +109,10 @@ public class ListOfRacesFragment extends Fragment {
                 });
             });
         } else {
-            String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID,"");
-            if (!currentParticipantId.equals("")){
+            String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID, "");
+            if (!currentParticipantId.equals("")) {
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
-                    viewModel.getRacesParticipant(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
+                    viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
                     });
                 });
@@ -158,27 +154,29 @@ public class ListOfRacesFragment extends Fragment {
         intentIntegrator.initiateScan(barCodeTypes);
     }
 
-    public void setCreatorList(){
+    public void setCreatorList() {
         viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
             viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
                 raceAdapter.set(races);
             });
         });
+
         raceAdapter.setOnClickListener(o -> {
             Bundle bundle = new Bundle();
             bundle.putString("idOfRace", o.getId());
             ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
         });
     }
-    public void setModeratorList(){
+
+    public void setModeratorList() {
         viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
             viewModel.getCheckpointsByModerator(id.getUid()).observe(getViewLifecycleOwner(), checkpoints -> {
                 ArrayList<String> ids = new ArrayList<>();
                 for (int i = 0; i < checkpoints.size(); i++) {
                     ids.add(checkpoints.get(i).getId());
                 }
-                if(ids.size() > 0){
-                    viewModel.getRaces(ids).observe(getViewLifecycleOwner(),races -> {
+                if (ids.size() > 0) {
+                    viewModel.getRaces(ids).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
                     });
                 }

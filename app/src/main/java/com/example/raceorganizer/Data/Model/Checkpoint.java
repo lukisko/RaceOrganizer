@@ -82,18 +82,9 @@ public class Checkpoint {
     }
 
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public void setInfo(String info) {
         this.info = info;
     }
-
-    public void setPointsReceived(int pointsReceived) {
-        this.pointsReceived = pointsReceived;
-    }
-
     @Override
     public String toString() {
         return "Checkpoint{" +
