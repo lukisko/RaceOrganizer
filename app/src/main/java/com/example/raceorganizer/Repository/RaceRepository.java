@@ -41,8 +41,8 @@ public class RaceRepository {
         repository.deleteRace(id);
     }
 
-    public LiveData<ArrayList<Race>> getRacesParticipant(ArrayList<String> list){
-        return repository.getRacesParticipant(list);
+    public LiveData<ArrayList<Race>> getRaces(ArrayList<String> list){
+        return repository.getRaces(list);
     }
 
 }

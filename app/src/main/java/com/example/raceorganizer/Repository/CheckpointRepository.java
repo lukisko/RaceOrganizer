@@ -27,7 +27,9 @@ public class CheckpointRepository {
     public CheckpointsLiveData getCheckpoints(String raceId) {
         return repository.getCheckpoints(raceId);
     }
-
+    public CheckpointsLiveData getCheckpointsByModerator(String moderatorId) {
+        return repository.getCheckpointsByModerator(moderatorId);
+    }
     public void addCheckpoint(Checkpoint checkpoint){
         repository.addCheckpoint(checkpoint);
     }

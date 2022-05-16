@@ -40,13 +40,20 @@ public class CheckpointDao {
         return currentCheckpoint;
     }
 
-    public CheckpointsLiveData getCheckpoints(String raceId) {
-        Query allCheckpointsRef = databaseRef.collection("Checkpoints").whereEqualTo("Race", raceId);
+    public CheckpointsLiveData getCheckpointsByModerator(String moderatorId) {
+        Query allCheckpointsRef =  databaseRef.collection("Checkpoints").whereArrayContains("Moderators",moderatorId);
         CheckpointsLiveData checkpointsLiveData = new CheckpointsLiveData(allCheckpointsRef);
         return checkpointsLiveData;
     }
 
-    public void addCheckpoint(Checkpoint checkpoint) {
+
+    public CheckpointsLiveData getCheckpoints(String raceId){
+        Query allCheckpointsRef =  databaseRef.collection("Checkpoints").whereEqualTo("Race",raceId);
+        CheckpointsLiveData checkpointsLiveData = new CheckpointsLiveData(allCheckpointsRef);
+        return checkpointsLiveData;
+    }
+
+    public void addCheckpoint(Checkpoint checkpoint){
         Map<String, Object> data = new HashMap<>();
         data.put("Name", checkpoint.getName());
         data.put("TotalPoints", checkpoint.getTotalPoints());

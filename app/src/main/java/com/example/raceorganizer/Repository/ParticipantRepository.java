@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.raceorganizer.Data.Dao.ParticipantDao;
+import com.example.raceorganizer.Data.LiveData.Participant.ParticipantCheckpointLiveData;
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantsLiveData;
 import com.example.raceorganizer.Data.Model.Participant;
@@ -49,5 +50,9 @@ public class ParticipantRepository {
 
     public void addRace(String raceId, String participantId){
         repository.addRace(participantId,raceId);
+    }
+
+    public ParticipantCheckpointLiveData getParticipantCheckpoints(String participantId){
+        return repository.getParticipantCheckpoints(participantId);
     }
 }

@@ -58,5 +58,29 @@
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/organizer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="organizer"
+        app:layout_constraintBottom_toTopOf="@+id/raceListRecicleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.154"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511" />
+
+    <Button
+        android:id="@+id/moderator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="moderator"
+        app:layout_constraintBottom_toTopOf="@+id/raceListRecicleView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.876"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

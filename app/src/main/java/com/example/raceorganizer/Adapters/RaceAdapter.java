@@ -33,6 +33,13 @@ public class RaceAdapter extends RecyclerView.Adapter<RaceAdapter.ViewHolder> {
         notifyDataSetChanged();
         races.clear();
     }
+    @SuppressLint("NotifyDataSetChanged")
+    public void add(ArrayList<Race> races)
+    {
+        this.races.addAll(races);
+        notifyDataSetChanged();
+        races.clear();
+    }
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

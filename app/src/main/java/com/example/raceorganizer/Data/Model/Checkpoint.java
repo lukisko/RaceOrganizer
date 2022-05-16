@@ -33,6 +33,14 @@ public class Checkpoint {
         this.raceId = raceId;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setPointsReceived(int pointsReceived) {
+        this.pointsReceived = pointsReceived;
+    }
+
     public String getName() {
         return name;
     }
