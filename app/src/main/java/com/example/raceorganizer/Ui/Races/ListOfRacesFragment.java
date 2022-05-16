@@ -116,8 +116,9 @@ public class ListOfRacesFragment extends Fragment {
             String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID, "");
             if (!currentParticipantId.equals("")) {
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
+                    if (ids.getRaceIds().size()<1) return;
                     viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
-                        if (ids.getRaceIds().size() < 1) return;
+
                         raceAdapter.set(races);
                     });
                 });

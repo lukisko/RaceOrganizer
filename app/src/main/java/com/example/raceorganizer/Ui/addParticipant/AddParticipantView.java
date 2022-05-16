@@ -24,6 +24,7 @@ import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
 
@@ -79,7 +80,7 @@ public class AddParticipantView extends Fragment {
             }
         }
 
-        Button createButton = view.findViewById(R.id.addParticipant);
+        FloatingActionButton createButton = view.findViewById(R.id.addParticipant);
         createButton.setOnClickListener((v)->{
             Log.i("preferences","heeereee");
             createParticipant();
@@ -149,23 +150,19 @@ public class AddParticipantView extends Fragment {
                 String partId = task.getResult().getId();
                 System.out.println("PARTICIPANT" + partId);
                 if (isParticipantLog()){
-                    //in case that user is registering himself safe the participant id
+                    //in case that user is registering himself save the participant id
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(PARTICIPANT_ID, partId);
                     editor.apply();
                     Log.i("addParticipant","id: "+partId);
+
                 }
 
                 spinner.setVisibility(View.INVISIBLE);
-                isParticipantAdded = false;
-                viewModel.getParticipant(partId).observe(this.getViewLifecycleOwner(),(o)->{
-                    if (!isParticipantAdded){
-                        viewModel.addParticipant(o, raceId);
-                        isParticipantAdded = true;
-                        ((MainActivity)this.getActivity()).navController.popBackStack();
-                        Log.i("addParticipant","out of the adding of participant");
-                    }
-                });
+                viewModel.putParticipantToRace(raceId, partId);
+
+                ((MainActivity)this.getActivity()).navController.popBackStack();
+                Log.i("addParticipant","out of the adding of participant");
 
 
             });
