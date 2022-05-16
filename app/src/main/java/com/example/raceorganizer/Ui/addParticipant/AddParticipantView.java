@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,7 +22,10 @@ import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.Date;
 
@@ -34,6 +38,7 @@ public class AddParticipantView extends Fragment {
     private SharedPreferences sharedPreferences;
     private String raceId;
     private LiveData<Participant> liveParticipant;
+    private boolean isParticipantAdded;
 
     Toast incorrectInfo;
 
@@ -49,11 +54,10 @@ public class AddParticipantView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //setting everything up
+        isParticipantAdded = true;
         view = inflater.inflate(R.layout.fragment_addparticipant, container, false);
 
         sharedPreferences = view.getContext().getSharedPreferences("UserPref",MODE_PRIVATE);
-
-        viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
 
         viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
 
@@ -139,22 +143,32 @@ public class AddParticipantView extends Fragment {
                     0,
                     new Timestamp(new Date(0,0,0))
             );
-            liveParticipant = viewModel.createParticipant(newPart);
 
-            liveParticipant.observe(getViewLifecycleOwner(), (Participant part) -> {
+            viewModel = new ViewModelProvider(this).get(AddParticipantViewModel.class);
+            viewModel.createParticipant(newPart).addOnCompleteListener((task)->{
+                String partId = task.getResult().getId();
+                System.out.println("PARTICIPANT" + partId);
                 if (isParticipantLog()){
                     //in case that user is registering himself safe the participant id
                     SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString(PARTICIPANT_ID, part.getId());
+                    editor.putString(PARTICIPANT_ID, partId);
                     editor.apply();
-                    Log.i("addParticipant","id: "+part.getId());
+                    Log.i("addParticipant","id: "+partId);
                 }
 
                 spinner.setVisibility(View.INVISIBLE);
-                viewModel.addParticipant(part, raceId);
-                ((MainActivity)this.getActivity()).navController.popBackStack();
+                isParticipantAdded = false;
+                viewModel.getParticipant(partId).observe(this.getViewLifecycleOwner(),(o)->{
+                    if (!isParticipantAdded){
+                        viewModel.addParticipant(o, raceId);
+                        isParticipantAdded = true;
+                        ((MainActivity)this.getActivity()).navController.popBackStack();
+                        Log.i("addParticipant","out of the adding of participant");
+                    }
+                });
+
+
             });
-            return;
         }
     }
 }

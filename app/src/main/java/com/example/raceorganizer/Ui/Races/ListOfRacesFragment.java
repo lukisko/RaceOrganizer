@@ -101,6 +101,10 @@ public class ListOfRacesFragment extends Fragment {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+        sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
+
+        raceAdapter = new RaceAdapter(new ArrayList<>());
+
 
         if (!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
             viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
@@ -113,80 +117,83 @@ public class ListOfRacesFragment extends Fragment {
             if (!currentParticipantId.equals("")) {
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
                     viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
-                        raceAdapter.set(races);
+                        if (ids.getRaceIds().size() < 1) return;
+                        viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
+                            raceAdapter.set(races);
+                        });
                     });
-                });
+                }
             }
+
+
+            raceAdapter.setOnClickListener(o -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("idOfRace", o.getId());
+                if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointListPFragment, bundle);
+                } else {
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
+                }
+            });
+            recyclerView.setAdapter(raceAdapter);
+
+
+            add = view.findViewById(R.id.addRace);
+            add.setOnClickListener(o -> {
+                if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
+                    handleAddingParticipantToRace();
+                    //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment); //Navigation for moderator to his checkpoint
+                } else {
+                    ((MainActivity) this.getActivity()).navController.navigate(R.id.nav_add_race);
+                }
+
+            });
+            return view;
         }
 
+        private void handleAddingParticipantToRace () {
+            IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
+            intentIntegrator.setPrompt("Scan a barcode or QR Code");
+            intentIntegrator.setOrientationLocked(true);
+            ArrayList<String> barCodeTypes = new ArrayList<>();
+            barCodeTypes.add("QR_CODE");
+            intentIntegrator.initiateScan(barCodeTypes);
+        }
 
-        raceAdapter.setOnClickListener(o -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("idOfRace", o.getId());
-            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
-                ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointListPFragment, bundle);
-            } else {
+        public void setCreatorList() {
+            viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
+                viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
+                    raceAdapter.set(races);
+                });
+            });
+
+            raceAdapter.setOnClickListener(o -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("idOfRace", o.getId());
                 ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
-            }
-        });
-        recyclerView.setAdapter(raceAdapter);
-
-
-        add = view.findViewById(R.id.addRace);
-        add.setOnClickListener(o -> {
-            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
-                handleAddingParticipantToRace();
-                //((MainActivity)this.getActivity()).navController.navigate(R.id.barCodeFragment); //Navigation for moderator to his checkpoint
-            } else {
-                ((MainActivity) this.getActivity()).navController.navigate(R.id.nav_add_race);
-            }
-
-        });
-        return view;
-    }
-
-    private void handleAddingParticipantToRace() {
-        IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
-        intentIntegrator.setPrompt("Scan a barcode or QR Code");
-        intentIntegrator.setOrientationLocked(true);
-        ArrayList<String> barCodeTypes = new ArrayList<>();
-        barCodeTypes.add("QR_CODE");
-        intentIntegrator.initiateScan(barCodeTypes);
-    }
-
-    public void setCreatorList() {
-        viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
-            viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
-                raceAdapter.set(races);
             });
-        });
+        }
 
-        raceAdapter.setOnClickListener(o -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("idOfRace", o.getId());
-            ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
-        });
-    }
-
-    public void setModeratorList() {
-        viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
-            viewModel.getCheckpointsByModerator(id.getUid()).observe(getViewLifecycleOwner(), checkpoints -> {
-                ArrayList<String> ids = new ArrayList<>();
-                for (int i = 0; i < checkpoints.size(); i++) {
-                    ids.add(checkpoints.get(i).getId());
-                }
-                if (ids.size() > 0) {
-                    viewModel.getRaces(ids).observe(getViewLifecycleOwner(), races -> {
-                        raceAdapter.set(races);
-                    });
-                }
+        public void setModeratorList() {
+            viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
+                viewModel.getCheckpointsByModerator(id.getUid()).observe(getViewLifecycleOwner(), checkpoints -> {
+                    ArrayList<String> ids = new ArrayList<>();
+                    for (int i = 0; i < checkpoints.size(); i++) {
+                        ids.add(checkpoints.get(i).getId());
+                    }
+                    if (ids.size() > 0) {
+                        viewModel.getRaces(ids).observe(getViewLifecycleOwner(), races -> {
+                            raceAdapter.set(races);
+                        });
+                    }
+                });
             });
-        });
-        raceAdapter.setOnClickListener(o -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("idOfRace", o.getId());
+            raceAdapter.setOnClickListener(o -> {
+                Bundle bundle = new Bundle();
+                bundle.putString("idOfRace", o.getId());
 //            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpoint, bundle);
-        });
-    }
+            });
+        }
 
+    }
 }

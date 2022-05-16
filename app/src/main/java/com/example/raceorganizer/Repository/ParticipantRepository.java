@@ -9,6 +9,8 @@ import com.example.raceorganizer.Data.LiveData.Participant.ParticipantLiveData;
 import com.example.raceorganizer.Data.LiveData.Participant.ParticipantsLiveData;
 import com.example.raceorganizer.Data.Model.Participant;
 import com.example.raceorganizer.Data.Model.Race;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.util.ArrayList;
 
@@ -40,8 +42,8 @@ public class ParticipantRepository {
         return repository.getParticipant(id);
     }
 
-    public ParticipantLiveData addParticipant(Participant participant){
-        return repository.addParticipant(participant);
+    public Task<DocumentReference> addParticipant(Participant participant){
+         return repository.addParticipant(participant);
     }
 
     public void addCheckpoint(String participantId, String checkpointId, String points) {
