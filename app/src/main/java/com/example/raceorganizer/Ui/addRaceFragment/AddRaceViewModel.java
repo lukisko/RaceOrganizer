@@ -2,6 +2,7 @@ package com.example.raceorganizer.Ui.addRaceFragment;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -9,6 +10,7 @@ import com.example.raceorganizer.Data.LiveData.User.AuthenticationLiveData;
 import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.Repository.AuthenticationRepository;
 import com.example.raceorganizer.Repository.RaceRepository;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AddRaceViewModel extends ViewModel {
 
@@ -33,7 +35,7 @@ public class AddRaceViewModel extends ViewModel {
         return instance;
     }
 
-    public AuthenticationLiveData getCurrentUser() {
+    public LiveData<FirebaseUser> getCurrentUser() {
         return userRepository.getCurrentUser();
     }
 

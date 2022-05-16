@@ -72,23 +72,23 @@ public class CheckpointParticipantsFragment extends Fragment {
 
         participantAdapter = new ParticipantAdapter(new ArrayList<>());
 
-        viewModel.getCheckpoint(viewModel.getCurrentUser(getActivity().getApplication()).getValue().getUid(), getArguments().getString("idOfRace")).observe(getViewLifecycleOwner(),
-                c ->
+        viewModel.getCheckpoint(getArguments().getString("idOfCheckpoint")).observe(getViewLifecycleOwner(),
+                (Checkpoint c) ->
                 {
-                    if (c.size() > 0) {
-                        checkpointName.setText(c.get(0).getName());
-                        checkpointId = c.get(0).getId();
-                        viewModel.getParticipants(c.get(0).getRaceId()).
-                                observe(getViewLifecycleOwner(), participants ->
-                                {
-                                    participantAdapter.set(participants);
-                                });
-                        viewModel.getRace(c.get(0).getRaceId()).observe(getViewLifecycleOwner(), (Race r) -> {
+                    checkpointName.setText(c.getName());
+                    checkpointId = c.getId();
+                    System.out.println("Total Checkpoint"+ c.getTotalPoints());
+                    viewModel.getParticipants(c.getRaceId()).
+                            observe(getViewLifecycleOwner(), participants ->
+                            {
+                                participantAdapter.set(participants);
+                            });
+                    viewModel.getRace(c.getRaceId()).observe(getViewLifecycleOwner(), (Race r) -> {
 
-                            raceStartTime.setText(r.getStart());
-                            raceEndTime.setText(r.getEnd());
-                        });
-                    }
+                        raceStartTime.setText(r.getStart());
+                        raceEndTime.setText(r.getEnd());
+                    });
+
                 }
         );
 

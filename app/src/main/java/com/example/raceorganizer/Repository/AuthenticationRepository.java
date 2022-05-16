@@ -2,11 +2,14 @@ package com.example.raceorganizer.Repository;
 
 import android.app.Application;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.raceorganizer.Data.Dao.AuthenticationDao;
 import com.example.raceorganizer.Data.LiveData.User.AuthenticationLiveData;
 import com.example.raceorganizer.Data.Model.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 
 public class AuthenticationRepository {
     private final AuthenticationLiveData currentUser;
@@ -27,7 +30,7 @@ public class AuthenticationRepository {
         return instance;
     }
 
-    public AuthenticationLiveData getCurrentUser() {
+    public LiveData<FirebaseUser> getCurrentUser() {
         return currentUser;
     }
 
@@ -37,7 +40,7 @@ public class AuthenticationRepository {
     }
 
     public Task<AuthResult> signUp(User user) {
-       return authenticationDao.signUp(user);
+        return authenticationDao.signUp(user);
     }
 
     public Task<AuthResult> signIn(User user) {

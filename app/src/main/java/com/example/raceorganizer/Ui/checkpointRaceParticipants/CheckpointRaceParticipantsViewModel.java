@@ -41,10 +41,6 @@ public class CheckpointRaceParticipantsViewModel extends ViewModel {
         return participantRepository.getAllParticipants(raceId);
     }
 
-    public CheckpointLiveData getCheckpoint(String checkpointId) {
-        return checkpointRepository.getCheckpoint(checkpointId);
-    }
-
     public ParticipantLiveData getParticipant(String participantId) {
         return participantRepository.getParticipant(participantId);
     }
@@ -54,10 +50,16 @@ public class CheckpointRaceParticipantsViewModel extends ViewModel {
 
     }
 
-    public CheckpointsLiveData getCheckpoint(String moderatorId, String raceId) {
+    public CheckpointsLiveData getCheckpoints(String moderatorId, String raceId) {
         return checkpointRepository.getCheckpointOfRaceModerator(moderatorId, raceId);
 
     }
+
+    public CheckpointLiveData getCheckpoint(String checkpointId) {
+        return checkpointRepository.getCheckpoint(checkpointId);
+
+    }
+
 
     public LiveData<FirebaseUser> getCurrentUser(Application application) {
         return AuthenticationRepository.getInstance(application).getCurrentUser();

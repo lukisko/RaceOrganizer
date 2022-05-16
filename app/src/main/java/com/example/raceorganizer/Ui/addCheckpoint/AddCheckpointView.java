@@ -34,7 +34,7 @@ public class AddCheckpointView extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_addcheckpoint, container, false);
+        view = inflater.inflate(R.layout.fragment_add_checkpoint, container, false);
 
         viewModel = new ViewModelProvider(this).get(AddCheckpointViewModel.class);
         viewModel = new ViewModelProvider(this).get(AddCheckpointViewModel.class);

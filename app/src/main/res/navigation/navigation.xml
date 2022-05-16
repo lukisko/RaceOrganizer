@@ -48,6 +48,10 @@
         android:name="com.example.raceorganizer.Ui.checkpointRaceParticipants.CheckpointParticipantsFragment"
         android:label="CheckpointRaceParticipantsFragment" />
     <fragment
+        android:id="@+id/checkpointsModeratorList"
+        android:name="com.example.raceorganizer.Ui.moderatorCheckpoint.ModeratorCheckpointFragment"
+        android:label="ModeratorCheckpointFragment" />
+    <fragment
         android:id="@+id/barCodeFragment"
         android:name="com.example.raceorganizer.ui.barCodeScan.BarCodeFragment"
         android:label="BarCodeFragment" />

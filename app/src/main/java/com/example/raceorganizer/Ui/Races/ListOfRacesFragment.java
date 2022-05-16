@@ -192,7 +192,7 @@ public class ListOfRacesFragment extends Fragment {
         raceAdapter.setOnClickListener(o -> {
             Bundle bundle = new Bundle();
             bundle.putString("idOfRace", o.getId());
-            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointsModeratorList, bundle);
         });
     }
 

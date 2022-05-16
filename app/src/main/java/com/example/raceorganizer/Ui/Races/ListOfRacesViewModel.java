@@ -40,7 +40,7 @@ public class ListOfRacesViewModel extends AndroidViewModel {
     }
 
 
-    public AuthenticationLiveData getCurrentUser(){
+    public LiveData<FirebaseUser> getCurrentUser(){
         return userRepository.getCurrentUser();
     }
 

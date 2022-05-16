@@ -41,6 +41,9 @@
     <string name="assign_points">Assign Points</string>
     <string name="zero">0</string>
     <string name="line">-</string>
+    <string name="checkpoint_name">Checkpoint Name</string>
+    <string name="location">Location</string>
+    <string name="description">Description</string>
 
 
 </resources>

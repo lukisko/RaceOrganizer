@@ -30,11 +30,12 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/checkpoint_list.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/drawer_header.xml" value="0.1" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addcheckpoint.xml" value="0.4" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_add_checkpoint.xml" value="0.176" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addcheckpoint.xml" value="0.176" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addparticipant.xml" value="0.176" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_addrace.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_barcode_scaner.xml" value="0.15081521739130435" />
-        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpoint_race_participants.xml" value="0.4" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpoint_race_participants.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_item.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_checkpointlist_participant.xml" value="0.4" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_home.xml" value="0.2" />
@@ -42,6 +43,7 @@
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_login_register.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_moderator_assign_points.xml" value="0.264" />
+        <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_moderator_checkpoint.xml" value="0.25416666666666665" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_info.xml" value="0.264" />
         <entry key="..\:/Semester4/Android_Application/app/src/main/res/layout/fragment_race_participants.xml" value="0.2" />
