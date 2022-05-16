@@ -1,10 +1,12 @@
 package com.example.raceorganizer.Data.LiveData.Checkpoint;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
-import com.example.raceorganizer.Data.Model.Race;
+
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -15,25 +17,24 @@ public class CheckpointLiveData extends LiveData<Checkpoint> {
     DocumentReference reference;
     private ListenerRegistration listenerRegistration;
 
+    public CheckpointLiveData(DocumentReference ref) {
+        reference = ref;
+    }
 
     private final EventListener<DocumentSnapshot> valueEventListener = new EventListener<DocumentSnapshot>() {
+        Checkpoint checkpoint = new Checkpoint();
         @Override
         public void onEvent(@Nullable DocumentSnapshot document, @Nullable FirebaseFirestoreException error) {
-            Checkpoint checkpoint = new Checkpoint(
-                    document.getId(),
-                    document.getString("Name"),
-                    Integer.parseInt(document.get("TotalPoints").toString()),
-                    Integer.parseInt(document.get("PointsRecieved").toString()));
+
+            Log.i("Id checkpoint DAO from db", document.getId());
+            checkpoint.setId(document.getId());
+            checkpoint.setName(document.getString("Name"));
+            checkpoint.setTotalPoints(Integer.parseInt(document.get("TotalPoints").toString()));
+            checkpoint.setRaceId(document.getString("Race"));
             setValue(checkpoint);
         }
 
     };
-
-
-    public CheckpointLiveData(DocumentReference ref){
-        reference = ref;
-    }
-
     @Override
     protected void onActive() {
         super.onActive();

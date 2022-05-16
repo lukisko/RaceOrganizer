@@ -42,15 +42,21 @@ public class ParticipantLiveData extends LiveData<Participant> {
         reference = ref;
     }
 
+    public ParticipantLiveData(){
+
+    }
+
     @Override
     protected void onActive() {
         super.onActive();
+        if(reference != null)
         listenerRegistration = reference.addSnapshotListener(valueEventListener);
     }
 
     @Override
     protected void onInactive() {
         super.onInactive();
+        if(reference != null)
         listenerRegistration.remove();
     }
 }

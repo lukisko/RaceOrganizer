@@ -35,6 +35,12 @@
     <string name="race_end_date">End Date</string>
     <string name="select_category">Select Category</string>
     <string name="profile">Profile</string>
+    <string name="checkpoints">Checkpoints</string>
+    <string name="participants">Participants</string>
+    <string name="moderators">Moderators</string>
+    <string name="assign_points">Assign Points</string>
+    <string name="zero">0</string>
+    <string name="line">-</string>
 
 
 </resources>

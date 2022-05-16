@@ -22,8 +22,9 @@ public class AddCheckpointViewModel extends ViewModel {
         moderatorRepositori = ModeratorRepositori.getInstance();
     }
 
-    public void makeCheckpoint( Checkpoint checkpoint){
-        checkpointRepository.addCheckpoint( checkpoint);
+    public void makeCheckpoint(String raceId, Checkpoint checkpoint){
+        checkpoint.setRaceId(raceId);
+        checkpointRepository.addCheckpoint(checkpoint);
     }
 
 

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 String raceName = intentResult.getContents();
                 Log.i("QR_Scan", raceName);
                 Bundle bundle = new Bundle();
-                bundle.putString("nameOfRace",raceName);
+                bundle.putString("idOfRace",raceName);
                 this.navController.navigate(R.id.addParticipantView,bundle);
                 Toast toast = Toast.makeText(getBaseContext(),"sign up for "+raceName,Toast.LENGTH_SHORT);
                 toast.show();

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import com.example.raceorganizer.Data.Model.Checkpoint;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
+import com.example.raceorganizer.Ui.addParticipant.AddParticipantView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.zxing.integration.android.IntentIntegrator;
 
@@ -40,8 +42,6 @@ public class ListOfRacesFragment extends Fragment {
     FloatingActionButton add;
     private Button organizer;
     private Button moderator;
-
-    private String id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,11 +101,39 @@ public class ListOfRacesFragment extends Fragment {
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
 
+        sharedPreferences = getContext().getSharedPreferences("UserPref", MODE_PRIVATE);
+
+        raceAdapter = new RaceAdapter(new ArrayList<>());
 
 
+        if (!sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
+            viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
+                viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
+                    raceAdapter.set(races);
+                });
+            });
+        } else {
+            String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID, "");
+            if (!currentParticipantId.equals("")) {
+                viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
+                    viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
+                        if (ids.getRaceIds().size() < 1) return;
+                        raceAdapter.set(races);
+                    });
+                });
+            }
+        }
 
 
-
+        raceAdapter.setOnClickListener(o -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("idOfRace", o.getId());
+            if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) { //should I assume user is participant or moderator if there is no info?
+                ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointListPFragment, bundle);
+            } else {
+                ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
+            }
+        });
         recyclerView.setAdapter(raceAdapter);
 
 
@@ -119,7 +147,6 @@ public class ListOfRacesFragment extends Fragment {
             }
 
         });
-
         return view;
     }
 
@@ -132,27 +159,29 @@ public class ListOfRacesFragment extends Fragment {
         intentIntegrator.initiateScan(barCodeTypes);
     }
 
-    public void setCreatorList(){
+    public void setCreatorList() {
         viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
             viewModel.getAllRaces(id.getUid()).observe(getViewLifecycleOwner(), races -> {
                 raceAdapter.set(races);
             });
         });
+
         raceAdapter.setOnClickListener(o -> {
             Bundle bundle = new Bundle();
             bundle.putString("idOfRace", o.getId());
             ((MainActivity) this.getActivity()).navController.navigate(R.id.race_info, bundle);
         });
     }
-    public void setModeratorList(){
+
+    public void setModeratorList() {
         viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
             viewModel.getCheckpointsByModerator(id.getUid()).observe(getViewLifecycleOwner(), checkpoints -> {
                 ArrayList<String> ids = new ArrayList<>();
                 for (int i = 0; i < checkpoints.size(); i++) {
                     ids.add(checkpoints.get(i).getId());
                 }
-                if(ids.size() > 0){
-                    viewModel.getRaces(ids).observe(getViewLifecycleOwner(),races -> {
+                if (ids.size() > 0) {
+                    viewModel.getRaces(ids).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
                     });
                 }
@@ -161,7 +190,7 @@ public class ListOfRacesFragment extends Fragment {
         raceAdapter.setOnClickListener(o -> {
             Bundle bundle = new Bundle();
             bundle.putString("idOfRace", o.getId());
-//            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpoint, bundle);
+            ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
         });
     }
 

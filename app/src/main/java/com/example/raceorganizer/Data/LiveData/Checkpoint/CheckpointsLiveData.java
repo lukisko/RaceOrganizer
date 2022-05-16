@@ -25,16 +25,17 @@ public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
 
 
     private final EventListener<QuerySnapshot> valueEventListener = new EventListener<QuerySnapshot>() {
-        ArrayList<Checkpoint> checkpoints = new ArrayList<>();
+
         @Override
         public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+            ArrayList<Checkpoint> checkpoints = new ArrayList<>();
             for (DocumentSnapshot document:value.getDocuments()) {
-                Checkpoint checkpoint = new Checkpoint(
-                        document.getId(),
-                        document.getString("Name"),
-                        Integer.parseInt(document.get("TotalPoints").toString()),
-                        0
-                );
+                Checkpoint checkpoint = new Checkpoint();
+                checkpoint.setId(document.getId());
+                checkpoint.setName(document.getString("Name"));
+                checkpoint.setTotalPoints(Integer.parseInt(document.get("TotalPoints").toString()));
+                //checkpoint.setPointsReceived(Integer.parseInt(document.get("PointsRecieved").toString()));
+                checkpoint.setRaceId(document.getString("Race"));
                 checkpoint.setModerators((ArrayList<String>) document.get("Moderators"));
                 checkpoints.add(checkpoint);
             }
@@ -45,9 +46,10 @@ public class CheckpointsLiveData extends LiveData<ArrayList<Checkpoint>> {
 
 
 
+
+
     public CheckpointsLiveData(Query ref) {
         reference = ref;
-
     }
 
     @Override

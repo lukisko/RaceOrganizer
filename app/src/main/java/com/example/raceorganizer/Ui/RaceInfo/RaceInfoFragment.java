@@ -121,6 +121,7 @@ public class RaceInfoFragment extends Fragment {
 
     public void setupRecycleViewsOnClick(){
         Context context = getContext();
+        Bundle bundle = new Bundle();
         int duration = Toast.LENGTH_SHORT;
         checkpointAdapter.setOnClickListener( c -> {
             if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
@@ -128,6 +129,8 @@ public class RaceInfoFragment extends Fragment {
             }
             else{
                 Toast.makeText(context, "registerd" + " " + c.getId(), duration).show();
+                bundle.putString("idOfCheckpoint", c.getId());
+                ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
             }
         });
     }
@@ -164,7 +167,6 @@ public class RaceInfoFragment extends Fragment {
         addButton.setOnClickListener((v) -> {
             Bundle bundle = new Bundle();
             bundle.putString("idOfRace", getArguments().getString("idOfRace"));
-
             switch (listType) {
                 case CHECKPOINTS:
                     ((MainActivity) this.getActivity()).navController.navigate(R.id.addCheckpointView2, bundle);

@@ -11,27 +11,28 @@ public class Checkpoint {
     private String raceId;
     private ArrayList<String> moderators;
 
-    public Checkpoint(){
+    public Checkpoint() {
         moderators = new ArrayList<>();
     }
-    public Checkpoint(String name){
+
+    public Checkpoint(String name) {
         this.name = name;
         this.info = "7/10";
         this.moderators = new ArrayList<>();
-    }
-    public Checkpoint( String name, int totalPoints, String raceId){
-        this.name = name;
-        this.totalPoints = totalPoints;
-        this.moderators = new ArrayList<>();
-        this.raceId = raceId;
+        this.totalPoints = 0;
+        this.pointsReceived = 0;
     }
 
-    public Checkpoint(String id, String name, int totalPoints, int pointsReceived) {
+    public Checkpoint(String id, String name, int totalPoints, int pointsReceived, String raceId) {
         this.id = id;
         this.name = name;
         this.totalPoints = totalPoints;
         this.pointsReceived = pointsReceived;
-        this.moderators = new ArrayList<>();
+        this.raceId = raceId;
+    }
+
+    public void setRaceId(String raceId) {
+        this.raceId = raceId;
     }
 
     public void setId(String id) {
@@ -74,10 +75,6 @@ public class Checkpoint {
         this.moderators = moderators;
     }
 
-    public void setRaceId(String raceId) {
-        this.raceId = raceId;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -86,6 +83,10 @@ public class Checkpoint {
         this.totalPoints = totalPoints;
     }
 
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     @Override
     public String toString() {

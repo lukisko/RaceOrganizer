@@ -58,7 +58,6 @@ public class AddRaceFragment extends Fragment {
     private ImageButton bt_end_date_picker;
     private ImageButton bt_start_time_picker;
     private ImageButton bt_end_time_picker;
-    boolean isAllFieldsChecked = false;
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
@@ -114,7 +113,7 @@ public class AddRaceFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 addRace();
-                ((MainActivity)getActivity()).navController.navigate(R.id.list_of_races);
+                ((MainActivity)getActivity()).navController.popBackStack();
 
             }
         });

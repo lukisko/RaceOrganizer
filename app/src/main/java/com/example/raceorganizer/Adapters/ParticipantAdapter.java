@@ -20,17 +20,18 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
     private ArrayList<Participant> participants;
     private OnCLickListener onCLickListener;
 
-    public ParticipantAdapter(ArrayList<Participant> participants){
+    public ParticipantAdapter(ArrayList<Participant> participants) {
         this.participants = participants;
     }
+
     @SuppressLint("NotifyDataSetChanged")
-    public void set(ArrayList<Participant> participants)
-    {
+    public void set(ArrayList<Participant> participants) {
         this.participants.clear();
         this.participants.addAll(participants);
         notifyDataSetChanged();
         participants.clear();
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,6 +45,7 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         holder.number.setText(String.valueOf(participants.get(position).getNumber()));
         holder.firstName.setText(participants.get(position).getFirstName());
         holder.lastName.setText(participants.get(position).getLastName());
+        holder.totalPoints.setText(""+participants.get(position).getPoints());
     }
 
     @Override
@@ -55,23 +57,25 @@ public class ParticipantAdapter extends RecyclerView.Adapter<ParticipantAdapter.
         this.onCLickListener = listener;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView number;
         private TextView firstName;
         private TextView lastName;
+        private TextView totalPoints;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             number = itemView.findViewById(R.id.numberOfParticipant);
             firstName = itemView.findViewById(R.id.firstNameOfParticipant);
             lastName = itemView.findViewById(R.id.lastNameOfParticipant);
-//            itemView.setOnClickListener(l -> {
-//                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
-//            });
+            itemView.setOnClickListener(l -> {
+                onCLickListener.onClick(participants.get(getBindingAdapterPosition()));
+            });
+            totalPoints = itemView.findViewById(R.id.totalPoints);
         }
     }
-    public interface OnCLickListener{
+
+    public interface OnCLickListener {
         void onClick(Participant participant);
     }
 }
