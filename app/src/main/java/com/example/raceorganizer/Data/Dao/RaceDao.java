@@ -67,7 +67,6 @@ public class RaceDao {
 
 
     public LiveData<ArrayList<Race>> getRaces(ArrayList<String> list) {
-        Log.i("raceDAO","list length: "+list.size());
         Query allRacesRef = databaseRef.collection("Races").whereIn(FieldPath.documentId(),list);
         RacesLiveData racesLiveData = new RacesLiveData(allRacesRef);
         return racesLiveData;

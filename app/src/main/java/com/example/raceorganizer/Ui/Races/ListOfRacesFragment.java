@@ -118,7 +118,6 @@ public class ListOfRacesFragment extends Fragment {
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
                     if (ids.getRaceIds().size()<1) return;
                     viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
-
                         raceAdapter.set(races);
                     });
                 });
@@ -178,9 +177,11 @@ public class ListOfRacesFragment extends Fragment {
         viewModel.getCurrentUser().observe(this.getViewLifecycleOwner(), id -> {
             viewModel.getCheckpointsByModerator(id.getUid()).observe(getViewLifecycleOwner(), checkpoints -> {
                 ArrayList<String> ids = new ArrayList<>();
+                System.out.println(checkpoints);
                 for (int i = 0; i < checkpoints.size(); i++) {
-                    ids.add(checkpoints.get(i).getId());
+                    ids.add(checkpoints.get(i).getRaceId());
                 }
+
                 if (ids.size() > 0) {
                     viewModel.getRaces(ids).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
