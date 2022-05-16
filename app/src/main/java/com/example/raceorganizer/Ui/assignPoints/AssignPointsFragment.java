@@ -13,6 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.raceorganizer.Data.Model.Checkpoint;
@@ -22,7 +25,7 @@ import com.example.raceorganizer.R;
 import com.example.raceorganizer.Ui.checkpointRaceParticipants.CheckpointRaceParticipantsViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class AssignPointsFragment extends Fragment {
+public class AssignPointsFragment extends Fragment{
     private View view;
     private String participantId;
     private String checkpointId;
@@ -35,12 +38,15 @@ public class AssignPointsFragment extends Fragment {
     private int checkpointTotalPoints;
     private int participantAssignedPoints = 0;
 
+
+
     @Nullable
     @Override
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_moderator_assign_points, container, false);
         assignPointsViewModel = new ViewModelProvider(this).get(AssignPointsViewModel.class);
+
 
         participantId = getArguments().getString("idOfParticipant");
         checkpointId = getArguments().getString("idOfCheckpoint");
@@ -74,6 +80,7 @@ public class AssignPointsFragment extends Fragment {
             bundle.putString("idOfCheckpoint", checkpointId);
             assignPointsViewModel.assignPoints(participantId, checkpointId, String.valueOf(participantAssignedPoints));
             ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
+
         });
 
         return view;
