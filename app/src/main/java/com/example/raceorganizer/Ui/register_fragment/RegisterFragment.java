@@ -33,6 +33,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class RegisterFragment extends Fragment {
 
@@ -121,6 +122,7 @@ public class RegisterFragment extends Fragment {
 
         viewModel.signUp(userToRegister).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
+                userToRegister.setId(Objects.requireNonNull(task.getResult().getUser()).getUid());
                 viewModel.createUserInDatabase(userToRegister).addOnSuccessListener(dbresp -> {
                     Toast.makeText(view.getContext(), "Logged In", Toast.LENGTH_LONG).show();
                 }).addOnFailureListener(e ->

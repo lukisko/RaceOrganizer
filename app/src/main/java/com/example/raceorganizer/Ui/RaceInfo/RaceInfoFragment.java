@@ -125,18 +125,22 @@ public class RaceInfoFragment extends Fragment {
         int duration = Toast.LENGTH_SHORT;
         checkpointAdapter.setOnClickListener( c -> {
             if (sharedPreferences.getBoolean(HomeFragment.PARTICIPANT_PREFERENCE, true)) {
-                Toast.makeText(context, "participant" + " " + c.getId(), duration).show();
+//                Toast.makeText(context, "participant" + " " + c.getId(), duration).show();
             }
             else{
-                Toast.makeText(context, "registerd" + " " + c.getId(), duration).show();
+//                Toast.makeText(context, "registerd" + " " + c.getId(), duration).show();
                 bundle.putString("idOfCheckpoint", c.getId());
                 ((MainActivity) this.getActivity()).navController.navigate(R.id.checkpointRaceParticipants, bundle);
             }
+        });
+        participantAdapter.setOnClickListener(c -> {
+
         });
     }
 
     public void setupButtons() {
         delete.setOnClickListener(o -> {
+            ((MainActivity)this.getActivity()).navController.popBackStack();
             viewModel.deleteRace(getArguments().getString("idOfRace"));
             ((MainActivity) this.getActivity()).navController.navigate(R.id.list_of_races);
         });

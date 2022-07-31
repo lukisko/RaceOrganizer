@@ -48,7 +48,7 @@ public class AuthenticationDao {
         Map<String, String> newUser = new HashMap<String, String>();
         newUser.put("FirstName", user.getFirstName());
         newUser.put("LastName", user.getLastName());
-        return databaseRef.collection("LoggedInUser").document().set(newUser);
+        return databaseRef.collection("LoggedInUser").document(user.getId()).set(newUser);
     }
 
 }

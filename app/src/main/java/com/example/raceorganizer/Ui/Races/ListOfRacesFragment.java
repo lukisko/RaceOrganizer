@@ -21,6 +21,7 @@ import android.widget.Button;
 
 import com.example.raceorganizer.Adapters.RaceAdapter;
 import com.example.raceorganizer.Data.Model.Checkpoint;
+import com.example.raceorganizer.Data.Model.Race;
 import com.example.raceorganizer.R;
 import com.example.raceorganizer.MainActivity;
 import com.example.raceorganizer.Ui.Home.HomeFragment;
@@ -116,7 +117,7 @@ public class ListOfRacesFragment extends Fragment {
             String currentParticipantId = sharedPreferences.getString(AddParticipantView.PARTICIPANT_ID, "");
             if (!currentParticipantId.equals("")) {
                 viewModel.getParticipant(currentParticipantId).observe(getViewLifecycleOwner(), ids -> {
-                    if (ids.getRaceIds().size()<1) return;
+                    if (ids.getRaceIds().size() < 1) return;
                     viewModel.getRaces(ids.getRaceIds()).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
                     });
@@ -186,6 +187,9 @@ public class ListOfRacesFragment extends Fragment {
                     viewModel.getRaces(ids).observe(getViewLifecycleOwner(), races -> {
                         raceAdapter.set(races);
                     });
+                }
+                else {
+                    raceAdapter.set(new ArrayList<>());
                 }
             });
         });

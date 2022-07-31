@@ -61,7 +61,7 @@ public class AddCheckpointView extends Fragment {
             Checkpoint newCheck = new Checkpoint();
             newCheck.setName(chName.getText().toString());
             newCheck.setRaceId(raceId);
-            if(hasPoints.getShowText()) {
+            if(hasPoints.isChecked()) {
                 newCheck.setTotalPoints(Integer.parseInt(points.getText().toString()));
             }
             String[] moderators = moderator.getText().toString().split(",");
